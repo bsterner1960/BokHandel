@@ -67,7 +67,22 @@ app.service("restService", ["$http", "$rootScope", function($http, $rootScope) {
 //creating Books service
 app.service("Books", ["restService", function (restService) {
     var bookServant = {
-
+        get : function (bookId) {
+            var restUrl = bookId ? "books/" + bookId : "books/";
+            restService.restCall(restUrl, "GET", {});
+        },
+        post : function (data) {
+            var restUrl = "books/";
+            restService.restCall(restUrl, "POST", data);
+        },
+        put : function (bookId, data) {
+            var restUrl = "books/" + bookId;
+            restService.restCall(restUrl, "PUT", data);
+        },
+        delete : function (bookId) {
+            var restUrl = "books/" + bookId;
+            restService.restCall(restUrl, "DELETE", {});
+        }
     };
 
     return bookServant;

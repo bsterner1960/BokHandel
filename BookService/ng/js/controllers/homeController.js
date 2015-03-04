@@ -1,5 +1,5 @@
 //"myAppName" controller.
-app.controller("homeController", ["$scope", "restService", function($scope, restService) {
+app.controller("homeController", ["$scope", "restService", "Books", function($scope, restService, Books) {
   console.log("I'm alive!");
 
   //using $rootScope.on to listen for new data from restCall .success()
@@ -43,5 +43,7 @@ app.controller("homeController", ["$scope", "restService", function($scope, rest
   console.log("rootScope2: ", $scope.hello);
   
   //a static GET request to see if our service is alive
-  restService.restCall("books", "GET", {});
+  //restService.restCall("books", "GET", {});
+  //replacing restService with Books (also a service)
+  Books.get();
 }]);
