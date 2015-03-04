@@ -1,11 +1,11 @@
 //"myAppName" controller.
-app.controller("homeController", ["$scope", "restService", "$rootScope", function($scope, restService, $rootScope) {
+app.controller("homeController", ["$scope", "restService", function($scope, restService) {
   console.log("I'm alive!");
 
   //using $rootScope.on to listen for new data from restCall .success()
-  $rootScope.$on("restSuccess", function(event, data) {
+  $scope.$on("restSuccess", function(event, data) {
     console.log("restSuccess triggered: ", data);
-    $scope.output = data;
+    $scope.output = JSON.stringify(data, null, '\t');
   });
 
   //CRUD (POST, GET, PUT, DELETE)

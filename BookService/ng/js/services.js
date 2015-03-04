@@ -50,7 +50,7 @@ app.service("restService", ["$http", "$rootScope", function($http, $rootScope) {
         // (all scopes now have the propery "output")
 
         //using $rootScope to broadcast data to any "listeners" in the app
-        $rootScope.$broadcast("restSuccess", JSON.stringify(data, null, '\t'));
+        $rootScope.$broadcast("restSuccess", data);
         // (all "listeners" have now recieved our stringified data)
       });
 
