@@ -87,3 +87,27 @@ app.service("Books", ["restService", function (restService) {
 
     return bookServant;
 }]);
+
+//creating Authors service
+app.service("Authors", ["restService", function (restService) {
+    var authorServant = {
+        get: function (authorId) {
+            var restUrl = authorId ? "authors/" + authorId : "authors/";
+            restService.restCall(restUrl, "GET", {});
+        },
+        post: function (data) {
+            var restUrl = "authors/";
+            restService.restCall(restUrl, "POST", data);
+        },
+        put: function (authorId, data) {
+            var restUrl = "authors/" + authorId;
+            restService.restCall(restUrl, "PUT", data);
+        },
+        delete: function (authorId) {
+            var restUrl = "authors/" + authorId;
+            restService.restCall(restUrl, "DELETE", {});
+        }
+    };
+
+    return authorServant;
+}]);
