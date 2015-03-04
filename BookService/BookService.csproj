@@ -220,10 +220,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <Content Include="ng\data\dummydata.json" />
-    <Content Include="ng\js\.DS_Store" />
-    <Content Include="ng\js\controllers\.DS_Store" />
-    <Content Include="ng\partials\.DS_Store" />
     <None Include="Properties\PublishProfiles\BookService.pubxml" />
     <None Include="Properties\PublishProfiles\bookservice2.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
