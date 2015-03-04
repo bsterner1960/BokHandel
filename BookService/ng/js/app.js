@@ -9,9 +9,13 @@ app.config(["$routeProvider", "$locationProvider", function($routeProvider, $loc
       templateUrl: "partials/home.html",
       controller: "homeController"
     })
+    .when("/add-book", {
+        templateUrl: "partials/bookform.html",
+        controller: "bookformController"
+    })
     .otherwise({
       redirectTo: "/"
     });
 
-  $locationProvider.html5Mode(true);
+  //$locationProvider.html5Mode(true);
 }]);
