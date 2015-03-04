@@ -197,6 +197,7 @@
     <Content Include="ng\js\libs\ui-bootstrap-tpls-0.12.1.js" />
     <Content Include="ng\js\main.js" />
     <Content Include="ng\js\services.js" />
+    <Content Include="ng\partials\bookform.html" />
     <Content Include="ng\partials\home.html" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
