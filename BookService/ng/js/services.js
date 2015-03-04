@@ -63,3 +63,12 @@ app.service("restService", ["$http", "$rootScope", function($http, $rootScope) {
   //which is why we had to build restServant
   return restServant;
 }]);
+
+//creating Books service
+app.service("Books", ["restService", function (restService) {
+    var bookServant = {
+
+    };
+
+    return bookServant;
+}]);
