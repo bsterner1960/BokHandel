@@ -8,10 +8,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="bookAuthor" class="col-sm-2 control-label">Author</label>
+                <label for="bookAuthor" class="col-sm-2 control-label">Author:</label>
                 <div class="col-sm-10">
                     <select ng-model="bookData.AuthorId" id="bookAuthor" class="form-control">
-                        <option ng-repeat="author in authors" value="{{author.Id}}">{{author.Name}}</option>
+                        <option ng-repeat="author in authors | orderBy: 'Name'" value="{{author.Id}}">{{author.Name}}</option>
                     </select>
                 </div>
             </div>
