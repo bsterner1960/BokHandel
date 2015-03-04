@@ -14,6 +14,7 @@
 
     //click handler for form
     $scope.save = function () {
+        //console.log("save: ", $scope.bookData);
         Books.post($scope.bookData);
     };
 
