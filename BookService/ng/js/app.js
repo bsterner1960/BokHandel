@@ -1,5 +1,5 @@
 //app declaration and dependency injection
-var app = angular.module("myAppName", ["ngRoute", "ui.bootstrap"]);
+var app = angular.module("myAppName", ["ngRoute", "ui.bootstrap", "ngResource"]);
 
 //app config
 app.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider) {
