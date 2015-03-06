@@ -13,17 +13,17 @@ using BookService.Models;
 
 namespace BookService.Controllers
 {
-    public class GenreController : ApiController
+    public class GenresController : ApiController
     {
         private BookServiceContext db = new BookServiceContext();
 
-        // GET api/Genre
+        // GET api/Genres
         public IQueryable<Genre> GetGenres()
         {
             return db.Genres;
         }
 
-        // GET api/Genre/5
+        // GET api/Genres/5
         [ResponseType(typeof(Genre))]
         public async Task<IHttpActionResult> GetGenre(int id)
         {
@@ -36,7 +36,7 @@ namespace BookService.Controllers
             return Ok(genre);
         }
 
-        // PUT api/Genre/5
+        // PUT api/Genres/5
         public async Task<IHttpActionResult> PutGenre(int id, Genre genre)
         {
             if (!ModelState.IsValid)
@@ -70,7 +70,7 @@ namespace BookService.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST api/Genre
+        // POST api/Genres
         [ResponseType(typeof(Genre))]
         public async Task<IHttpActionResult> PostGenre(Genre genre)
         {
@@ -85,7 +85,7 @@ namespace BookService.Controllers
             return CreatedAtRoute("DefaultApi", new { id = genre.Id }, genre);
         }
 
-        // DELETE api/Genre/5
+        // DELETE api/Genres/5
         [ResponseType(typeof(Genre))]
         public async Task<IHttpActionResult> DeleteGenre(int id)
         {
