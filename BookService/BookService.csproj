@@ -155,7 +155,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
-    <Compile Include="Controllers\GenreController.cs" />
+    <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -192,6 +192,7 @@
     <Content Include="ng\js\app.js" />
     <Content Include="ng\js\controllers\homeController.js" />
     <Content Include="ng\js\controllers\bookformController.js" />
+    <Content Include="ng\js\factories.js" />
     <Content Include="ng\js\libs\angular-resource.js" />
     <Content Include="ng\js\libs\angular-route.js" />
     <Content Include="ng\js\libs\angular.js" />
