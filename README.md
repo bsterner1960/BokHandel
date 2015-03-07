@@ -7,7 +7,7 @@ To run the sample locally from Visual Studio:
 
 - Build the sample.
 - Open the Package Manager Console (Tools > NuGet Package Manager > Package Manager Console)
-- In the Package Manager Console window, enter the following command: `Enable-Migrations -force` `Add-Migration Initial` `Update-Database`
+- In the Package Manager Console window, enter the following command: `Update-Database`
 - If you get an Error Cannot attach the file xxxx as database xxx, then remove any existing bookService database in SQL Server Object Explorer and run `Update-Database` again
 - Press F5 to debug.
 
