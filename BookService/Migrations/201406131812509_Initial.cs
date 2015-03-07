@@ -31,12 +31,23 @@ namespace BookService.Migrations
                 .ForeignKey("dbo.Authors", t => t.AuthorId, cascadeDelete: true)
                 .Index(t => t.AuthorId);
             
+            CreateTable(
+                "dbo.Genres",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false),
+                        Description = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
         }
         
         public override void Down()
         {
             DropForeignKey("dbo.Books", "AuthorId", "dbo.Authors");
             DropIndex("dbo.Books", new[] { "AuthorId" });
+            DropTable("dbo.Genres");
             DropTable("dbo.Books");
             DropTable("dbo.Authors");
         }
