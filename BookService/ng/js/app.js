@@ -16,6 +16,6 @@ app.config(["$routeProvider", "$locationProvider", function($routeProvider, $loc
     .otherwise({
       redirectTo: "/"
     });
-    //
+    // Cookies
   //$locationProvider.html5Mode(true);
 }]);
