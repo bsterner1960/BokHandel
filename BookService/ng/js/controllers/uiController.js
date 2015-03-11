@@ -34,7 +34,6 @@
     }, function () {
         $log.info('Modal dismissed at: ' + new Date());
     });
-};
 
 
     //For pagination directives
@@ -59,4 +58,18 @@
 }]);
 
 
-app.controller("modalController", {});
+    app.controller("modalController", ["$scope", "$modalInstance", "items", function ($scope, $modalInstance, items) 
+    {
+        $scope.items = items;
+        $scope.selected = {
+            item: $scope.items[0]
+        };
+
+        $scope.ok = function () {
+            $modalInstance.close($scope.selected.item);
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    }]);
