@@ -1,0 +1,16 @@
+﻿<h2>Hello World!</h2>
+
+<!-- Including views with controllers using directives,
+        ngInclude && ngController
+    
+    as well as data from $scope.partialData -->
+
+
+<!--<div ng-include="partialdata.template" ng-controller="partialData.controller"></div>-->
+
+
+<!-- Including views with controllers using directives 
+        ngInclude && ngController -->
+
+<button class="btn btn-default" ng-model="show" ng-click="show = !show;">Show/hide</button>
+<div ng-if="show" ng-include="'partials/bookform.html'" ng-controller="bookformController"></div>

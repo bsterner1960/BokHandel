@@ -192,6 +192,7 @@
     <Content Include="ng\js\app.js" />
     <Content Include="ng\js\controllers\homeController.js" />
     <Content Include="ng\js\controllers\bookformController.js" />
+    <Content Include="ng\js\controllers\uiController.js" />
     <Content Include="ng\js\factories.js" />
     <Content Include="ng\js\libs\angular-resource.js" />
     <Content Include="ng\js\libs\angular-route.js" />
@@ -201,6 +202,7 @@
     <Content Include="ng\js\services.js" />
     <Content Include="ng\partials\bookform.html" />
     <Content Include="ng\partials\home.html" />
+    <Content Include="ng\partials\ui-bootstrap.html" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -276,7 +278,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>48212</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
