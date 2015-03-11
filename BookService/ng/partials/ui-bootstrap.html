@@ -1,0 +1,22 @@
+﻿<h2>Hello World!</h2>
+
+
+    <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+
+
+<alert ng-repeat="alert in alerts" typeof="{{alert.type}}" onclose="closeAlert($index)">{{alert.msg}}</alert>
+
+<!-- Including views with controllers using directives,
+        ngInclude && ngController
+    
+    as well as data from $scope.partialData -->
+
+
+<!--<div ng-include="partialdata.template" ng-controller="partialData.controller"></div>-->
+
+
+<!-- Including views with controllers using directives 
+        ngInclude && ngController -->
+
+<button class="btn btn-default" ng-model="show" ng-click="show = !show;">Show/hide</button>
+<div ng-if="show" ng-include="'partials/bookform.html'" ng-controller="bookformController"></div>

@@ -24,7 +24,7 @@ app.service("restService", ["$http", "$rootScope", function($http, $rootScope) {
       //sharing the rootScope property hello to all child $scopes
       $rootScope.hello = "Hello";
     },
-    restCall : function(url, method, data) {
+    restCall : function(url, method, data, broadcastName) {
       if (method != "GET" && method != "DELETE") {
         //using a function only accessible INSIDE out service
         //to check if data is valid
@@ -48,9 +48,9 @@ app.service("restService", ["$http", "$rootScope", function($http, $rootScope) {
         //$scopes in the app 
         // $rootScope.output = JSON.stringify(data, null, '\t');
         // (all scopes now have the propery "output")
-
+        broadcastName = broadcastName ? broadcastName : "restSuccess";
         //using $rootScope to broadcast data to any "listeners" in the app
-        $rootScope.$broadcast("restSuccess", data);
+        $rootScope.$broadcast(broadcastName, data);
         // (all "listeners" have now recieved our stringified data)
       });
 
@@ -69,7 +69,7 @@ app.service("Books", ["restService", function (restService) {
     var bookServant = {
         get : function (bookId) {
             var restUrl = bookId ? "books/" + bookId : "books/";
-            restService.restCall(restUrl, "GET", {});
+            restService.restCall(restUrl, "GET", {}, "gotBooks");
         },
         post : function (data) {
             var restUrl = "books/";
@@ -93,7 +93,7 @@ app.service("Authors", ["restService", function (restService) {
     var authorServant = {
         get: function (authorId) {
             var restUrl = authorId ? "authors/" + authorId : "authors/";
-            restService.restCall(restUrl, "GET", {});
+            restService.restCall(restUrl, "GET", {}, "gotAuthors");
         },
         post: function (data) {
             var restUrl = "authors/";
