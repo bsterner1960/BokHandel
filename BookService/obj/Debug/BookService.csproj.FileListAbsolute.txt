@@ -150,3 +150,41 @@ C:\Users\Björn\Source\Repos\BokHandel\BookService\obj\Debug\BookService.Migrati
 C:\Users\Björn\Source\Repos\BokHandel\BookService\obj\Debug\BookService.csproj.GenerateResource.Cache
 C:\Users\Björn\Source\Repos\BokHandel\BookService\obj\Debug\BookService.dll
 C:\Users\Björn\Source\Repos\BokHandel\BookService\obj\Debug\BookService.pdb
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\BookService.dll.config
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\BookService.dll
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\BookService.pdb
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\Antlr3.Runtime.dll
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\EntityFramework.dll
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\EntityFramework.SqlServer.dll
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\Newtonsoft.Json.dll
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\System.Net.Http.Formatting.dll
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\System.Web.Helpers.dll
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\System.Web.Http.dll
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\System.Web.Http.WebHost.dll
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\System.Web.Mvc.dll
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\System.Web.Optimization.dll
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\System.Web.Razor.dll
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\System.Web.WebPages.dll
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\System.Web.WebPages.Razor.dll
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\WebGrease.dll
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\EntityFramework.xml
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\EntityFramework.SqlServer.xml
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\Newtonsoft.Json.xml
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\System.Net.Http.Formatting.xml
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\System.Web.Helpers.xml
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\System.Web.Http.xml
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\System.Web.Http.WebHost.xml
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\System.Web.Mvc.xml
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\System.Web.Optimization.xml
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\System.Web.Razor.xml
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\System.Web.WebPages.xml
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\System.Web.WebPages.Razor.xml
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\bin\Antlr3.Runtime.pdb
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\obj\Debug\BookService.csprojResolveAssemblyReference.cache
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\obj\Debug\BookService.Migrations.Initial.resources
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\obj\Debug\BookService.csproj.GenerateResource.Cache
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\obj\Debug\BookService.dll
+C:\Users\Nicklas\School stuff\SU14\BokHandel\BookService\obj\Debug\BookService.pdb
