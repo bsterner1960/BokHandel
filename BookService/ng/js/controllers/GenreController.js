@@ -1,16 +1,28 @@
-﻿app.controller("GenreController", ["$scope", "genre", function ($scope, Genre) {
+﻿app.controller("genreController", ["$scope", "genre", "log", "greeting", function ($scope, genre, log, greeting) {
     console.log("genrecontrollern funkar");
 
-    //$scope.authors = Author.index();
-    //Detail
-    //Author	Jane Austen
-    //Title	Pride and Prejudice
-    //Year	1813
-    //Genre	Comedy of manners
-    //Price	9.99
-    //anropar genres listan
-    
-    $scope.genres = Genre.index();
+   
+
+    function MyController($scope) {
+        $scope.log = 'testar';
+    };
+
+    $scope.detta = function () {
+        $scope.greeting = 'detta ' + $scope.log + '!';
+    };
+
+    //function MyController($scope) {
+      //  $scope.username = 'World';
+    //};
+        
+    //$scope.sayHello = function () {
+    //    $scope.greeting = 'Hello ' + $scope.username + '!';
+    //};
+
+    $scope.genres = genre.index();
+
+    console.log("genre controllern är igång!");
+        //+ genre.index);
 
     //the book model to be sent to Database
     //$scope.bookData = {};

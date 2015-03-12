@@ -22,6 +22,10 @@ app.config(["$routeProvider", "$locationProvider", function($routeProvider, $loc
       {
           templateUrl: "partials/navbar.html"
       })
+      .when("/genredetails",
+      {
+          templateUrl: "partials/genredetails.html"
+      })
     .otherwise({
       redirectTo: "/"
     });
