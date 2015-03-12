@@ -18,6 +18,10 @@ app.config(["$routeProvider", "$locationProvider", function($routeProvider, $loc
           templateUrl: "partials/ui-bootstrap.html",
           controller: "uiController"
       })
+      .when("/navbar",
+      {
+          templateUrl: "partials/navbar.html"
+      })
     .otherwise({
       redirectTo: "/"
     });
