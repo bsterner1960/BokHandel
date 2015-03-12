@@ -21,6 +21,13 @@ namespace BookService.Migrations
                 new Author() { Id = 3, Name = "Miguel de Cervantes" }
                 );
 
+            context.Genres.AddOrUpdate(x => x.Id,
+                new Genre() { Id = 1, Name = "Comedy of manners" },
+                new Genre() { Id = 2, Name = "Gothic parody" },
+                new Genre() { Id = 3, Name = "Bildungsroman" },
+                new Genre() { Id = 4, Name = "Picaresque" }
+                );
+
             context.Books.AddOrUpdate(x => x.Id,
                 new Book()
                 {
@@ -29,7 +36,7 @@ namespace BookService.Migrations
                     Year = 1813,
                     AuthorId = 1,
                     Price = 9.99M,
-                    Genre = "Comedy of manners"
+                    GenreId = 1
                 },
                 new Book()
                 {
@@ -38,7 +45,7 @@ namespace BookService.Migrations
                     Year = 1817,
                     AuthorId = 1,
                     Price = 12.95M,
-                    Genre = "Gothic parody"
+                    GenreId = 2
                 },
                 new Book()
                 {
@@ -47,7 +54,7 @@ namespace BookService.Migrations
                     Year = 1850,
                     AuthorId = 2,
                     Price = 15,
-                    Genre = "Bildungsroman"
+                    GenreId = 3
                 },
                 new Book()
                 {
@@ -56,7 +63,7 @@ namespace BookService.Migrations
                     Year = 1617,
                     AuthorId = 3,
                     Price = 8.95M,
-                    Genre = "Picaresque"
+                    GenreId = 4
                 }
                 );
         }

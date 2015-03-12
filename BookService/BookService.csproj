@@ -166,6 +166,10 @@
     <Compile Include="Migrations\201406131812509_Initial.Designer.cs">
       <DependentUpon>201406131812509_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503122038454_GenreNowInOwnTable.cs" />
+    <Compile Include="Migrations\201503122038454_GenreNowInOwnTable.Designer.cs">
+      <DependentUpon>201503122038454_GenreNowInOwnTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Author.cs">
       <SubType>Code</SubType>
@@ -265,6 +269,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201406131812509_Initial.resx">
       <DependentUpon>201406131812509_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503122038454_GenreNowInOwnTable.resx">
+      <DependentUpon>201503122038454_GenreNowInOwnTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
