@@ -28,7 +28,8 @@ namespace BookService.Controllers
                         {
                             Id = b.Id,
                             Title = b.Title,
-                            AuthorName = b.Author.Name
+                            AuthorName = b.Author.Name,
+                            GenreName = b.Genre.Name
                         };
 
             return books;
