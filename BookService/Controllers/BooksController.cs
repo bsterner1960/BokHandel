@@ -13,6 +13,9 @@ using BookService.Models;
 
 namespace BookService.Controllers
 {
+    /// <summary>
+    /// Gets the books from the database.
+    /// </summary>
     public class BooksController : ApiController
     {
         private BookServiceContext db = new BookServiceContext();
@@ -43,7 +46,7 @@ namespace BookService.Controllers
                     Year = b.Year,
                     Price = b.Price,
                     AuthorName = b.Author.Name,
-                    Genre = b.Genre.Name
+                    GenreName = b.Genre.Name
                 }).SingleOrDefaultAsync(b => b.Id == id);
             if (book == null)
             {
@@ -103,11 +106,15 @@ namespace BookService.Controllers
             // Load author name
             db.Entry(book).Reference(x => x.Author).Load();
 
+            // Load Genre name
+            db.Entry(book).Reference(x => x.Genre).Load();
+
             var dto = new BookDTO()
             {
                 Id = book.Id,
                 Title = book.Title,
-                AuthorName = book.Author.Name
+                AuthorName = book.Author.Name,
+                GenreName = book.Genre.Name
             };
 
             return CreatedAtRoute("DefaultApi", new { id = book.Id }, dto);

@@ -4,6 +4,7 @@
     self.error = ko.observable();
     self.detail = ko.observable();
     self.authors = ko.observableArray();
+    self.genres = ko.observableArray();
     self.newBook = {
         Author: ko.observable(),
         Genre: ko.observable(),
@@ -14,6 +15,7 @@
 
     var booksUri = '/api/books/';
     var authorsUri = '/api/authors/';
+    var genresUri = '/api/genres/';
 
     function ajaxHelper(uri, method, data) {
         self.error(''); // Clear error message
@@ -46,11 +48,17 @@
         });
     }
 
+    function getGenres() {
+        ajaxHelper(genresUri, 'GET').done(function (data) {
+            self.genres(data);
+        });
+    }
+
 
     self.addBook = function (formElement) {
         var book = {
             AuthorId: self.newBook.Author().Id,
-            Genre: self.newBook.Genre(),
+            GenreId: self.newBook.Genre().Id,
             Price: self.newBook.Price(),
             Title: self.newBook.Title(),
             Year: self.newBook.Year()
@@ -64,6 +72,7 @@
     // Fetch the initial data.
     getAllBooks();
     getAuthors();
+    getGenres();
 };
 
 ko.applyBindings(new ViewModel());
