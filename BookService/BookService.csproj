@@ -190,6 +190,7 @@
     <Content Include="ng\css\main.css" />
     <Content Include="ng\index.html" />
     <Content Include="ng\js\app.js" />
+    <Content Include="ng\js\controllers\genreController.js" />
     <Content Include="ng\js\controllers\homeController.js" />
     <Content Include="ng\js\controllers\bookformController.js" />
     <Content Include="ng\js\factories.js" />
