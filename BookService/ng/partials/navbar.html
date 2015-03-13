@@ -1,19 +1,6 @@
-﻿<!DOCTYPE html>
-<html ng-app="Muffins">
-<head>
-
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <script src="../js/app.js"></script>
-
-    <script src="../js/libs/angular.js"></script>
-    <script src="../js/libs/angular-route.js"></script>
-    <script src="../js/libs/angular-resource.js"></script>
-    <script src="../js/libs/ui-bootstrap-tpls-0.12.1.js"></script>
-    <script src="../js/controllers/dummyController.js"></script>
-    <title></title>
-</head>
-<body>
+﻿<div ng-controller="Muffins">
     <nav class="navbar navbar-default" role="navigation">
+        
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
@@ -22,47 +9,64 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Brand</a>
+            <a class="navbar-brand" href="home.html">BokHandel</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
 
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
 
+
+
+            <!-- This form appears to keep these tools together. -->
+            <form class="navbar-form navbar-left" role="search">
+
+                <!-- A button group of sorts, these two buttons are our "radio buttons" of sorts. -->
+                <div class="btn-group">
+                    <label class="btn btn-success" ng-model="radioModel" btn-radio="'Left'" uncheckable>Author</label>
+                    <label class="btn btn-success" ng-model="radioModel" btn-radio="'Right'" uncheckable>Book</label>
+                </div>
+
+                <!-- Yet another form element -->
+                <div class="form-group">
+
+                    <!-- This is the search box, the placeholder text is the text you see before you enter a search value. -->
+                    <input type="text" class="form-control" placeholder="Cookie Monster">
+                </div>
+
+                <!-- This is the actual search button, in case you dislike hitting enter. -->
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+
+
+            <!-- Not really sure what this navbar class is for, but I'm guessing it's needed. -->
+            <ul class="nav navbar-nav">
+
+                <!-- Our dropdown button! -->
                 <li class="dropdown" dropdown>
-                    <a href="#" ng-controller="DropdownCtrl" dropdown-toggle class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                    <a href="#" dropdown-toggle class="dropdown-toggle" data-toggle="dropdown">Create new: <b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
+
+                        <!-- The dropdown options! -->
+                        <li><a href="#">Author</a></li>
+                        <li><a href="#">Book</a></li>
+                        <li><a href="#">Genre</a></li>
+
                     </ul>
                 </li>
-
             </ul>
-            <form class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+
+
+            <!-- This little piece of code seems to adjust all of its elements on the right side of the navbar. -->
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Link</a></li>
+
+                <!-- Aother dropdown button! Not to worry, it will become a toggle button soon enough. -->
                 <li class="dropdown" dropdown>
-                    <a href="#" class="dropdown-toggle" dropdown-toggle data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
+
+                    <button type="button" class="btn btn-warning btn-sm" ng-click="disabled = !disabled">Enable/Disable</button>
+
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>
-</body>
-</html>
+</div>
