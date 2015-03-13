@@ -1,12 +1,10 @@
-﻿app.controller("genreController", ["$scope", function ($scope) {
+﻿app.controller("genreController", ["$scope", "Author", function ($scope, Author) {
     
     $scope.jonas = "JONAS ÄR BÄST!!";
-    $scope.genredetailsDB = ("select * from " + Genres);
+    //$scope.genredetailsDB = 
+        $scope.authors = Author.index();
 
-        //stmt.executeQuery(
-          //  "SELECT * FROM " + dbName + ".COFFEES");
   
- 
     console.log("genre controllern är igång!");
  
 }]);
