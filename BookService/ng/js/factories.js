@@ -13,3 +13,7 @@ app.factory("Book",["$resource", function ($resource) {
 app.factory("Author", ["$resource", function ($resource) {
     return $resource("/api/authors/:id", { id: "@id" }, standardMethods);
 }]);
+
+app.factory("Genres", ["$resource", function ($resource) {
+    return $resource("/api/genres/:id", { id: "@id" }, standardMethods);
+}]);
