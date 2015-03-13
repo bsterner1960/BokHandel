@@ -196,6 +196,7 @@
     <Content Include="ng\css\main.css" />
     <Content Include="ng\index.html" />
     <Content Include="ng\js\app.js" />
+    <Content Include="ng\js\controllers\dummyController.js" />
     <Content Include="ng\js\controllers\genreController.js" />
     <Content Include="ng\js\controllers\homeController.js" />
     <Content Include="ng\js\controllers\bookformController.js" />
@@ -208,6 +209,7 @@
     <Content Include="ng\js\main.js" />
     <Content Include="ng\js\services.js" />
     <Content Include="ng\partials\bookform.html" />
+    <Content Include="ng\partials\dummy.html" />
     <Content Include="ng\partials\genredetails.html" />
     <Content Include="ng\partials\home.html" />
     <Content Include="ng\partials\navbar.html" />
