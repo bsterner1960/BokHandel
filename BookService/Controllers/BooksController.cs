@@ -29,7 +29,7 @@ namespace BookService.Controllers
                             Id = b.Id,
                             Title = b.Title,
                             AuthorName = b.Author.Name,
-                            GenreName = b.Genre.Name
+
                         };
 
             return books;
@@ -115,7 +115,7 @@ namespace BookService.Controllers
                 Id = book.Id,
                 Title = book.Title,
                 AuthorName = book.Author.Name,
-                GenreName = book.Genre.Name
+
             };
 
             return CreatedAtRoute("DefaultApi", new { id = book.Id }, dto);
