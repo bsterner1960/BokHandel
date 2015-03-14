@@ -211,8 +211,10 @@
     <Content Include="ng\partials\bookform.html" />
     <Content Include="ng\partials\genredetails.html" />
     <Content Include="ng\partials\home.html" />
+    <Content Include="ng\partials\modal.html" />
     <Content Include="ng\partials\navbar.html" />
     <Content Include="ng\partials\ui-bootstrap.html" />
+    <Content Include="ng\ui-controllerTest.html" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
