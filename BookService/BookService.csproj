@@ -194,6 +194,8 @@
     <Content Include="Global.asax" />
     <Content Include="ng\css\bootstrap.css" />
     <Content Include="ng\css\main.css" />
+    <Content Include="ng\partials\modal.html" />
+    <Content Include="ng\TestUIBootStrap.html" />
     <Content Include="ng\index.html" />
     <Content Include="ng\js\app.js" />
     <Content Include="ng\js\controllers\navbarController.js" />
