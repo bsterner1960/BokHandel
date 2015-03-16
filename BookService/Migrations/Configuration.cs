@@ -18,14 +18,16 @@ namespace BookService.Migrations
             context.Authors.AddOrUpdate(x => x.Id,
                 new Author() { Id = 1, Name = "Jane Austen" },
                 new Author() { Id = 2, Name = "Charles Dickens" },
-                new Author() { Id = 3, Name = "Miguel de Cervantes" }
+                new Author() { Id = 3, Name = "Miguel de Cervantes" },
+                new Author() { Id = 4, Name = "Thomas" }
                 );
 
             context.Genres.AddOrUpdate(x => x.Id,
                 new Genre() { Id = 1, Name = "Comedy of manners" },
                 new Genre() { Id = 2, Name = "Gothic parody" },
                 new Genre() { Id = 3, Name = "Bildungsroman" },
-                new Genre() { Id = 4, Name = "Picaresque" }
+                new Genre() { Id = 4, Name = "Picaresque" },
+                new Genre() { Id = 5, Name = "Educational"}
                 );
 
             context.Books.AddOrUpdate(x => x.Id,
@@ -64,6 +66,15 @@ namespace BookService.Migrations
                     AuthorId = 3,
                     Price = 8.95M,
                     GenreId = 4
+                },
+                new Book()
+                {
+                    Id = 5,
+                    Title = "C# for professionals!",
+                    Year = 2014,
+                    AuthorId = 4,
+                    Price = 5000,
+                    GenreId = 5
                 }
                 );
         }
