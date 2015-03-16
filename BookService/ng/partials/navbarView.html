@@ -1,0 +1,57 @@
+﻿<div ng-controller="navbarController">
+    <nav class="navbar navbar-default" role="navigation">
+        
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="home.html">BokHandel</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
+
+
+
+
+            <!-- This form appears to keep these tools together. -->
+            <form class="navbar-form navbar-left" role="search">
+
+                <!-- A button group of sorts, these two buttons are our "radio buttons" of sorts. -->
+                <div class="btn-group">
+                    <label class="btn btn-success" ng-model="radioModel" btn-radio="'Left'" uncheckable>Author</label>
+                    <label class="btn btn-success" ng-model="radioModel" btn-radio="'Right'" uncheckable>Book</label>
+                </div>
+
+                <!-- Yet another form element -->
+                <div class="form-group">
+
+                    <!-- This is the search box, the placeholder text is the text you see before you enter a search value. -->
+                    <input type="text" class="form-control" placeholder="Cookie Monster">
+                </div>
+
+                <!-- This is the actual search button, in case you dislike hitting enter. -->
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+
+
+
+
+
+            <!-- This little piece of code seems to adjust all of its elements on the right side of the navbar. -->
+            <ul class="nav navbar-nav navbar-right">
+
+                <!-- Aother dropdown button! Not to worry, it will become a toggle button soon enough. -->
+                <li class="dropdown" dropdown>
+
+                    <button type="button" class="btn btn-warning btn-sm" ng-click="disabled = !disabled">Enable/Disable</button>
+
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</div>
