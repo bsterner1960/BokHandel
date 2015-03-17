@@ -1,10 +1,5 @@
-﻿angular.module('ui.bootstrap').controller('navbarControllerAdmin', function ($scope, $rootScope)
+﻿angular.module('ui.bootstrap').controller('navbarControllerAdmin', function ($scope)
 {
     console.log("navbarController is alive! Wohooooo :D");
     $scope.minTest = "hejsan!"
-
-
-    $scope.adminSwitch = function () {
-        $rootScope.isAdmin = !$rootScope.isAdmin;
-    }
 });
