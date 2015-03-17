@@ -156,6 +156,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AuthorsController.cs" />
+    <Compile Include="Controllers\BookDTOsController.cs" />
+    <Compile Include="Controllers\BookGenreConnectionsController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -176,6 +178,7 @@
     <Compile Include="Models\Author.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\BookGenreConnection.cs" />
     <Compile Include="Models\Book.cs">
       <SubType>Code</SubType>
     </Compile>
