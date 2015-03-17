@@ -6,27 +6,49 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using BookService.Models;
 
 namespace BookService.Controllers
 {
+    /// <summary>
+    /// Gets the books from the database.
+    /// </summary>
     public class BooksController : ApiController
     {
         private BookServiceContext db = new BookServiceContext();
 
-        // GET api/Books
-        public IQueryable<Book> GetBooks()
+        // GET: api/Books
+        public IQueryable<BookDTO> GetBooks()
         {
-            return db.Books;
+            var books = from b in db.Books
+                        select new BookDTO()
+                        {
+                            Id = b.Id,
+                            Title = b.Title,
+                            AuthorName = b.Author.Name,
+
+                        };
+
+            return books;
         }
 
-        // GET api/Books/5
-        [ResponseType(typeof(Book))]
-        public IHttpActionResult GetBook(int id)
+        // GET: api/Books/5
+        [ResponseType(typeof(BookDetailDTO))]
+        public async Task<IHttpActionResult> GetBook(int id)
         {
-            Book book = db.Books.Find(id);
+            var book = await db.Books.Include(b => b.Author).Select(b =>
+                new BookDetailDTO()
+                {
+                    Id = b.Id,
+                    Title = b.Title,
+                    Year = b.Year,
+                    Price = b.Price,
+                    AuthorName = b.Author.Name,
+                    GenreName = b.Genre.Name
+                }).SingleOrDefaultAsync(b => b.Id == id);
             if (book == null)
             {
                 return NotFound();
@@ -35,8 +57,9 @@ namespace BookService.Controllers
             return Ok(book);
         }
 
-        // PUT api/Books/5
-        public IHttpActionResult PutBook(int id, Book book)
+        // PUT: api/Books/5
+        [ResponseType(typeof(void))]
+        public async Task<IHttpActionResult> PutBook(int id, Book book)
         {
             if (!ModelState.IsValid)
             {
@@ -52,7 +75,7 @@ namespace BookService.Controllers
 
             try
             {
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -69,9 +92,9 @@ namespace BookService.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST api/Books
+        // POST: api/Books
         [ResponseType(typeof(Book))]
-        public IHttpActionResult PostBook(Book book)
+        public async Task<IHttpActionResult> PostBook(Book book)
         {
             if (!ModelState.IsValid)
             {
@@ -79,23 +102,37 @@ namespace BookService.Controllers
             }
 
             db.Books.Add(book);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = book.Id }, book);
+            // Load author name
+            db.Entry(book).Reference(x => x.Author).Load();
+
+            // Load Genre name
+            db.Entry(book).Reference(x => x.Genre).Load();
+
+            var dto = new BookDTO()
+            {
+                Id = book.Id,
+                Title = book.Title,
+                AuthorName = book.Author.Name,
+
+            };
+
+            return CreatedAtRoute("DefaultApi", new { id = book.Id }, dto);
         }
 
-        // DELETE api/Books/5
+        // DELETE: api/Books/5
         [ResponseType(typeof(Book))]
-        public IHttpActionResult DeleteBook(int id)
+        public async Task<IHttpActionResult> DeleteBook(int id)
         {
-            Book book = db.Books.Find(id);
+            Book book = await db.Books.FindAsync(id);
             if (book == null)
             {
                 return NotFound();
             }
 
             db.Books.Remove(book);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             return Ok(book);
         }

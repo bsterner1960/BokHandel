@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace BookService.Models
 {
@@ -11,5 +10,14 @@ namespace BookService.Models
         public int Year { get; set; }
         public decimal Price { get; set; }
 
-     }
+        // Foreign Key
+        public int AuthorId { get; set; }
+        // Navigation property
+        public Author Author { get; set; }
+
+        // Foreign Key
+        public int GenreId { get; set; }
+        // Navigation property
+        public Genre Genre { get; set; }
+    }
 }
