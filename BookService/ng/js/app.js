@@ -22,7 +22,7 @@ app.config(["$routeProvider", "$locationProvider", function($routeProvider, $loc
       {
           templateUrl: "partials/navbar.html"
       })
-      .when("/genredetails/:id",
+      .when("/genredetails/:id?",
       {
           templateUrl: "partials/genredetails.html",
           controller: "genreController",

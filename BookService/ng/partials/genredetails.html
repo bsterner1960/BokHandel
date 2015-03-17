@@ -5,6 +5,10 @@
 
     </div>
     <p>{{jonas.Name}}</p>
+
+    <ul>
+        <li ng-repeat="option in options" ng-click="madeSelection($index)">{{option}}</li>
+    </ul>
 </div>
 
 
