@@ -12,43 +12,43 @@ using BookService.Models;
 
 namespace BookService.Controllers
 {
-    public class BooksController : ApiController
+    public class BookDTOsController : ApiController
     {
         private BookServiceContext db = new BookServiceContext();
 
-        // GET api/Books
-        public IQueryable<Book> GetBooks()
+        // GET api/BookDTOs
+        public IQueryable<BookDTO> GetBookDTOes()
         {
-            return db.Books;
+            return db.BookDTOes;
         }
 
-        // GET api/Books/5
-        [ResponseType(typeof(Book))]
-        public IHttpActionResult GetBook(int id)
+        // GET api/BookDTOs/5
+        [ResponseType(typeof(BookDTO))]
+        public IHttpActionResult GetBookDTO(int id)
         {
-            Book book = db.Books.Find(id);
-            if (book == null)
+            BookDTO bookdto = db.BookDTOes.Find(id);
+            if (bookdto == null)
             {
                 return NotFound();
             }
 
-            return Ok(book);
+            return Ok(bookdto);
         }
 
-        // PUT api/Books/5
-        public IHttpActionResult PutBook(int id, Book book)
+        // PUT api/BookDTOs/5
+        public IHttpActionResult PutBookDTO(int id, BookDTO bookdto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != book.Id)
+            if (id != bookdto.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(book).State = EntityState.Modified;
+            db.Entry(bookdto).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +56,7 @@ namespace BookService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BookExists(id))
+                if (!BookDTOExists(id))
                 {
                     return NotFound();
                 }
@@ -69,35 +69,35 @@ namespace BookService.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST api/Books
-        [ResponseType(typeof(Book))]
-        public IHttpActionResult PostBook(Book book)
+        // POST api/BookDTOs
+        [ResponseType(typeof(BookDTO))]
+        public IHttpActionResult PostBookDTO(BookDTO bookdto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Books.Add(book);
+            db.BookDTOes.Add(bookdto);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = book.Id }, book);
+            return CreatedAtRoute("DefaultApi", new { id = bookdto.Id }, bookdto);
         }
 
-        // DELETE api/Books/5
-        [ResponseType(typeof(Book))]
-        public IHttpActionResult DeleteBook(int id)
+        // DELETE api/BookDTOs/5
+        [ResponseType(typeof(BookDTO))]
+        public IHttpActionResult DeleteBookDTO(int id)
         {
-            Book book = db.Books.Find(id);
-            if (book == null)
+            BookDTO bookdto = db.BookDTOes.Find(id);
+            if (bookdto == null)
             {
                 return NotFound();
             }
 
-            db.Books.Remove(book);
+            db.BookDTOes.Remove(bookdto);
             db.SaveChanges();
 
-            return Ok(book);
+            return Ok(bookdto);
         }
 
         protected override void Dispose(bool disposing)
@@ -109,9 +109,9 @@ namespace BookService.Controllers
             base.Dispose(disposing);
         }
 
-        private bool BookExists(int id)
+        private bool BookDTOExists(int id)
         {
-            return db.Books.Count(e => e.Id == id) > 0;
+            return db.BookDTOes.Count(e => e.Id == id) > 0;
         }
     }
 }
