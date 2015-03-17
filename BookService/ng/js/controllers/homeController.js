@@ -2,6 +2,8 @@
 app.controller("homeController", ["$scope", "restService", "Books", "$location", function ($scope, restService, Books, $location) {
     console.log("I'm alive!");
 
+    //$scope.isAdmin = false;
+
     //using $rootScope.on to listen for new data from restCall .success()
     $scope.$on("restSuccess", function (event, data) {
         console.log("restSuccess triggered: ", data);
