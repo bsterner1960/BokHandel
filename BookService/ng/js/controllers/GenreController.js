@@ -1,18 +1,9 @@
-﻿app.controller("genreController", ["$scope", "Genres", function ($scope, Genres) {
+﻿app.controller("genreController", ["$scope", "Genres","$routeParams", function ($scope, Genres, $routeParams) {
 
-    console.log("genre controllern är igång!");
-<<<<<<< HEAD
+    console.log("genre controllern är igång!", $routeParams);
 
     //$scope.genres = Genres.index();
-    $scope.jonas = Genres.show({ id: 1 });
-
-
-  
-=======
-    
-    //$scope.genres = Genres.index();
-    $scope.jonas = Genres.show({ id: 1 });
->>>>>>> origin/master
- 
+    $scope.jonas = Genres.show($routeParams);
+     
 }]);
 
