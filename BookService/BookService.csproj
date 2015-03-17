@@ -197,8 +197,15 @@
     <Content Include="Global.asax" />
     <Content Include="ng\css\bootstrap.css" />
     <Content Include="ng\css\main.css" />
+    <Content Include="ng\js\controllers\bookListController.js" />
+    <Content Include="ng\js\controllers\navbarControllerAdmin.js" />
+    <Content Include="ng\partials\booklist.html" />
+    <Content Include="ng\partials\modal.html" />
+    <Content Include="ng\partials\navbarViewAdmin.html" />
+    <Content Include="ng\TestUIBootStrap.html" />
     <Content Include="ng\index.html" />
     <Content Include="ng\js\app.js" />
+    <Content Include="ng\js\controllers\navbarController.js" />
     <Content Include="ng\js\controllers\genreController.js" />
     <Content Include="ng\js\controllers\homeController.js" />
     <Content Include="ng\js\controllers\bookformController.js" />
@@ -213,7 +220,7 @@
     <Content Include="ng\partials\bookform.html" />
     <Content Include="ng\partials\genredetails.html" />
     <Content Include="ng\partials\home.html" />
-    <Content Include="ng\partials\navbar.html" />
+    <Content Include="ng\partials\navbarView.html" />
     <Content Include="ng\partials\ui-bootstrap.html" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />

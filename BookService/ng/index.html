@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
   <head>
-    <title>ngBookservice</title>
+    <title>ngBokhandel</title>
     <meta charset="utf-8">
     <!-- set base href so that angular knows -->
     <base href="/ng/"/>
@@ -14,16 +14,18 @@
     <script src="js/libs/ui-bootstrap-tpls-0.12.1.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers/homeController.js"></script>
-    <script src="js/controllers/bookformController.js"></script>
-      <script src="js/controllers/genreController.js"></script>  <!--inlagd 2015-03-12-->
-      <!--<script src="js/controllers/genredetailsDB.js"></script>-->
-    <script src="js/controllers/uiController.js"></script>
+    <script src="js/controllers/bookformController.js"></script> 
+    <script src="js/controllers/genreController.js"></script>  <!--inlagd 2015-03-12-->
+     <script src="js/controllers/navbarController.js"></script> <!-- inlagd 2015-03-13 --> 
+      <script src="js/controllers/navbarControllerAdmin.js"></script> <!-- inlagd 2015-03-13 --> 
+    <script src="js/controllers/bookListController.js"></script>
+      <script src="js/controllers/uiController.js"></script>
     <script src="js/services.js"></script>
     <script src="js/factories.js"></script>
     <script src="js/main.js"></script>
   </head>
   <body ng-app="myAppName">
-    <main class="container" ng-view></main>
+          <main class="container" ng-view></main>
 
-  </body>
+      </body>
 </html>

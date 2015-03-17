@@ -1,22 +1,20 @@
-﻿<h2>Hello World!</h2>
+﻿<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 
+<h2>Hello World!</h2>
 
-    <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+<pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" items-per-page="itemsPP"></pagination>
+<br />
+<!-- a button to open a new modal -->
+<button class="btn btn-default" ng-click="open('lg')">Open Modal</button>
 
+<br />
+<!-- a button to show/hide an included view -->
+<button class="btn btn-default" ng-model="show" ng-click="show = !show;">{{show ? "Hide" : "Show"}} included view</button>
 
-<alert ng-repeat="alert in alerts" typeof="{{alert.type}}" onclose="closeAlert($index)">{{alert.msg}}</alert>
+<!--
+    including views with controllers using directives
+    ngInclude && ngController
 
-<!-- Including views with controllers using directives,
-        ngInclude && ngController
-    
-    as well as data from $scope.partialData -->
-
-
-<!--<div ng-include="partialdata.template" ng-controller="partialData.controller"></div>-->
-
-
-<!-- Including views with controllers using directives 
-        ngInclude && ngController -->
-
-<button class="btn btn-default" ng-model="show" ng-click="show = !show;">Show/hide</button>
+    only if show == true
+-->
 <div ng-if="show" ng-include="'partials/bookform.html'" ng-controller="bookformController"></div>

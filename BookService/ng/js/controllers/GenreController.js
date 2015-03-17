@@ -1,11 +1,16 @@
-﻿app.controller("genreController", ["$scope", "Author", function ($scope, Author) {
+﻿app.controller("genreController", ["$scope", "Genres", function ($scope, Genres) {
+
+    console.log("genre controllern är igång!");
+<<<<<<< HEAD
     
-    $scope.jonas = "JONAS ÄR BÄST!!";
-    //$scope.genredetailsDB = 
-        $scope.authors = Author.index();
+    //$scope.genres = Genres.index();
+    $scope.jonas = Genres.show({ id: 1 });
+=======
+  
+    $scope.genres = Genres.index();
+>>>>>>> origin/master
 
   
-    console.log("genre controllern är igång!");
  
 }]);
 

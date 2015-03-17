@@ -18,6 +18,8 @@ app.service("restService", ["$http", "$rootScope", function($http, $rootScope) {
     }
   }
 
+  var userAdmin = false;
+
   var restServant = {
     helloWorld : function() {
       console.log("Hello World!");
