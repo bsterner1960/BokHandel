@@ -39,45 +39,35 @@ namespace BookService.Migrations
                     Id = 1,
                     Title = "Pride and Prejudice",
                     Year = 1813,
-                    AuthorId = 1,
                     Price = 9.99M,
-                    GenreId = 1
                 },
                 new Book()
                 {
                     Id = 2,
                     Title = "Northanger Abbey",
                     Year = 1817,
-                    AuthorId = 1,
                     Price = 12.95M,
-                    GenreId = 2
                 },
                 new Book()
                 {
                     Id = 3,
                     Title = "David Copperfield",
                     Year = 1850,
-                    AuthorId = 2,
                     Price = 15,
-                    GenreId = 3
                 },
                 new Book()
                 {
                     Id = 4,
                     Title = "Don Quixote",
                     Year = 1617,
-                    AuthorId = 3,
                     Price = 8.95M,
-                    GenreId = 4
                 },
                 new Book()
                 {
                     Id = 5,
                     Title = "The great adventure of C#",
                     Year = 2017,
-                    AuthorId = 4,
                     Price = 5000,
-                    GenreId = 5
                 }
                 );
             // Cookies!
