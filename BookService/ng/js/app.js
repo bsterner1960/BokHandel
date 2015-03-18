@@ -22,6 +22,10 @@ app.config(["$routeProvider", "$locationProvider", function($routeProvider, $loc
       {
           templateUrl: "partials/navbar.html"
       })
+      .when("/NewAuthorModal",
+      {
+          templateUrl: "partials/NewAuthorModal.html"
+      })
       .when("/genredetails/:id?",
       {
           templateUrl: "partials/genredetails.html",
@@ -32,10 +36,16 @@ app.config(["$routeProvider", "$locationProvider", function($routeProvider, $loc
           templateUrl: "partials/bookList.html",
           controller: "bookListController"
       })
+<<<<<<< HEAD
       .when("/bookdetails",
       {
           templateUrl: "partials/bookdetails.html",
           controller: "bookDetailsController"
+=======
+      .when("/cookie",
+      {
+          templateUrl: "partials/testingListBooksViewController.html"
+>>>>>>> origin/master
       })
     .otherwise({
       redirectTo: "/"

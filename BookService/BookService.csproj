@@ -202,8 +202,10 @@
     <Content Include="ng\js\controllers\navbarControllerAdmin.js" />
     <Content Include="ng\partials\bookdetails.html" />
     <Content Include="ng\partials\booklist.html" />
+    <Content Include="ng\partials\NewAuthorModal.html" />
     <Content Include="ng\partials\modal.html" />
     <Content Include="ng\partials\navbarViewAdmin.html" />
+    <Content Include="ng\partials\testingListBooksViewController.html" />
     <Content Include="ng\TestUIBootStrap.html" />
     <Content Include="ng\index.html" />
     <Content Include="ng\js\app.js" />
