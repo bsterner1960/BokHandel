@@ -37,6 +37,10 @@ app.config(["$routeProvider", "$locationProvider", function($routeProvider, $loc
           templateUrl: "partials/bookList.html",
           controller: "bookListController"
       })
+      .when("/cookie",
+      {
+          templateUrl: "partials/testingListBooksViewController.html"
+      })
     .otherwise({
       redirectTo: "/"
     });
