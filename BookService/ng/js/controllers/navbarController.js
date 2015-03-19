@@ -10,12 +10,10 @@
     $scope.setBook = function()
     {
         $rootScope.isBook = true;
-        $rootScope.bookSearchValue = "Muffins!";
     }
 
     $scope.setAuthor = function()
     {
-        $rootScope.bookSearchValue = "I am the Muffin King!";
         $rootScope.isBook = false;
     }
 
