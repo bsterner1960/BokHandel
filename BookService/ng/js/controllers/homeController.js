@@ -1,5 +1,5 @@
 //"myAppName" controller.
-app.controller("homeController", ["$scope", "restService", "Books", "$location", function ($scope, restService, Books, $location) {
+app.controller("homeController", ["$scope", "$rootScope", "restService", "Books", "$location", function ($scope, $rootScope, restService, Books, $location) {
     console.log("I'm alive!");
 
     //$scope.isAdmin = false;
@@ -11,7 +11,7 @@ app.controller("homeController", ["$scope", "restService", "Books", "$location",
     });
 
 
-
+    $rootScope.bookSearchValue = "";
 
     //CRUD (POST, GET, PUT, DELETE)
     $scope.restMethods = ["GET", "PUT", "POST", "DELETE"];
