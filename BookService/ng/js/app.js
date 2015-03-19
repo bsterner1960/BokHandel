@@ -41,6 +41,10 @@ app.config(["$routeProvider", "$locationProvider", function($routeProvider, $loc
       {
           templateUrl: "partials/testingListBooksViewController.html"
       })
+      .when("/sidebar",
+      {
+          templateUrl: "partials/sidebarView.html"
+      })
     .otherwise({
       redirectTo: "/"
     });
