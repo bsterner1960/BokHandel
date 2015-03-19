@@ -1,6 +1,9 @@
 <div ng-if="!isAdmin" ng-include="'partials/navbarView.html'"></div>
 <div ng-if="isAdmin" ng-include="'partials/navbarViewAdmin.html'"></div>
 
+<div ng-include="'partials/sidebarView.html'"></div>
+
+<div ng-if="isBook" ng-include="'partials/booklist.html'"></div>
 
 
 
