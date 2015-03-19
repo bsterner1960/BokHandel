@@ -25,11 +25,12 @@
         
         if ($scope.radioModel === "Book")
         {
+            //$rootScope.$broadcast('bookSearchValue', $scope.mySearch);
             $rootScope.bookSearchValue = $scope.mySearch;
         }
         else
         {
-            $rootScope.authorSearchValue = $scope.mySearch;
+            //$rootScope.authorSearchValue = $scope.mySearch;
         }
 
         console.log("mySearch: ", $scope.mySearch);
