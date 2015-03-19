@@ -1,7 +1,7 @@
 //app declaration and dependency injection
 var app = angular.module("myAppName", ["ngRoute", "ui.bootstrap", "ngResource"]);
 
-//app config
+//Inkluderar vyer (partials) i angular med $routeProvider 
 app.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider) {
   //route config
   $routeProvider
@@ -22,24 +22,26 @@ app.config(["$routeProvider", "$locationProvider", function($routeProvider, $loc
       {
           templateUrl: "partials/navbar.html"
       })
-      .when("/NewAuthorModal",
+      .when("/admin",
       {
-          templateUrl: "partials/NewAuthorModal.html"
+          templateUrl: "partials/navbarViewAdmin.html",
+          controller: "navbarControllerAdmin"
       })
+
       .when("/genredetails/:id?",
       {
           templateUrl: "partials/genredetails.html",
           controller: "genreController",
-
       })
       .when("/bookList",
       {
           templateUrl: "partials/bookList.html",
           controller: "bookListController"
       })
-      .when("/cookie",
+      .when("/bookdetails/:id?",
       {
-          templateUrl: "partials/testingListBooksViewController.html"
+          templateUrl: "partials/bookdetails.html",
+          controller: "bookDetailsController"
       })
       .when("/sidebar",
       {

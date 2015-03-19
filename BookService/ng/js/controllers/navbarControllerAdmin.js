@@ -1,4 +1,4 @@
-﻿angular.module('ui.bootstrap').controller('navbarControllerAdmin', function ($scope, $rootScope)
+﻿app.controller('navbarControllerAdmin', function ($scope, $rootScope, $modal, $log)
 {
     console.log("navbarController is alive! Wohooooo :D");
     $scope.minTest = "hejsan!"

@@ -121,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\newAuthorModal\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -186,6 +187,7 @@
     <Compile Include="Models\BookDTO.cs" />
     <Compile Include="Models\BookServiceContext.cs" />
     <Compile Include="Models\Genre.cs" />
+    <Content Include="ng\js\controllers\newAuthorModalController.js" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -197,11 +199,13 @@
     <Content Include="Global.asax" />
     <Content Include="ng\css\bootstrap.css" />
     <Content Include="ng\css\main.css" />
+    <Content Include="ng\js\controllers\bookDetailsController.js" />
     <Content Include="ng\js\controllers\bookListController.js" />
     <Content Include="ng\js\controllers\navbarControllerAdmin.js" />
+    <Content Include="ng\partials\bookdetails.html" />
     <Content Include="ng\js\controllers\sidebarController.js" />
     <Content Include="ng\partials\booklist.html" />
-    <Content Include="ng\partials\NewAuthorModal.html" />
+    <Content Include="ng\partials\newAuthorModal.html" />
     <Content Include="ng\partials\modal.html" />
     <Content Include="ng\partials\navbarViewAdmin.html" />
     <Content Include="ng\partials\sidebarView.html" />
