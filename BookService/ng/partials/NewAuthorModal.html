@@ -5,13 +5,18 @@
 
     <div class="form-group">
         <label>Namn: </label>
-        <input type="text" ng-model="dynamicTooltip" class="form-control" placeholder="Författarnamn">
+        <input type="text"  ng-model="newAuthor.Name" class="form-control" placeholder="Författarnamn">
     </div>
 
     
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok()">Skapa</button>
-    <button class="btn btn-warning" ng-click="cancel()">Avbryt</button>
+    <button class="btn btn-primary" ng-click="Skapa()">Skapa</button>
+
+    <button class="btn btn-warning" ng-click="Avbryt()">Avbryt</button>
+
+    <alert ng-if="authorError" type="warning" close="authorError = !authorError">{{alert.msg}}</alert>
+
 </div>
+
 

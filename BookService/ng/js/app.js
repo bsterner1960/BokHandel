@@ -22,10 +22,12 @@ app.config(["$routeProvider", "$locationProvider", function($routeProvider, $loc
       {
           templateUrl: "partials/navbar.html"
       })
-      .when("/NewAuthorModal",
+      .when("/admin",
       {
-          templateUrl: "partials/NewAuthorModal.html"
+          templateUrl: "partials/navbarViewAdmin.html",
+          controller: "navbarControllerAdmin"
       })
+
       .when("/genredetails/:id?",
       {
           templateUrl: "partials/genredetails.html",
