@@ -39,9 +39,26 @@
     }
 
 
-    $scope.createAuthor = function (size)
-    {
+    $scope.createAuthor = function (size) {
         console.log("Author hejhej");
+
+        //opening a new modal instance
+        var modalInstance = $modal.open(
+            {
+                templateUrl: 'partials/newAuthorModal.html',
+                controller: 'newAuthorModalController',
+                size: size
+            });
+
+        //waiting for modal instance to complete
+        modalInstance.result.then(
+            function (newAuthorFromDB) {
+                //when modal closes
+                console.log("Modal closed! newAuthorFromDB: ", newAuthorFromDB);
+            }, function () {
+                //when modal dismisses
+                $log.info('Modal dismissed at: ' + new Date());
+            });
 
     }
 
