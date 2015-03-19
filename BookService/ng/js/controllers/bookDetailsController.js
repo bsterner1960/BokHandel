@@ -1,4 +1,4 @@
-﻿app.controller("bookDetailsController", ["$scope", "Books", "$routeParams", "$location", function ($scope, Books, $routeParams, $location) {
+﻿app.controller("bookDetailsController", ["$scope", "Book", "$routeParams", "$location", function ($scope, Book, $routeParams, $location) {
 
     console.log("bookDetailsController controllern är igång! routeParams är nu: ", $routeParams);
     if (!$routeParams || !$routeParams.id) {
@@ -6,7 +6,7 @@
     }
 
     //$scope.genres = Genres.index();
-    $scope.book = Books.show($routeParams);
+    $scope.book = Book.show($routeParams);
 
 
 }]);

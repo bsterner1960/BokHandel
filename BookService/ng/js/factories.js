@@ -15,5 +15,5 @@ app.factory("Authors", ["$resource", function ($resource) {
 }]);
 
 app.factory("Genres", ["$resource", function ($resource) {
-    return $resource("/api/genres/:id", { id: "@id" }, standardMethods);
+        return $resource("/api/genres/:id", { id: "@id" }, standardMethods);
 }]);

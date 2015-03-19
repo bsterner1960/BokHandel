@@ -41,7 +41,6 @@ app.config(["$routeProvider", "$locationProvider", function($routeProvider, $loc
       .when("/bookdetails/:id?",
       {
           templateUrl: "partials/bookdetails.html",
-          controller: "bookDetailsController"
       })
 
      //.when("/cookie",
