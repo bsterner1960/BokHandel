@@ -10,6 +10,11 @@ app.factory("Book",["$resource", function ($resource) {
     return $resource("/api/books/:id", { id: "@id" },standardMethods);
 }]);
 
+app.factory("BookSearch", ["$resource", function ($resource) {
+    console.log("Hello jag e här i factories.js :-)");
+    return $resource("/api/booksearch/:bookSearchValue", { bookSearchValue: "@bookSearchValue" }, standardMethods);
+}]);
+
 app.factory("Authors", ["$resource", function ($resource) {
     return $resource("/api/authors/:id", { id: "@id" }, standardMethods);
 }]);

@@ -1,16 +1,15 @@
-﻿// This controller is going to provide a list of books
-app.controller("bookListController", ["$scope", "$rootScope", "Book", function ($scope, $rootScope, Book) {
-    console.log("bookListController is alive!");
-    
-     // Here we put a list of books into scope
-    $scope.books = Book.index();
+﻿// This controller is going to provide a list of books based on a search result.
+app.controller("bookListController", ["$scope", "$rootScope", "BookSearch", function ($scope, $rootScope, BookSearch) {
+    console.log("bookListController is alive!, RockOn!");
 
-     // Test to react on a scope call
-     //using $rootScope.on to listen for new data from restCall .success()
-    $rootScope.$watch("bookSearchValue", function (event, data) {
-        //console.log("restSuccess triggered: ", data);
-        console.log("triggad: " + event + " theData:" + data);
-        //$scope.output = JSON.stringify(data, null, '\t');
+    // Here we put a list of all books into scope
+    //$scope.books = Book.index();
+
+    //using $rootScope.watch to listen for new data on "bookSearchValue"
+    $rootScope.$watch("bookSearchValue", function (data) {
+        //console.log("bookSearchValue watch triggered and got the search value: ", data);
+        console.log("BookListControllerSearchValue: " + data);
+        $scope.books = BookSearch.show({ bookSearchValue: data });
     });
 
 }]);
