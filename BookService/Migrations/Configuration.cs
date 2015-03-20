@@ -40,6 +40,7 @@ namespace BookService.Migrations
                     Title = "Pride and Prejudice",
                     Year = 1813,
                     Price = 9.99M,
+                    StockBalance = 1
                 },
                 new Book()
                 {
@@ -47,6 +48,7 @@ namespace BookService.Migrations
                     Title = "Northanger Abbey",
                     Year = 1817,
                     Price = 12.95M,
+                    StockBalance = 1
                 },
                 new Book()
                 {
@@ -54,6 +56,7 @@ namespace BookService.Migrations
                     Title = "David Copperfield",
                     Year = 1850,
                     Price = 15,
+                    StockBalance = 1
                 },
                 new Book()
                 {
@@ -61,6 +64,7 @@ namespace BookService.Migrations
                     Title = "Don Quixote",
                     Year = 1617,
                     Price = 8.95M,
+                    StockBalance = 1
                 },
                 new Book()
                 {
@@ -68,8 +72,26 @@ namespace BookService.Migrations
                     Title = "The great adventure of C#",
                     Year = 2017,
                     Price = 5000,
+                    StockBalance = 1
                 }
                 );
+           /* context.BookGenreConnections.AddOrUpdate(x => x.Id,
+              new BookGenreConnection() { Id = 1, BookId  = 1, GenreId = 1 },
+              new BookGenreConnection() { Id = 2, BookId  = 2, GenreId = 1 },
+              new BookGenreConnection() { Id = 3, BookId  = 3, GenreId = 2 },
+              new BookGenreConnection() { Id = 4, BookId  = 4, GenreId = 2 },
+              new BookGenreConnection() { Id = 5, BookId  = 5, GenreId = 7 }
+
+              );
+
+           context.BookAuthorConnections.AddOrUpdate(x => x.Id,
+              new BookAuthorConnection() { Id = 1, BookId  = 1, AuthorId = 1 },
+              new BookAuthorConnection() { Id = 2, BookId  = 2, AuthorId = 1 },
+              new BookAuthorConnection() { Id = 3, BookId  = 3, AuthorId = 2 },
+              new BookAuthorConnection() { Id = 4, BookId  = 4, AuthorId = 2 },
+              new BookAuthorConnection() { Id = 5, BookId  = 5, AuthorId = 4 }
+
+              );  */
             // Cookies!
         }
     }

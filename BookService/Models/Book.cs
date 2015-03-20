@@ -10,6 +10,18 @@ namespace BookService.Models
         public string Title { get; set; }
         public int Year { get; set; }
         public decimal Price { get; set; }
+        public int StockBalance { get; set; }
+
+        public ICollection<Author> Authors { get; set; }
+
+        public ICollection<Genre> Genres { get; set; }
+
+        public Book()
+        {
+            Authors = new HashSet<Author>();
+            Genres  = new HashSet<Genre>();
+        }
 
      }
 }
+    

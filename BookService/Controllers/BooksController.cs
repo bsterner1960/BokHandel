@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using BookService.Models;
@@ -17,26 +18,89 @@ namespace BookService.Controllers
         private BookServiceContext db = new BookServiceContext();
 
         // GET api/Books
-        public IQueryable<Book> GetBooks()
+        //public IQueryable<Book> GetBooks()
+        //{
+        //    return db.Books;
+        //}
+
+        // GET api/Books
+        public List<BookDTO> GetBooks()
         {
-            return db.Books;
+            var books = from b in db.Books
+                        select new BookDTOtemp()
+                        {
+                            Id = b.Id,
+                            Title = b.Title,
+                            Authors = b.Authors
+                        };
+
+            var books2 = new List<BookDTO>();
+            foreach (var book in books)
+            {
+                books2.Add(
+                    new BookDTO()
+                    {
+                        Id = book.Id,
+                        Title = book.Title,
+                        AuthorNames = getAuthorNames(book.Authors)
+                    }
+
+                );
+            }
+
+            return books2;
+        }
+
+        private List<string> getAuthorNames(ICollection<Author> authors)
+        {
+            var aNames = new List<string>();
+            foreach (var author in authors)
+            {
+                aNames.Add(author.Name);
+            }
+            return aNames;
         }
 
         // GET api/Books/5
-        [ResponseType(typeof(Book))]
-        public IHttpActionResult GetBook(int id)
+        [ResponseType(typeof(BookDetailDTO))]
+        public async Task<IHttpActionResult> GetBook(int id)
         {
-            Book book = db.Books.Find(id);
+            Book book = await db.Books.FindAsync(id);
             if (book == null)
             {
                 return NotFound();
             }
 
-            return Ok(book);
+            //
+
+            var book2 = new BookDetailDTO()
+                    {
+                        Id = book.Id,
+                        Title = book.Title,
+                        Year = book.Year,
+                        StockBalance = book.StockBalance,
+                        Price = book.Price,
+                        AuthorNames = getAuthorNames(book.Authors),
+                        GenreNames = getGenreNames(book.Genres)
+                    };
+
+            //
+
+            return Ok(book2);
+        }
+
+        private List<string> getGenreNames(ICollection<Genre> genres)
+        {
+            var gNames = new List<string>();
+            foreach (var genre in genres)
+            {
+                gNames.Add(genre.Name);
+            }
+            return gNames;
         }
 
         // PUT api/Books/5
-        public IHttpActionResult PutBook(int id, Book book)
+        public async Task<IHttpActionResult> PutBook(int id, Book book)
         {
             if (!ModelState.IsValid)
             {
@@ -52,7 +116,7 @@ namespace BookService.Controllers
 
             try
             {
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -71,7 +135,7 @@ namespace BookService.Controllers
 
         // POST api/Books
         [ResponseType(typeof(Book))]
-        public IHttpActionResult PostBook(Book book)
+        public async Task<IHttpActionResult> PostBook(Book book)
         {
             if (!ModelState.IsValid)
             {
@@ -79,23 +143,23 @@ namespace BookService.Controllers
             }
 
             db.Books.Add(book);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = book.Id }, book);
         }
 
         // DELETE api/Books/5
         [ResponseType(typeof(Book))]
-        public IHttpActionResult DeleteBook(int id)
+        public async Task<IHttpActionResult> DeleteBook(int id)
         {
-            Book book = db.Books.Find(id);
+            Book book = await db.Books.FindAsync(id);
             if (book == null)
             {
                 return NotFound();
             }
 
             db.Books.Remove(book);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             return Ok(book);
         }
