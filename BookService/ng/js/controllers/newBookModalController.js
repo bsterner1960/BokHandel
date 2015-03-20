@@ -1,4 +1,4 @@
-﻿app.controller("newBookModalController", ["$scope", "Genres", "$modalInstance", function ($scope, Genres, $modalInstance) {
+﻿app.controller("newBookModalController", ["$scope", "Authors", "Genres", "$modalInstance", function ($scope, Authors, Genres, $modalInstance) {
 
     $scope.genreError = false;
 
@@ -6,6 +6,8 @@
 
     $scope.newBook = {};
 
+    $scope.Authors = Authors.index();
+    $scope.Genres = Genres.index();
     // klickevent Create
     $scope.Create = function (book) {
 
@@ -25,7 +27,6 @@
 
                 }
                 );
-
         }
     }
 

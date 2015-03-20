@@ -16,23 +16,36 @@
         <p>
             <label>Add author</label>
                 <select class="form-control" ng-model="callMethod" id="method">
-                <option ng-repeat="method in restMethods" value="{{method}}">{{method}}</option>
+                <option ng-repeat="author in Authors" value="{{author.Name}}">{{author.Name}}</option>
             </select>
+            <button class="btn btn-primary" ng-click="">Add</button>
         </p>
-        <textarea class="form-control" id="data" rows="5" ng-model="callData"></textarea>
-        <button class="btn btn-primary" ng-click="">Add</button>
-        <button class="btn btn-primary" ng-click="">Remove</button>
+        <div style="overflow: scroll; height:100px;">
+            <div ng-repeat="item in items">
+                <br />
+                {{ item }}
+
+                <button class="btn btn-warning pull-right" ng-click="">Remove</button>
+            </div>
+        </div>
 
 
         <p>
             <label>Add genre</label>
             <select class="form-control" ng-model="callMethod" id="method">
-                <option ng-repeat="method in restMethods" value="{{method}}">{{method}}</option>
+                <option ng-repeat="genre in Genres" value="{{genre.Name}}">{{genre.Name}}</option>
             </select>
+            <button class="btn btn-primary" ng-click="">Add</button>
         </p>
-        <textarea class="form-control" id="data1" rows="5" ng-model="callData1" ng-readonly="true"></textarea>
-        <button class="btn btn-primary" ng-click="">Add</button>
-        <button class="btn btn-primary" ng-click="">Remove</button>
+        <div style="overflow: scroll; height:100px;">
+            <div ng-repeat="item in items">
+                <br />
+                {{ item }}
+
+                <button class="btn btn-warning pull-right" ng-click="">Remove</button>
+            </div>
+        </div>
+
 
     </div>
 
