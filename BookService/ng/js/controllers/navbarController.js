@@ -1,7 +1,5 @@
 ﻿angular.module('ui.bootstrap').controller('navbarController', function ($scope, $rootScope)
 {
-    console.log("navbarController is alive! Wohooooo :D");
-    $scope.minTest = "hejsan!"
 
     $scope.adminSwitch = function () {
         $rootScope.isAdmin = !$rootScope.isAdmin;
@@ -32,9 +30,6 @@
         {
             //$rootScope.authorSearchValue = $scope.mySearch;
         }
-
-        console.log("mySearch: ", $scope.mySearch);
-        console.log("radioModel: ", $scope.radioModel);
     }
 
 });

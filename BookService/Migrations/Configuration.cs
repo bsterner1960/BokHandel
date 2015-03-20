@@ -19,7 +19,10 @@ namespace BookService.Migrations
                 new Author() { Id = 1, Name = "Jane Austen" },
                 new Author() { Id = 2, Name = "Charles Dickens" },
                 new Author() { Id = 3, Name = "Miguel de Cervantes" },
-                new Author() { Id = 4, Name = "Thomas" }
+                new Author() { Id = 4, Name = "Thomas" },
+                new Author() { Id = 5, Name = "Cookie Monster" },
+                new Author() { Id = 6, Name = "Hugo" },
+                new Author() { Id = 7, Name = "Muffin Monster" }
                 );
 
             context.Genres.AddOrUpdate(x => x.Id,
@@ -73,6 +76,30 @@ namespace BookService.Migrations
                     Year = 2017,
                     Price = 5000,
                     StockBalance = 1
+                },
+                new Book()
+                {
+                    Id = 6,
+                    Title = "That's the way the cookie crumbles!",
+                    Year = 2050,
+                    Price = 200,
+                    StockBalance = 42
+                },
+                new Book()
+                {
+                    Id = 7,
+                    Title = "Cookie Monster's guide for world domination!",
+                    Year = 2042,
+                    Price = 3000,
+                    StockBalance = 42
+                },
+                new Book()
+                {
+                    Id = 8,
+                    Title = "Hugo's guide to JavaScript!",
+                    Year = 2016,
+                    Price = 300,
+                    StockBalance = 6
                 }
                 );
            /* context.BookGenreConnections.AddOrUpdate(x => x.Id,
