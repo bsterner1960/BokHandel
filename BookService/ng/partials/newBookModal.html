@@ -1,48 +1,48 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title>ngTestUIBooStrap</title>
-    <meta charset="utf-8">
-    <!-- set base href so that angular knows -->
-    <base href="/ng/" />
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/main.css">
-    <script src="js/libs/angular.js"></script>
-    <script src="js/libs/angular-route.js"></script>
-    <script src="js/libs/angular-resource.js"></script>
-    <!-- ui-bootstrap has known compatibility issues with Angular 1.3.X -->
-    <script src="js/libs/ui-bootstrap-tpls-0.12.1.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/controllers/homeController.js"></script>
-    <script src="js/controllers/bookformController.js"></script>
-    <script src="js/controllers/genreController.js"></script>  <!--inlagd 2015-03-12-->
-    <script src="js/controllers/navbarController.js"></script> <!-- inlagd 2015-03-13 -->
-    <script src="js/controllers/uiController.js"></script>
-    <script src="js/services.js"></script>
-    <script src="js/factories.js"></script>
-    <script src="js/main.js"></script>
-</head>
-<body ng-app="myAppName">
-    <div ng-controller="uiController">
-        <!-- <main class="container" ng-view></main>-->
+﻿<div class="modal-header">
+    <h3 class="modal-title">New book</h3>
+</div>
+<div class="modal-body">
+
+    <div class="form-group">
+        <p>
+            <label>Book name: </label>
+            <input type="text" ng-model="newBook.Name" class="form-control" placeholder="Enter book name">
+        </p>
+        <p>
+            <label>Description: </label>
+            <input type="text" ng-model="newGenre.Description" class="form-control" placeholder="Enter description">
+        </p>
+
+        <p>
+            <label>Add author</label>
+                <select class="form-control" ng-model="callMethod" id="method">
+                <option ng-repeat="method in restMethods" value="{{method}}">{{method}}</option>
+            </select>
+        </p>
+        <textarea class="form-control" id="data" rows="5" ng-model="callData"></textarea>
+        <button class="btn btn-primary" ng-click="">Add</button>
+        <button class="btn btn-primary" ng-click="">Remove</button>
 
 
-        <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" items-per-page="itemsPP"></pagination>
-        <br />
-        <!-- a button to open a new modal -->
-        <button class="btn btn-default" ng-click="open('lg')">Open Modal</button>
+        <p>
+            <label>Add genre</label>
+            <select class="form-control" ng-model="callMethod" id="method">
+                <option ng-repeat="method in restMethods" value="{{method}}">{{method}}</option>
+            </select>
+        </p>
+        <textarea class="form-control" id="data1" rows="5" ng-model="callData1" ng-readonly="true"></textarea>
+        <button class="btn btn-primary" ng-click="">Add</button>
+        <button class="btn btn-primary" ng-click="">Remove</button>
 
-        <br />
-        <!-- a button to show/hide an included view -->
-        <button class="btn btn-default" ng-model="show" ng-click="show = !show;">{{show ? "Hide" : "Show"}} included view</button>
-
-        <!--
-            including views with controllers using directives
-            ngInclude && ngController
-
-            only if show == true
-        -->
-        <div ng-if="show" ng-include="'partials/bookform.html'" ng-controller="bookformController"></div>
     </div>
-</body>
-</html>
+
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="Create()">Create</button>
+
+    <button class="btn btn-warning" ng-click="Cancel()">Cancel</button>
+
+    <alert ng-if="genreError" type="warning" close="genreError = !genreError">{{alert.msg}}</alert>
+
+</div>

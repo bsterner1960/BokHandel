@@ -2,12 +2,12 @@
 
     $scope.authorError = false;
 
-    console.log("Skapa författare controllern är igång! routeParams är nu: ");
+    console.log("Create författare controllern är igång! routeParams är nu: ");
 
     $scope.newAuthor = {};
 
-    // klickevent Skapa
-     $scope.Skapa = function (authorname) {
+    // klickevent Create
+     $scope.Create = function (authorname) {
 
         if   ($scope.newAuthor.Name)  {
 
@@ -19,7 +19,7 @@
                 }, 
                 function () {
                     //for unsuccessful calls
-                    console.log("Fel vid skapa författare. ");
+                    console.log("Fel vid Create författare. ");
                     $scope.alert = { type: 'danger', msg: 'Fel vid create Författare' };
                     $scope.authorError = true;
 
@@ -29,8 +29,8 @@
         }
     }
 
-    // klickevent Avbryt
-     $scope.Avbryt = function () {
+    // klickevent Cancel
+     $scope.Cancel = function () {
          $modalInstance.close();
 
      };

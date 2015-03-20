@@ -38,8 +38,32 @@
         console.log("radioModel: ", $scope.radioModel);
     }
 
+    $scope.createBook = function(size)
+    {
+        console.log("Initiating create Book sequence, standby...");
 
-    $scope.createAuthor = function (size) {
+        //opening a new modal instance
+        var modalInstance = $modal.open(
+            {
+                templateUrl: 'partials/newBookModal.html',
+                controller: 'newBookModalController',
+                size: size
+            });
+
+        //waiting for modal instance to complete
+        modalInstance.result.then(
+            function (newBookFromDB) {
+                //when modal closes
+                console.log("Modal closed! newAuthorFromDB: ", newBookFromDB);
+            }, function () {
+                //when modal dismisses
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+
+    }
+
+    $scope.createAuthor = function (size)
+    {
         console.log("Author hejhej");
 
         //opening a new modal instance

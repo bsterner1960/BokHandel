@@ -2,12 +2,12 @@
 
     $scope.genreError = false;
 
-    console.log("Skapa genre controllern är igång! ");
+    console.log("Create genre controllern är igång! ");
 
     $scope.newGenre = {};
 
-    // klickevent Skapa
-     $scope.Skapa = function (authorname) {
+    // klickevent Create
+     $scope.Create = function (authorname) {
 
         if   ($scope.newGenre.Name)  {
 
@@ -19,7 +19,7 @@
                 }, 
                 function () {
                     //for unsuccessful calls
-                    console.log("Fel vid skapa genre. ");
+                    console.log("Fel vid Create genre. ");
                     $scope.alert = { type: 'danger', msg: 'Fel vid create Genre' };
                     $scope.genreError = true;
 
@@ -29,8 +29,8 @@
         }
     }
 
-    // klickevent Avbryt
-     $scope.Avbryt = function () {
+    // klickevent Cancel
+     $scope.Cancel = function () {
          $modalInstance.close();
 
      };

@@ -30,7 +30,13 @@
 
 
     //for bootstrap modal views(!)
-    $scope.items = ['item1', 'item2', 'item3'];
+   // $scope.items = ['item1', 'item2', 'item3', 'item4'];
+    $scope.items = [100];
+    for(i = 0; i < 500; i++)
+    {
+        $scope.items[i] = 'item' + i;
+    }
+
 
     $scope.open = function (size) {
         //using the $modal service to open a new modal
