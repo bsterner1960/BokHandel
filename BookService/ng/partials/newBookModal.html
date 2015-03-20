@@ -15,17 +15,18 @@
 
         <p>
             <label>Add author</label>
-                <select class="form-control" ng-model="callMethod" id="method">
-                <option ng-repeat="author in Authors" value="{{author.Name}}">{{author.Name}}</option>
-            </select>
-            <button class="btn btn-primary" ng-click="">Add</button>
+                <select class="form-control" ng-model="selectedAuthorId" id="cookieMonster">
+                    <option ng-repeat="author in Authors" value="{{author.Id}}">{{author.Name}}
+                    </option>
+                </select>
+            <button class="btn btn-primary" ng-click="addAuthor()">Add</button>
         </p>
-        <div style="overflow: scroll; height:100px;">
-            <div ng-repeat="item in items">
+        <div style="overflow: scroll; height:140px;">
+            <div ng-repeat="authorx in bookAuthors">
                 <br />
-                {{ item }}
-
-                <button class="btn btn-warning pull-right" ng-click="">Remove</button>
+                {{ authorx.Name }}
+                
+                <button class="btn btn-warning pull-right" data-ng-click="removeAuthor($index)">Remove</button>
             </div>
         </div>
 
@@ -37,7 +38,7 @@
             </select>
             <button class="btn btn-primary" ng-click="">Add</button>
         </p>
-        <div style="overflow: scroll; height:100px;">
+        <div style="overflow: scroll; height:140px;">
             <div ng-repeat="item in items">
                 <br />
                 {{ item }}
