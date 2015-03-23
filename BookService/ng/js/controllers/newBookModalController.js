@@ -2,7 +2,6 @@
 
     $scope.genreError = false;
 
-    console.log("newBookModalController is online, engaging scanners...");
 
     $scope.newBook = {};
 
@@ -13,17 +12,14 @@
 
 
 
-    $scope.selectedItem = "";
-    $scope.bookItem = "";
 
     // Empty array that the user can fill with authors of this book
     $scope.bookAuthors = [];
-
     // When clicking the addAuthor button
     $scope.addAuthor = function ()
     {
         // Read current value of select list for authors (an author id)
-        var idOfAuthorToAdd = $scope.selectedAuthorId;
+        var selectedAuthorID = $scope.selectedAuthorID;
         // Find the author object by id amongst all authors
         for (var i = 0; i < $scope.Authors.length; i++)
         {
@@ -40,23 +36,32 @@
 
     $scope.removeAuthor = function(value)
     {
-
-        console.log("Before the for loop!");
-        for (i = 0; i < $scope.bookAuthors.length; i++)
-        {
-            console.log($scope.bookAuthors[i].Id);
-            //if($scope.bookAuthors.)
-        }
-        console.log("initiate splice:");
         $scope.bookAuthors.splice(value, 1);
 
-        console.log("slice completed, initiating the second for loop.")
-        for (i = 0; i < $scope.bookAuthors.length; i++)
+    }
+
+    $scope.bookGenres = [];
+
+    $scope.addGenre = function()
+    {
+
+        var selectedGenreID = $scope.selectedGenreID;
+
+        for(var i = 0; i < $scope.Genres.length;i++)
         {
-            console.log($scope.bookAuthors[i].Id);
-            //if($scope.bookAuthors.)
+            if(selectedGenreID == $scope.Genres[i].Id)
+            {
+                if($scope.bookGenres.indexOf($scope.Genres[i]) < 0)
+        {
+                    $scope.bookGenres.push($scope.Genres[i]);
+                }
+            }
         }
-        console.log("second for loop completed, signing off.");
+        }
+
+    $scope.removeGenre = function(value)
+    {
+        $scope.bookGenres.splice(value, 1);
     }
 
     // klickevent Create
@@ -76,10 +81,9 @@
                 function ()
                 {
                     //for unsuccessful calls
-                    console.log("Fel vid Create genre. ");
-                    $scope.alert = { type: 'danger', msg: 'Fel vid create Genre' };
+                    console.log("Unable to create a new book. ");
+                    $scope.alert = { type: 'danger', msg: 'Unable to create a new book' };
                     $scope.genreError = true;
-
                 }
                 );
         }
