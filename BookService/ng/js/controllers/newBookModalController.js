@@ -1,9 +1,20 @@
-﻿app.controller("newBookModalController", ["$scope", "Authors", "Genres", "$modalInstance", function ($scope, Authors, Genres, $modalInstance) {
+﻿app.controller("newBookModalController", ["$scope", "Authors", "Book", "Genres", "$modalInstance", function ($scope, Authors, Book, Genres, $modalInstance) {
 
     $scope.genreError = false;
 
 
     $scope.newBook = {};
+
+    $scope.actualObject =
+    {
+        Name: "",
+        Description: "",
+        Price: "",
+        Year: "",
+        StockBalance: "",
+        Authors: [],
+        Genres: []
+    };
 
     // All authors in our system
     $scope.Authors = Authors.index();
@@ -11,10 +22,9 @@
     $scope.Genres = Genres.index();
 
 
-
+    
 
     // Empty array that the user can fill with authors of this book
-    $scope.bookAuthors = [];
     // When clicking the addAuthor button
     $scope.addAuthor = function ()
     {
@@ -23,12 +33,12 @@
         // Find the author object by id amongst all authors
         for (var i = 0; i < $scope.Authors.length; i++)
         {
-            if (idOfAuthorToAdd == $scope.Authors[i].Id)
+            if (selectedAuthorID == $scope.Authors[i].Id)
             {
                 // Only add the autor to the bookAuthor list if not already in it (indexOf check)
-                if ($scope.bookAuthors.indexOf($scope.Authors[i]) < 0)
+                if ($scope.actualObject.Authors.indexOf($scope.Authors[i]) < 0)
                 {
-                    $scope.bookAuthors.push($scope.Authors[i]);
+                    $scope.actualObject.Authors.push($scope.Authors[i]);
                 }
             }
         }
@@ -36,11 +46,10 @@
 
     $scope.removeAuthor = function(value)
     {
-        $scope.bookAuthors.splice(value, 1);
+        $scope.actualObject.Authors.splice(value, 1);
 
     }
 
-    $scope.bookGenres = [];
 
     $scope.addGenre = function()
     {
@@ -51,47 +60,52 @@
         {
             if(selectedGenreID == $scope.Genres[i].Id)
             {
-                if($scope.bookGenres.indexOf($scope.Genres[i]) < 0)
-        {
-                    $scope.bookGenres.push($scope.Genres[i]);
+                if ($scope.actualObject.Genres.indexOf($scope.Genres[i]) < 0)
+                {
+                    $scope.actualObject.Genres.push($scope.Genres[i]);
                 }
             }
         }
-        }
+    }
 
     $scope.removeGenre = function(value)
     {
-        $scope.bookGenres.splice(value, 1);
+        $scope.actualObject.Genres.splice(value, 1);
     }
 
-    // klickevent Create
-    $scope.Create = function (book)
+    // click event Create
+    $scope.Create = function ()
     {
-
         if ($scope.newBook.Name)
         {
+            
+            $scope.actualObject.Name = $scope.newBook.Name;
+            $scope.actualObject.Description = $scope.newBook.Description;
+            $scope.actualObject.Price = $scope.newBook.Price;
+            $scope.actualObject.Year = $scope.newBook.Year;
+            $scope.actualObject.StockBalance = $scope.newBook.StockBalance;
 
-
-            Genres.create($scope.newBook,
-                function (data)
-                {
-                    //for successful calls
-                    $modalInstance.close(data);
-                },
-                function ()
-                {
-                    //for unsuccessful calls
-                    console.log("Unable to create a new book. ");
-                    $scope.alert = { type: 'danger', msg: 'Unable to create a new book' };
-                    $scope.genreError = true;
-                }
-                );
+            console.log($scope.actualObject);
+            Book.create($scope.actualObject,
+            function (data)
+            {
+                console.log("data: " + data);
+                //for successful calls
+                $modalInstance.close(data);
+            },
+            function ()
+            {
+                //for unsuccessful calls
+                console.log("Unable to create a new book. ");
+                $scope.alert = { type: 'danger', msg: 'Unable to create a new book' };
+                $scope.bookError = true;
+            });
         }
     }
 
-    // klickevent Cancel
-    $scope.Cancel = function () {
+    // clickevent Cancel
+    $scope.Cancel = function ()
+    {
         $modalInstance.close();
-
     };
 }]);
