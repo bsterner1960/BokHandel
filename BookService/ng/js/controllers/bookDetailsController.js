@@ -4,7 +4,6 @@
     if (!$routeParams || !$routeParams.id) {
         $location.url("/");
     }
-
     //$scope.genres = Genres.index();
     $scope.book = Book.show($routeParams);
 
