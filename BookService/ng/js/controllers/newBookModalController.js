@@ -35,7 +35,7 @@
         {
             if (selectedAuthorID == $scope.Authors[i].Id)
             {
-                // Only add the autor to the bookAuthor list if not already in it (indexOf check)
+                // Only add the author to the bookAuthor list if not already in it (indexOf check)
                 if ($scope.actualObject.Authors.indexOf($scope.Authors[i]) < 0)
                 {
                     $scope.actualObject.Authors.push($scope.Authors[i]);

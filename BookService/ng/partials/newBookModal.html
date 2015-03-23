@@ -16,12 +16,7 @@
         <p>
             <label>Price:</label>
             <input type="text" ng-model="newBook.Price" class="form-control" placeholder="Enter price">
-        </p>
-
-        <p>
-            <label>Year:</label>
-            <input type="text" ng-model="newBook.Year" class="form-control" placeholder="Enter year">
-        </p>
+        </p>        </p>
 
         <p>
             <label>StockBalance:</label>
@@ -35,6 +30,11 @@
                     {{author.Name}}
                 </option>
             </select>
+
+        <p>
+            <label>Year:</label>
+            <input type="text" ng-model="newBook.Year" class="form-control" placeholder="Enter year">
+
             <button class="btn btn-primary" ng-click="addAuthor()">Add</button>
         </p>
         <div style="overflow: scroll; height:140px;">
@@ -63,9 +63,6 @@
                 <button class="btn btn-warning pull-right" data-ng-click="removeGenre($index)">Remove</button>
             </div>
         </div>
-
-
-
     </div>
 
 
