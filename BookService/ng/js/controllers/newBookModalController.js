@@ -25,11 +25,13 @@
         // Read current value of select list for authors (an author id)
         var idOfAuthorToAdd = $scope.selectedAuthorId;
         // Find the author object by id amongst all authors
-        for (var i = 0; i < $scope.Authors.length; i++) {
-            if (idOfAuthorToAdd == $scope.Authors[i].Id) {
+        for (var i = 0; i < $scope.Authors.length; i++)
+        {
+            if (idOfAuthorToAdd == $scope.Authors[i].Id)
+            {
                 // Only add the autor to the bookAuthor list if not already in it (indexOf check)
-                if ($scope.bookAuthors.indexOf($scope.Authors[i]) < 0) {
-                    
+                if ($scope.bookAuthors.indexOf($scope.Authors[i]) < 0)
+                {
                     $scope.bookAuthors.push($scope.Authors[i]);
                 }
             }
@@ -49,7 +51,8 @@
         $scope.bookAuthors.splice(value, 1);
 
         console.log("slice completed, initiating the second for loop.")
-        for (i = 0; i < $scope.bookAuthors.length; i++) {
+        for (i = 0; i < $scope.bookAuthors.length; i++)
+        {
             console.log($scope.bookAuthors[i].Id);
             //if($scope.bookAuthors.)
         }
@@ -57,17 +60,21 @@
     }
 
     // klickevent Create
-    $scope.Create = function (book) {
+    $scope.Create = function (book)
+    {
 
-        if ($scope.newBook.Name) {
+        if ($scope.newBook.Name)
+        {
 
 
             Genres.create($scope.newBook,
-                function (data) {
+                function (data)
+                {
                     //for successful calls
                     $modalInstance.close(data);
                 },
-                function () {
+                function ()
+                {
                     //for unsuccessful calls
                     console.log("Fel vid Create genre. ");
                     $scope.alert = { type: 'danger', msg: 'Fel vid create Genre' };
