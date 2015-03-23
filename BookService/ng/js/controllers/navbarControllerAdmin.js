@@ -1,16 +1,10 @@
 ﻿app.controller('navbarControllerAdmin', function ($scope, $rootScope, $modal, $log)
 {
-    console.log("navbarController is alive! Wohooooo :D");
-    $scope.minTest = "hejsan!"
-
 
     $scope.adminSwitch = function () {
         $rootScope.isAdmin = !$rootScope.isAdmin;
     }
 
-    $rootScope.$watch("bookSearchValue", function () {
-        console.log("Triggered!, " + $rootScope.bookSearchValue);
-    });
 
     $scope.setBook = function ()
     {
@@ -33,14 +27,33 @@
         else {
             $rootScope.authorSearchValue = $scope.mySearch;
         }
-
-        console.log("mySearch: ", $scope.mySearch);
-        console.log("radioModel: ", $scope.radioModel);
     }
 
+    $scope.createBook = function(size)
+    {
+        console.log("Initiating create Book sequence, standby...");
 
-    $scope.createAuthor = function (size) {
-        console.log("Author hejhej");
+        //opening a new modal instance
+        var modalInstance = $modal.open(
+            {
+                templateUrl: 'partials/newBookModal.html',
+                controller: 'newBookModalController',
+                size: size
+            });
+
+        //waiting for modal instance to complete
+        modalInstance.result.then(
+            function (newBookFromDB) {
+                //when modal closes
+            }, function () {
+                //when modal dismisses
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+
+    }
+
+    $scope.createAuthor = function (size)
+    {
 
         //opening a new modal instance
         var modalInstance = $modal.open(
@@ -54,7 +67,6 @@
         modalInstance.result.then(
             function (newAuthorFromDB) {
                 //when modal closes
-                console.log("Modal closed! newAuthorFromDB: ", newAuthorFromDB);
             }, function () {
                 //when modal dismisses
                 $log.info('Modal dismissed at: ' + new Date());
@@ -65,7 +77,6 @@
 
         $scope.createGenre = function (size) 
         {
-            console.log("Genre hejhej");
 
             //opening a new modal instance
             var modalInstance = $modal.open(
@@ -80,7 +91,6 @@
                 function (newGenreFromDB) 
                 {
                     //when modal closes
-                    console.log("Modal closed! newGenreFromDB: ", newGenreFromDB);
                 }, function () 
                 {
                     //when modal dismisses

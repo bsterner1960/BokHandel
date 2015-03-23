@@ -1,4 +1,4 @@
-﻿
+﻿using System.Collections.Generic;
 namespace BookService.Models
 {
     public class BookDetailDTO
@@ -7,7 +7,9 @@ namespace BookService.Models
         public string Title { get; set; }
         public int Year { get; set; }
         public decimal Price { get; set; }
-        public string AuthorName { get; set; }
-        public string GenreName { get; set; }
+        public int StockBalance { get; set; }
+
+        public List<string> AuthorNames { get; set; }
+        public List<string> GenreNames { get; set; }
     }
 }
