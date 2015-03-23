@@ -15,37 +15,40 @@
 
         <p>
             <label>Add author</label>
-                <select class="form-control" ng-model="selectedAuthorId" id="cookieMonster">
-                    <option ng-repeat="author in Authors" value="{{author.Id}}">{{author.Name}}
-                    </option>
-                </select>
+            <select class="form-control" ng-model="selectedAuthorID" id="cookieMonster">
+                <option ng-repeat="author in Authors" value="{{author.Id}}">
+                    {{author.Name}}
+                </option>
+            </select>
             <button class="btn btn-primary" ng-click="addAuthor()">Add</button>
         </p>
         <div style="overflow: scroll; height:140px;">
-            <div ng-repeat="authorx in bookAuthors">
+            <div ng-repeat="author in bookAuthors">
                 <br />
-                {{ authorx.Name }}
-                
+                {{ author.Name }}
+
                 <button class="btn btn-warning pull-right" data-ng-click="removeAuthor($index)">Remove</button>
             </div>
         </div>
 
-
         <p>
             <label>Add genre</label>
-            <select class="form-control" ng-model="callMethod" id="method">
-                <option ng-repeat="genre in Genres" value="{{genre.Name}}">{{genre.Name}}</option>
+            <select class="form-control" ng-model="selectedGenreID" id="cookieMonster">
+                <option ng-repeat="genre in Genres" value="{{genre.Id}}">
+                    {{genre.Name}}
+                </option>
             </select>
-            <button class="btn btn-primary" ng-click="">Add</button>
+            <button class="btn btn-primary" ng-click="addGenre()">Add</button>
         </p>
         <div style="overflow: scroll; height:140px;">
-            <div ng-repeat="item in items">
+            <div ng-repeat="genre in bookGenres">
                 <br />
-                {{ item }}
+                {{ genre.Name }}
 
-                <button class="btn btn-warning pull-right" ng-click="">Remove</button>
+                <button class="btn btn-warning pull-right" data-ng-click="removeGenre($index)">Remove</button>
             </div>
         </div>
+
 
 
     </div>
