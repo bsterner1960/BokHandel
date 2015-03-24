@@ -10,7 +10,17 @@
         </p>
         <p>
             <label>Description: </label>
-            <input type="text" ng-model="newGenre.Description" class="form-control" placeholder="Enter description">
+            <input type="text" ng-model="newBook.Description" class="form-control" placeholder="Enter description">
+        </p>
+
+        <p>
+            <label>Price:</label>
+            <input type="text" ng-model="newBook.Price" class="form-control" placeholder="Enter price">
+        </p>        </p>
+
+        <p>
+            <label>StockBalance:</label>
+            <input type="text" ng-model="newBook.StockBalance" class="form-control" placeholder="Enter number of books in stock">
         </p>
 
         <p>
@@ -20,10 +30,15 @@
                     {{author.Name}}
                 </option>
             </select>
+
+        <p>
+            <label>Year:</label>
+            <input type="text" ng-model="newBook.Year" class="form-control" placeholder="Enter year">
+
             <button class="btn btn-primary" ng-click="addAuthor()">Add</button>
         </p>
         <div style="overflow: scroll; height:140px;">
-            <div ng-repeat="author in bookAuthors">
+            <div ng-repeat="author in actualObject.Authors">
                 <br />
                 {{ author.Name }}
 
@@ -41,16 +56,13 @@
             <button class="btn btn-primary" ng-click="addGenre()">Add</button>
         </p>
         <div style="overflow: scroll; height:140px;">
-            <div ng-repeat="genre in bookGenres">
+            <div ng-repeat="genre in actualObject.Genres">
                 <br />
                 {{ genre.Name }}
 
                 <button class="btn btn-warning pull-right" data-ng-click="removeGenre($index)">Remove</button>
             </div>
         </div>
-
-
-
     </div>
 
 
