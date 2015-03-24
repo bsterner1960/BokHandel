@@ -7,6 +7,10 @@
 
         <div ng-include="'partials/sidebarView.html'"></div>
 
+<div ng-controller="authorListController">
+    <div ng-if="!isBook" ng-include="'partials/authorlist.html'"></div>
+</div>
+
 
     </div>
 

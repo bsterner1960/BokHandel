@@ -1,4 +1,5 @@
-﻿app.controller('navbarControllerAdmin', function ($scope, $rootScope, $modal, $log)
+﻿app.controller('navbarControllerAdmin', ["$scope", "$rootScope", "$modal", "$log",
+    function ($scope, $rootScope, $modal, $log)
 {
 
     $scope.adminSwitch = function () {
@@ -49,7 +50,6 @@
                 //when modal dismisses
                 $log.info('Modal dismissed at: ' + new Date());
             });
-
     }
 
     $scope.createAuthor = function (size)
@@ -71,7 +71,6 @@
                 //when modal dismisses
                 $log.info('Modal dismissed at: ' + new Date());
             });
-
     }
 
 
@@ -96,6 +95,5 @@
                     //when modal dismisses
                     $log.info('Modal dismissed at: ' + new Date());
                 });
-
         }
-    });
+    }]);

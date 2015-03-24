@@ -5,8 +5,8 @@ app.controller("bookListController", ["$scope", "$rootScope", "Search", function
     // Using this to make sure a serach is not sent to the backend 
     // when only initializing the controller for the first time
     // we need only to react on a real search.
+  
     var myFirstRun;
-
     //using $rootScope.watch to listen for new data on "bookSearchValue"
     $rootScope.$watch("bookSearchValue", function (data) {
 

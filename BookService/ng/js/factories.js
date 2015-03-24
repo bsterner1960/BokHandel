@@ -6,18 +6,22 @@
     'destroy': { method: 'DELETE' }
 };
 
-app.factory("Book",["$resource", function ($resource) {
+app.factory("Book", ["$resource", function ($resource)
+{
     return $resource("/api/books/:id", { id: "@id" },standardMethods);
 }]);
 
-app.factory("Search", ["$resource", function ($resource) {
+app.factory("Search", ["$resource", function ($resource)
+{
     return $resource("/api/search/:whatToSearchFor/:searchValue", { whatToSearchFor: "@whatToSearchFor", searchValue: "@searchValue" }, standardMethods);
 }]);
 
-app.factory("Authors", ["$resource", function ($resource) {
+app.factory("Authors", ["$resource", function ($resource)
+{
     return $resource("/api/authors/:id", { id: "@id" }, standardMethods);
 }]);
 
-app.factory("Genres", ["$resource", function ($resource) {
+app.factory("Genres", ["$resource", function ($resource)
+{
         return $resource("/api/genres/:id", { id: "@id" }, standardMethods);
 }]);
