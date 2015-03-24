@@ -1,6 +1,6 @@
 ﻿app.controller("newBookModalController", ["$scope", "Authors", "Book", "Genres", "$modalInstance", function ($scope, Authors, Book, Genres, $modalInstance) {
 
-    $scope.genreError = false;
+    $scope.bookError = false;
 
 
     $scope.newBook = {};

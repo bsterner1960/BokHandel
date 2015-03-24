@@ -19,7 +19,7 @@
     
     $scope.search = function ()
     {
-
+        console.log("sidebar params: ", $scope.sidebar);
         
         if ($scope.radioModel === "Book")
         {

@@ -1,9 +1,14 @@
-﻿angular.module('ui.bootstrap').controller('sidebarController', function ($scope, $rootScope)
-{
-    console.log("All systems online, sidebarController successfully engaged, awaiting orders.");
-    $scope.minTest = "Test Successful!"
+﻿app.controller("sidebarController", ["$scope", "$rootScope","Genres", function ($scope, $rootScope,Genres) {
 
-    $scope.adminSwitch = function () {
-        $rootScope.isAdmin = !$rootScope.isAdmin;
-    }
-});
+    console.log("All systems online, sidebarController successfully engaged, awaiting orders.");
+
+
+    $scope.Genres = Genres.index();
+
+    $scope.sidebar = {};
+    $scope.sidebar.checkedBoxes = {};
+
+    $rootScope.sidebar = $scope.sidebar;
+
+    
+}]);

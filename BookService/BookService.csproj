@@ -186,6 +186,8 @@
     <Compile Include="Models\BookDTO.cs" />
     <Compile Include="Models\BookServiceContext.cs" />
     <Compile Include="Models\Genre.cs" />
+    <Content Include="ng\js\controllers\authorDetailsModalController.js" />
+    <Content Include="ng\js\controllers\authorListController.js" />
     <Content Include="ng\js\controllers\newBookModalController.js" />
     <Content Include="ng\js\controllers\newGenreModalController.js" />
     <Content Include="ng\js\controllers\newAuthorModalController.js" />
@@ -204,6 +206,8 @@
     <Content Include="ng\js\controllers\bookDetailsController.js" />
     <Content Include="ng\js\controllers\bookListController.js" />
     <Content Include="ng\js\controllers\navbarControllerAdmin.js" />
+    <Content Include="ng\partials\authorDetailsModal.html" />
+    <Content Include="ng\partials\authorlist.html" />
     <Content Include="ng\partials\bookdetails.html" />
     <Content Include="ng\js\controllers\sidebarController.js" />
     <Content Include="ng\partials\booklist.html" />
