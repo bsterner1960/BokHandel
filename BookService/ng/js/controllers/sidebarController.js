@@ -11,4 +11,11 @@
     $rootScope.sidebar = $scope.sidebar;
 
     
+    $scope.viewGenreDetails = function(clickedGenre)
+    {
+        console.log("You clicked: " + clickedGenre.Name);
+    }
+
+
+
 }]);
