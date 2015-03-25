@@ -28,23 +28,23 @@ namespace BookService.Controllers
         }
 
 
-        public IQueryable<SearchDTO> GetSearchDTOes()
-        {
-            return db.SearchDTOes;
-        }
+        //public IQueryable<SearchDTO> GetSearchDTOes()
+        //{
+        //    return db.SearchDTOes;
+        //}
 
         // GET api/Search/5
-        [ResponseType(typeof(SearchDTO))]
-        public async Task<IHttpActionResult> GetSearchDTO(int id)
-        {
-            SearchDTO searchdto = await db.SearchDTOes.FindAsync(id);
-            if (searchdto == null)
-            {
-                return NotFound();
-            }
+        //[ResponseType(typeof(SearchDTO))]
+        //public async Task<IHttpActionResult> GetSearchDTO(int id)
+        //{
+        //    SearchDTO searchdto = await db.SearchDTOes.FindAsync(id);
+        //    if (searchdto == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(searchdto);
-        }
+        //    return Ok(searchdto);
+        //}
 
         // PUT api/Search/5
         public async Task<IHttpActionResult> PutSearchDTO(int id, SearchDTO searchdto)
@@ -67,49 +67,49 @@ namespace BookService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SearchDTOExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                //if (!SearchDTOExists(id))
+                //{
+                //    return NotFound();
+                //}
+                //else
+                //{
+                //    throw;
+                //}
             }
 
             return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST api/Search
-        [ResponseType(typeof(SearchDTO))]
-        public async Task<IHttpActionResult> PostSearchDTO(SearchDTO searchdto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //[ResponseType(typeof(SearchDTO))]
+        //public async Task<IHttpActionResult> PostSearchDTO(SearchDTO searchdto)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            db.SearchDTOes.Add(searchdto);
-            await db.SaveChangesAsync();
+        //    db.SearchDTOes.Add(searchdto);
+        //    await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = searchdto.Id }, searchdto);
-        }
+        //    return CreatedAtRoute("DefaultApi", new { id = searchdto.Id }, searchdto);
+        //}
 
         // DELETE api/Search/5
-        [ResponseType(typeof(SearchDTO))]
-        public async Task<IHttpActionResult> DeleteSearchDTO(int id)
-        {
-            SearchDTO searchdto = await db.SearchDTOes.FindAsync(id);
-            if (searchdto == null)
-            {
-                return NotFound();
-            }
+        //[ResponseType(typeof(SearchDTO))]
+        //public async Task<IHttpActionResult> DeleteSearchDTO(int id)
+        //{
+        //    SearchDTO searchdto = await db.SearchDTOes.FindAsync(id);
+        //    if (searchdto == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            db.SearchDTOes.Remove(searchdto);
-            await db.SaveChangesAsync();
+        //    db.SearchDTOes.Remove(searchdto);
+        //    await db.SaveChangesAsync();
 
-            return Ok(searchdto);
-        }
+        //    return Ok(searchdto);
+        //}
 
         protected override void Dispose(bool disposing)
         {
@@ -120,9 +120,9 @@ namespace BookService.Controllers
             base.Dispose(disposing);
         }
 
-        private bool SearchDTOExists(int id)
-        {
-            return db.SearchDTOes.Count(e => e.Id == id) > 0;
-        }
+        //private bool SearchDTOExists(int id)
+        //{
+        //    return db.SearchDTOes.Count(e => e.Id == id) > 0;
+        //}
     }
 }
