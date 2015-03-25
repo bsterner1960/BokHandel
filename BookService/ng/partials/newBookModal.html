@@ -24,6 +24,13 @@
         </p>
 
         <p>
+            <label>Year:</label>
+            <input type="text" ng-model="newBook.Year" class="form-control" placeholder="Enter year">
+
+            <button class="btn btn-primary" ng-click="addAuthor()">Add</button>
+        </p>
+
+        <p>
             <label>Add author</label>
             <select class="form-control" ng-model="selectedAuthorID" id="cookieMonster">
                 <option ng-repeat="author in Authors" value="{{author.Id}}">
@@ -31,12 +38,6 @@
                 </option>
             </select>
 
-        <p>
-            <label>Year:</label>
-            <input type="text" ng-model="newBook.Year" class="form-control" placeholder="Enter year">
-
-            <button class="btn btn-primary" ng-click="addAuthor()">Add</button>
-        </p>
         <div style="overflow: scroll; height:140px;">
             <div ng-repeat="author in actualObject.Authors">
                 <br />
