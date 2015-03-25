@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using BookService.Models;
+using System.IO;
+using System.Diagnostics;
 
 namespace BookService.Controllers
 {
@@ -18,6 +20,14 @@ namespace BookService.Controllers
         private BookServiceContext db = new BookServiceContext();
 
         // GET api/Search
+        public string Books()
+        {
+            Debug.WriteLine("från books");
+            //IQueryable<SearchDTO> SearchAnswer = new IQueryable<SearchDTO>();
+            return "Return från books";
+        }
+
+
         public IQueryable<SearchDTO> GetSearchDTOes()
         {
             return db.SearchDTOes;

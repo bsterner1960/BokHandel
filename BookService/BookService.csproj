@@ -121,7 +121,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Views\newAuthorModal\" />
   </ItemGroup>
   <ItemGroup>
@@ -186,6 +185,10 @@
     <Compile Include="Models\BookDTO.cs" />
     <Compile Include="Models\BookServiceContext.cs" />
     <Compile Include="Models\Genre.cs" />
+    <Content Include="App_Data\BookServiceContext-20140613003603.mdf" />
+    <Content Include="App_Data\BookServiceContext-20140613003603_log.ldf">
+      <DependentUpon>BookServiceContext-20140613003603.mdf</DependentUpon>
+    </Content>
     <Content Include="ng\js\controllers\newBookModalController.js" />
     <Content Include="ng\js\controllers\newGenreModalController.js" />
     <Content Include="ng\js\controllers\newAuthorModalController.js" />
