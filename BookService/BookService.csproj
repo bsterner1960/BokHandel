@@ -224,7 +224,7 @@
     <Content Include="ng\index.html" />
     <Content Include="ng\js\app.js" />
     <Content Include="ng\js\controllers\navbarController.js" />
-    <Content Include="ng\js\controllers\genreController.js" />
+    <Content Include="ng\js\controllers\genreDetailsModalController.js" />
     <Content Include="ng\js\controllers\homeController.js" />
     <Content Include="ng\js\controllers\bookformController.js" />
     <Content Include="ng\js\controllers\uiController.js" />
@@ -236,7 +236,7 @@
     <Content Include="ng\js\main.js" />
     <Content Include="ng\js\services.js" />
     <Content Include="ng\partials\bookform.html" />
-    <Content Include="ng\partials\genredetails.html" />
+    <Content Include="ng\partials\genreDetailsModal.html" />
     <Content Include="ng\partials\home.html" />
     <Content Include="ng\partials\navbarView.html" />
     <Content Include="ng\partials\ui-bootstrap.html" />

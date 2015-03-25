@@ -1,4 +1,5 @@
-﻿app.controller("authorDetailsModalController", ["$scope", "$rootScope", "Authors", "$modalInstance", "author", function ($scope, $rootScope, Authors, $modalInstance, author)
+﻿app.controller("authorDetailsModalController", ["$scope", "$rootScope", "Authors", "$modalInstance", "author",
+function ($scope, $rootScope, Authors, $modalInstance, author)
 {
     console.log("author is: " + author.Name);
     $scope.author = author;

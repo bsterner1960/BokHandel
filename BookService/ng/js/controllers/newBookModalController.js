@@ -1,7 +1,6 @@
 ﻿app.controller("newBookModalController", ["$scope", "Authors", "Book", "Genres", "$modalInstance", function ($scope, Authors, Book, Genres, $modalInstance) {
 
-    $scope.bookError = false;
-
+    
 
     $scope.newBook = {};
 
@@ -98,13 +97,6 @@
                 console.log("data: " + data);
                 //for successful calls
                 $modalInstance.close(data);
-            },
-            function ()
-            {
-                //for unsuccessful calls
-                console.log("Unable to create a new book. ");
-                $scope.alert = { type: 'danger', msg: 'Unable to create a new book' };
-                $scope.bookError = true;
             });
         }
     }
