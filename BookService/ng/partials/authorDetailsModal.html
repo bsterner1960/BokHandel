@@ -5,15 +5,15 @@
 
     <div class="form-group">
         <label>Name: </label>
-        <p>{{author.Name}}</p>
+        <input type="text" ng-if="isAdmin" ng-model="author.Name" class="form-control" placeholder="Enter author name">
+        <p ng-if="!isAdmin">{{author.Name}}</p>
     </div>
-
+    
+    
 </div>
 <div class="modal-footer">
+    <button ng-if="isAdmin" class="btn btn-primary" ng-click="Save()">Save</button>
     <button class="btn btn-warning" ng-click="Cancel()">Cancel</button>
 
     <alert ng-if="authorError" type="warning" close="authorError = !authorError">{{alert.msg}}</alert>
-
 </div>
-
-

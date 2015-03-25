@@ -192,6 +192,7 @@
     <Content Include="ng\js\controllers\newBookModalController.js" />
     <Content Include="ng\js\controllers\newGenreModalController.js" />
     <Content Include="ng\js\controllers\newAuthorModalController.js" />
+    <Compile Include="Models\NewBookDTO.cs" />
     <Compile Include="Models\SearchDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
