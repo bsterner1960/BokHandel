@@ -23,8 +23,8 @@
         
         if ($scope.radioModel === "Book")
         {
-            //$rootScope.$broadcast('bookSearchYellowTruck', $scope.mySearch);
-            $rootScope.bookSearchYellowTruck = $scope.mySearch;
+            //$rootScope.$broadcast('bookSearchValue', $scope.mySearch);
+            $rootScope.bookSearchValue = $scope.mySearch;
         }
         else
         {

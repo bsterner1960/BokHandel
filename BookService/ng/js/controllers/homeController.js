@@ -11,7 +11,7 @@ app.controller("homeController", ["$scope", "$rootScope", "restService", "Books"
     });
 
 
-    $rootScope.bookSearchYellowTruck = "";
+    $rootScope.bookSearchValue = "";
 
     //CRUD (POST, GET, PUT, DELETE)
     $scope.restMethods = ["GET", "PUT", "POST", "DELETE"];

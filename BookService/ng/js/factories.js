@@ -13,7 +13,7 @@ app.factory("Book", ["$resource", function ($resource)
 
 app.factory("Search", ["$resource", function ($resource)
 {
-    return $resource("/api/search/:whatToSearchFor/:searchValue", { whatToSearchFor: "@whatToSearchFor", searchValue: "@searchValue" }, standardMethods);
+    return $resource("/api/search/:whatToSearchFor/:searchValues", { whatToSearchFor: "@whatToSearchFor", searchValues: "@searchValues" }, standardMethods);
 }]);
 
 app.factory("Authors", ["$resource", function ($resource)

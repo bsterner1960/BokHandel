@@ -17,7 +17,7 @@ app.controller("bookListController", ["$scope", "$rootScope", "Search", function
     // we need only to react on a real search.  
     var myFirstRun;
 
-    $rootScope.$watch("bookSearchYellowTruck", function () {
+    $rootScope.$watch("bookSearchValue", function () {
         // Are we running this for the first time (the controller is included in code somewhere)
         if (myFirstRun === undefined) {
             myFirstRun = false;
@@ -25,15 +25,26 @@ app.controller("bookListController", ["$scope", "$rootScope", "Search", function
         } else {
 
             // If there allready is any error messages displayed then destory them.
-           // console.log("Nicklas sökvärde: ", $rootScope.bookSearchYellowTruck);
+            $scope.alerts = [];
+            
+           // console.log("Nicklas sökvärde: ", $rootScope.bookSearchValue);
            // console.log("Björns Checkboxes: ", $scope.sidebar.checkedBoxes);
             //console.log("Björns price from: ", $scope.sidebar.priceFrom);
             //console.log("Björns price from: ", $scope.sidebar.priceTo);
 
+            var genreCheckBoxIds = []; // Array to hold only genre id:s
+
+            // put the genres id (based on what genre that has been checked in the sidebar) in a seperate "tidy" array to send to the backend
+            for (var checkBox in $scope.sidebar.checkedBoxes) {
+                if ($scope.sidebar.checkedBoxes[checkBox]) {
+                    genreCheckBoxIds.push(checkBox); // Putting the genre Id in the "tidy" array ;-).
+                }
+            }
 
 
-            $scope.alerts = [];
-            $scope.books = Search.index({ whatToSearchFor: "books", searchValues: $rootScope.bookSearchYellowTruck, priceFrom: $scope.sidebar.priceFrom, priceTo: $scope.sidebar.priceTo, checkedBoxes: $scope.sidebar.checkedBoxes },
+            $scope.books = Search.update({ whatToSearchFor: "books" }, { searchValue: $rootScope.bookSearchValue, priceFrom: $scope.sidebar.priceFrom, priceTo: $scope.sidebar.priceTo, genreIds: genreCheckBoxIds },
+            
+            //$scope.books = Search.index({ whatToSearchFor: "books", searchValues: $rootScope.bookSearchValue, priceFrom: $scope.sidebar.priceFrom, priceTo: $scope.sidebar.priceTo, checkedBoxes: $scope.sidebar.checkedBoxes },
                 //On success (if you want to do anything on success you can add it here
                 function (data) {
                     // Nothing to see here yet, just move along and have a good day :-).
