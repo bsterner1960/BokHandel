@@ -1,8 +1,50 @@
 ﻿<div ng-controller="sidebarController">
     <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>Filter Results:</h4>
+        </div>
         <div class="panel-body">
-            <p>{{minTest}}</p>
-    </div>
+            <form>
+                <div class="form-group">
+                    <label>Price from:</label>
+                    <input type="number" ng-model="sidebar.priceFrom" class="form-control" placeholder="Enter price">
+                </div>
+                <div class="form-group">
+                    <label>Price to:</label>
+                    <input type="number" ng-model="sidebar.priceTo" class="form-control" placeholder="Enter price">
+                    <!-- <p>{{minTest}}</p>-->
+                </div>
+
+
+                <div class="form-group">
+                    <label>Genres:</label>
+                    <div ng-repeat="genre in Genres" class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="sidebar.checkedBoxes[genre.Id]" /> 
+                            <a ng-click="viewGenreDetails(genre)">{{genre.Name}}</a>
+                        </label>
+                    </div>
+                </div>
+            </form>
+            <!--<div>
+            <br />
+            <label>Genres:</label>
+            <ul>
+                <li ng-repeat="genre in Genres">
+                    <a>{{genre.Name}}</a>
+                    <div class="form-group" data-toggle="buttons">
+                        <label class="btn btn-default btn-sm toggle-checkbox">
+                            <i class="fa fa-fw"></i>
+
+                            <input id="activeOnly" type="checkbox" autocomplete="off">Active Only
+                        </label>
+                    </div>
+                </li>
+            </ul>
+
+
+        </div>-->
+        </div>
     </div>
     
 </div>

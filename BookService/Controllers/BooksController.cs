@@ -63,28 +63,40 @@ namespace BookService.Controllers
 
         // GET api/Books/5
         [ResponseType(typeof(BookDetailDTO))]
-        public async Task<IHttpActionResult> GetBook(int id)
+       // public async Task<IHttpActionResult> GetBook(int id)
+            
+        public IHttpActionResult GetBook(int id)
         {
-            Book book = await db.Books.FindAsync(id);
-            if (book == null)
+
+
+            var books = from b in db.Books
+                        where b.Id == id
+                        select new BookDetailDTOtemp()
+                        {
+                            Id = b.Id,
+                            Title = b.Title,
+                            Year = b.Year,
+                            Price = b.Price,
+                            StockBalance = b.StockBalance,
+                            Authors = b.Authors,
+                            Genres = b.Genres
+                        };
+            if (books == null)
             {
                 return NotFound();
             }
 
-            //
-
+            var rawbook = books.First();
             var book2 = new BookDetailDTO()
-                    {
-                        Id = book.Id,
-                        Title = book.Title,
-                        Year = book.Year,
-                        StockBalance = book.StockBalance,
-                        Price = book.Price,
-                        AuthorNames = getAuthorNames(book.Authors),
-                        GenreNames = getGenreNames(book.Genres)
-                    };
-
-            //
+                     {
+                         Id = rawbook.Id,
+                         Title = rawbook.Title,
+                         Year = rawbook.Year,
+                         StockBalance = rawbook.StockBalance,
+                         Price = rawbook.Price,
+                         AuthorNames = getAuthorNames(rawbook.Authors),
+                         GenreNames = getGenreNames(rawbook.Genres)
+                     };
 
             return Ok(book2);
         }

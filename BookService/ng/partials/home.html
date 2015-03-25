@@ -1,43 +1,64 @@
-<div ng-if="!isAdmin" ng-include="'partials/navbarView.html'"></div>
+
+<!-- If we're considered an admin, the admin navbar will be loaded, if not then the "guest" navbar will be loaded instead. -->
 <div ng-if="isAdmin" ng-include="'partials/navbarViewAdmin.html'"></div>
+<div ng-if="!isAdmin" ng-include="'partials/navbarView.html'"></div>
 
-<div ng-include="'partials/sidebarView.html'"></div>
+<!-- A row covers the entire width of the screen and consists of 12 Bootstrap "boxes". -->
+<section class="row">
+    <div class="col-xs-10 col-sm-10 col-md-3 col-lg-3 col-xs-offset-1 col-sm-offset-1 col-md-offset-0 col-lg-offset-0">
 
+        <!-- Sidebar covering 3 out of 12 Bootstrap boxes -->
+        <div ng-include="'partials/sidebarView.html'"></div>
+    </div>
 
-<div ng-controller="bookListController">
-    <div ng-if="isBook" ng-include="'partials/booklist.html'"></div>
-</div>
-
-
-
-    <section class="row">
-        <div class="col-xs-10 col-sm-10 col-md-6 col-lg-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-0 col-lg-offset-0">
-            <div class="alert alert-warning" ng-if="restMessage">
-                <strong>{{restMessage}}</strong>
+    <!-- "Main content" covering 9 out of 12 Bootstrap boxes -->
+    <div class="col-xs-10 col-sm-10 col-md-9 col-lg-9 col-xs-offset-1 col-sm-offset-1 col-md-offset-0 col-lg-offset-0">
+        <div class ="panel panel-default">
+            
+            <!-- A div with a controller on its own to prevent creating multiple instances of the same controller over and over, the ng-include inside inherits this controller. -->
+            <div ng-controller="authorListController">
+                <div ng-if="!isBook" ng-include="'partials/authorlist.html'"></div>
             </div>
-            <form>
-                <div class="form-group">
-                    <h2>Rest API:</h2>
-                </div>
-                <div class="form-group">
-                    <label for="method">Metod:</label>
-                    <select class="form-control" ng-model="callMethod" id="method">
-                        <option ng-repeat="method in restMethods" value="{{method}}">{{method}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="url">URL (t.ex. book, book/1, author, author/1):</label>
-                    <input id="url" class="form-control" ng-model="callUrl" type="text">
-                </div>
-                <div class="form-group">
-                    <label for="data">Data att skicka (JSON):</label>
-                    <textarea class="form-control" id="data" rows="5" ng-model="callData"></textarea>
-                </div>
-                <input class="submit" type="submit" ng-click="restCall()" value="Skicka">
-            </form>
+
+            <!-- Same method used here as above. -->
+            <div ng-controller="bookListController">
+                <div ng-if="isBook" ng-include="'partials/booklist.html'"></div>
+            </div>
         </div>
-        <div class="col-xs-10 col-sm-10 col-md-6 col-lg-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-0 col-lg-offset-0">
-            <h2>Output:</h2>
-            <pre>{{output}}</pre>
+
+
+    </div>
+</section>
+
+
+<section class="row">
+    <div class="col-xs-10 col-sm-10 col-md-6 col-lg-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-0 col-lg-offset-0">
+        <div class="alert alert-warning" ng-if="restMessage">
+            <strong>{{restMessage}}</strong>
         </div>
-    </section>
+        <form>
+            <div class="form-group">
+                <h2>Rest API:</h2>
+            </div>
+            <div class="form-group">
+                <label for="method">Metod:</label>
+                <select class="form-control" ng-model="callMethod" id="method">
+                    <option ng-repeat="method in restMethods" value="{{method}}">{{method}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="url">URL (t.ex. book, book/1, author, author/1):</label>
+                <input id="url" class="form-control" ng-model="callUrl" type="text">
+            </div>
+            <div class="form-group">
+                <label for="data">Data att skicka (JSON):</label>
+                <textarea class="form-control" id="data" rows="5" ng-model="callData"></textarea>
+            </div>
+            <input class="submit" type="submit" ng-click="restCall()" value="Skicka">
+        </form>
+    </div>
+    <div class="col-xs-10 col-sm-10 col-md-6 col-lg-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-0 col-lg-offset-0">
+        <h2>Output:</h2>
+        <pre>{{output}}</pre>
+    </div>
+</section>
