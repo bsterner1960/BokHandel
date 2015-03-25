@@ -42,7 +42,7 @@ app.controller("bookListController", ["$scope", "$rootScope", "Search", function
             }
 
 
-            $scope.books = Search.update({ whatToSearchFor: "books" }, { searchValue: $rootScope.bookSearchValue, priceFrom: $scope.sidebar.priceFrom, priceTo: $scope.sidebar.priceTo, genreIds: genreCheckBoxIds },
+            $scope.books = Search.show({ whatToSearchFor: "books", searchValue: $rootScope.bookSearchValue, priceFrom: $scope.sidebar.priceFrom, priceTo: $scope.sidebar.priceTo, genreId: genreCheckBoxIds },
             
             //$scope.books = Search.index({ whatToSearchFor: "books", searchValues: $rootScope.bookSearchValue, priceFrom: $scope.sidebar.priceFrom, priceTo: $scope.sidebar.priceTo, checkedBoxes: $scope.sidebar.checkedBoxes },
                 //On success (if you want to do anything on success you can add it here
