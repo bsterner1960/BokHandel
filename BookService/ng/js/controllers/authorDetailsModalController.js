@@ -1,10 +1,29 @@
-﻿app.controller("authorDetailsModalController", ["$scope", "Authors", "$modalInstance", "items", function ($scope, Authors, $modalInstance, items)
+﻿app.controller("authorDetailsModalController", ["$scope", "$rootScope", "Authors", "$modalInstance", "author", function ($scope, $rootScope, Authors, $modalInstance, author)
 {
-    console.log("items is: " + items.Name);
-    $scope.author = items;
+    console.log("author is: " + author.Name);
+    $scope.author = author;
     $scope.authorError = false;
 
+    
     console.log("Booting up authorDetailsModal successful, awaiting orders.");
+
+    $scope.Save = function()
+    {
+        Authors.update($scope.author,
+        function (data)
+        {
+            console.log("data: " + data);
+            //for successful calls
+            $modalInstance.close(data);
+        },
+        function ()
+        {
+            //for unsuccessful calls
+            console.log("Unable to update author. ");
+            $scope.alert = { type: 'danger', msg: 'Unable to apdate author' };
+            $scope.bookError = true;
+        });
+    }
 
     $scope.Cancel = function ()
     {

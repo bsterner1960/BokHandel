@@ -11,12 +11,11 @@
         </li>
 
         <li ng-if="!isAdmin" ng-repeat="author in authors">
-            <a ng-click="cookie()">{{author.Name}}</a>
+            <a ng-click="viewAuthorDetails(author)">{{author.Name}}</a>
         </li>
 
     </ul>
     <h3>Loading complete, signing off.</h3>
 </div>
 <div class="modal-footer">
-
 </div>

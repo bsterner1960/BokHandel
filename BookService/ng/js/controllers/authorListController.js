@@ -2,7 +2,6 @@
     function ($scope, Authors, $rootScope, $modal, Search)
 {
 
-
     $scope.authors = Authors.index();
 
     var doneInitializing;
@@ -12,7 +11,6 @@
         if (doneInitializing == true)
         {
             console.log("doneInitializing is true!");
-                
         }
         else
         {
@@ -21,7 +19,7 @@
         }
     });
 
-
+    
 
     $scope.viewAuthorDetails = function (author)
     {
@@ -34,12 +32,13 @@
         {
             templateUrl: 'partials/authorDetailsModal.html',
             controller: 'authorDetailsModalController',
-            resolve: {
-                items: function () {
+            resolve:
+            {
+                author: function ()
+                {
                     return author;
                 }
             }
-        });
-        
+        });        
     }
 }]);
