@@ -75,6 +75,7 @@ namespace BookService.Controllers
                         {
                             Id = b.Id,
                             Title = b.Title,
+                            Description = b.Description,
                             Year = b.Year,
                             Price = b.Price,
                             StockBalance = b.StockBalance,
@@ -91,6 +92,7 @@ namespace BookService.Controllers
                      {
                          Id = rawbook.Id,
                          Title = rawbook.Title,
+                         Description = rawbook.Description,
                          Year = rawbook.Year,
                          StockBalance = rawbook.StockBalance,
                          Price = rawbook.Price,
