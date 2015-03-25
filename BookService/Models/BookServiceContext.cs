@@ -24,6 +24,6 @@ namespace BookService.Models
 
         public System.Data.Entity.DbSet<BookService.Models.Book> Books { get; set; }
 
-        public System.Data.Entity.DbSet<BookService.Models.Genre> Genres { get; set; } 
+        public System.Data.Entity.DbSet<BookService.Models.Genre> Genres { get; set; }
     }
 }
