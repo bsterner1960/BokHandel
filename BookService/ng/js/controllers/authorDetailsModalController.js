@@ -11,11 +11,11 @@
     {
         $scope.actualObject =
         {
-            AuthorID = $scope.author.Id,
+            AuthorID: $scope.author.Id,
             Name: $scope.author.Name
         };
 
-        Authors.update($scope.author,
+        Authors.update($scope.actualObject,
         function (data)
         {
             console.log("data: " + data);
