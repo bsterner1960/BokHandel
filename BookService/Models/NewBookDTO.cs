@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 namespace BookService.Models
 {
-    public class BookDetailDTOtemp
+    public class NewBookDTO
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -10,7 +10,8 @@ namespace BookService.Models
         public decimal Price { get; set; }
         public int StockBalance { get; set; }
 
-        public ICollection<Author> Authors { get; set; }
-        public ICollection<Genre> Genres { get; set; }
+        public List<int> AuthorIds { get; set; }
+        public List<int> GenreIds { get; set; }
+
     }
 }
