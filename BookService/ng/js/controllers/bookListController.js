@@ -26,7 +26,7 @@ app.controller("bookListController", ["$scope", "$rootScope", "Search", function
             // If there allready is any error messages displayed then destory them.
             $scope.alerts = [];
             $scope.books = Search.index({ whatToSearchFor: "books", searchValue: data },
-                //On succsess (if you want to do anything on success you can add it here
+                //On success (if you want to do anything on success you can add it here
                 function (data) {
                     // Nothing to see here yet, just move along and have a good day :-).
                 },

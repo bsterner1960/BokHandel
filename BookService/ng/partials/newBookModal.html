@@ -26,8 +26,6 @@
         <p>
             <label>Year:</label>
             <input type="text" ng-model="newBook.Year" class="form-control" placeholder="Enter year">
-
-            <button class="btn btn-primary" ng-click="addAuthor()">Add</button>
         </p>
 
         <p>
@@ -37,9 +35,10 @@
                     {{author.Name}}
                 </option>
             </select>
+            <button class="btn btn-primary" ng-click="addAuthor()">Add</button>
 
         <div style="overflow: scroll; height:140px;">
-            <div ng-repeat="author in actualObject.Authors">
+            <div ng-repeat="author in selectedAuthors">
                 <br />
                 {{ author.Name }}
 
@@ -57,7 +56,7 @@
             <button class="btn btn-primary" ng-click="addGenre()">Add</button>
         </p>
         <div style="overflow: scroll; height:140px;">
-            <div ng-repeat="genre in actualObject.Genres">
+            <div ng-repeat="genre in selectedGenres">
                 <br />
                 {{ genre.Name }}
 

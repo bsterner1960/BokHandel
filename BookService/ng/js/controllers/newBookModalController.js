@@ -12,10 +12,12 @@
         Price: "",
         Year: "",
         StockBalance: "",
-        Authors: [],
-        Genres: []
+        AuthorIDs: [],
+        GenreIDs: []
     };
 
+    $scope.selectedAuthors = [];
+    $scope.selectedGenres = [];
     // All authors in our system
     $scope.Authors = Authors.index();
 
@@ -36,9 +38,10 @@
             if (selectedAuthorID == $scope.Authors[i].Id)
             {
                 // Only add the author to the bookAuthor list if not already in it (indexOf check)
-                if ($scope.actualObject.Authors.indexOf($scope.Authors[i]) < 0)
+                if ($scope.selectedAuthors.indexOf($scope.Authors[i]) < 0)
                 {
-                    $scope.actualObject.Authors.push($scope.Authors[i]);
+                    $scope.selectedAuthors.push($scope.Authors[i]);
+                    $scope.actualObject.AuthorIDs.push($scope.Authors[i].Id);
                 }
             }
         }
@@ -46,7 +49,8 @@
 
     $scope.removeAuthor = function(value)
     {
-        $scope.actualObject.Authors.splice(value, 1);
+        $scope.selectedAuthors.splice(value, 1);
+        $scope.actualObject.AuthorIDs.splice(value, 1);
 
     }
 
@@ -60,9 +64,10 @@
         {
             if(selectedGenreID == $scope.Genres[i].Id)
             {
-                if ($scope.actualObject.Genres.indexOf($scope.Genres[i]) < 0)
+                if ($scope.selectedGenres.indexOf($scope.Genres[i]) < 0)
                 {
-                    $scope.actualObject.Genres.push($scope.Genres[i]);
+                    $scope.selectedGenres.push($scope.Genres[i]);
+                    $scope.actualObject.GenreIDs.push($scope.Genres[i].Id);
                 }
             }
         }
@@ -70,7 +75,8 @@
 
     $scope.removeGenre = function(value)
     {
-        $scope.actualObject.Genres.splice(value, 1);
+        $scope.selectedGenres.splice(value, 1);
+        $scope.actualObject.GenreIDs.splice(value, 1);
     }
 
     // click event Create
