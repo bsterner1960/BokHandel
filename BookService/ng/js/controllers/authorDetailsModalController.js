@@ -9,6 +9,12 @@
 
     $scope.Save = function()
     {
+        $scope.actualObject =
+        {
+            AuthorID = $scope.author.Id,
+            Name: $scope.author.Name
+        };
+
         Authors.update($scope.author,
         function (data)
         {
