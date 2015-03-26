@@ -2,8 +2,19 @@
     function ($scope, Authors, $rootScope, $modal, Search)
 {
 
-    $scope.authors = Authors.index();
+        $scope.endMessage = "muffin";
 
+        $scope.authors = Authors.index(function (data)
+        {
+            //success call
+            $scope.endMessage = "Loading complete, signing off.";
+        },
+        function (error)
+        {
+            //failed call
+            $scope.endMessage = "Loading failed, self-destruct imminent, preparing emergency escape pods...";
+        });
+    
     var doneInitializing;
 
     $rootScope.$watch("authorSearchValue", function (data)

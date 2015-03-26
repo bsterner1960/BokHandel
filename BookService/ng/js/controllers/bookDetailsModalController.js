@@ -1,8 +1,12 @@
-﻿app.controller("newBookModalController", ["$scope", "Authors", "Book", "Genres", "$modalInstance",
-    function ($scope, Authors, Book, Genres, $modalInstance)
-{
+﻿app.controller("bookDetailsModalController", ["$scope", "$rootScope", "Authors", "Book", "Genres", "$modalInstance", "book",
+    function ($scope, $rootScope, Authors, Book, Genres, $modalInstance, book)
+    {
+
+        $scope.book = book;
 
         console.log("Engaging bookDetailsModalController.");
+
+        console.log("$scope.book: " + $scope.book.Title);
 
     $scope.newBook = {};
 
@@ -85,7 +89,8 @@
             function (data) {
                 console.log("data: " + data);
                 //for successful calls
-                $modalInstance.close(data);
+                $modalInstance.close();
+                console.log("Operation complete, shutting down.");
             });
         }
     }

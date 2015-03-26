@@ -1,11 +1,11 @@
 ﻿<div class="modal-header">
-    <h3 class="modal-title">book details</h3>
+    <h3 class="modal-title">Book details</h3>
 </div>
 <div class="modal-body">
 
     <div class="form-group">
         <label>Name: </label>
-        <input type="text" ng-if="isAdmin" ng-model="book.Name" class="form-control" placeholder="Enter book name">
+        <input type="text" ng-if="isAdmin" ng-model="book.Title" class="form-control" placeholder="Enter book name">
         <p ng-if="!isAdmin">{{book.Title}}</p>
     </div>
 
