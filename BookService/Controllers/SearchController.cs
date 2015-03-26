@@ -21,15 +21,34 @@ namespace BookService.Controllers
         private BookServiceContext db = new BookServiceContext();
 
         // GET api/Search
-
-        public string Books()
+        public string GetBooks(int id)
         {
+            return db.Books.ToString();
             Debug.WriteLine("från books");
-
-            //IQueryable<SearchDTO> SearchAnswer = new IQueryable<SearchDTO>();
-
-            return "Return från books";
         }
+        //    var books = from b in db.Books
+        //                where b.Id == id
+        //                select new BookDetailDTOtemp()
+        //                {
+        //                    Id = b.Id,
+        //                    Title = b.Title,
+        //                    Description = b.Description,
+        //                    Year = b.Year,
+        //                    Price = b.Price,
+        //                    StockBalance = b.StockBalance,
+        //                    Authors = b.Authors,
+        //                    Genres = b.Genres
+        //                };
+        //    if (books == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+
+           
+
+           //
+       // }
         //public IQueryable<SearchDTO> GetSearchDTOes()
         //{
         //    return db.SearchDTOes;
