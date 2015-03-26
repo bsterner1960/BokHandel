@@ -114,16 +114,46 @@ namespace BookService.Controllers
         }
 
         // PUT api/Books/5
-        public async Task<IHttpActionResult> PutBook(int id, Book book)
+        //public async Task<IHttpActionResult> PutBook(int id, NewBookDTO )
+        public async Task<IHttpActionResult> PutBook( NewBookDTO changedBook)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != book.Id)
+            //if (id != book.Id)
+            //{
+            //    return BadRequest();
+            //}
+
+           Book book = new Book();
+
+            book.Id = changedBook.Id;
+            book.Title = changedBook.Title;
+            book.Description = changedBook.Description;
+            book.Price = changedBook.Price;
+            book.Year = changedBook.Year;
+            book.StockBalance = changedBook.StockBalance;
+
+            foreach(int aId in changedBook.AuthorIds)
+            {  
+                Author author = await db.Authors.FindAsync(aId);
+                if (author != null)
+                {
+                    book.Authors.Add(author);
+
+                }
+            }
+
+            foreach (int gId in changedBook.GenreIds)
             {
-                return BadRequest();
+                Genre genre = await db.Genres.FindAsync(gId);
+                if (genre != null)
+                {
+                    book.Genres.Add(genre);
+
+                }
             }
 
             db.Entry(book).State = EntityState.Modified;
@@ -134,7 +164,7 @@ namespace BookService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BookExists(id))
+                if (!BookExists(changedBook.Id))
                 {
                     return NotFound();
                 }
