@@ -13,6 +13,7 @@
         Price: "",
         Year: "",
         StockBalance: "",
+        ISBN: "",
         AuthorIDs: [],
         GenreIDs: []
     };
