@@ -7,7 +7,7 @@
 
     $scope.actualObject =
     {
-        Name: "",
+        Title: "",
         Description: "",
         Price: "",
         Year: "",
@@ -85,7 +85,9 @@
         if ($scope.newBook.Name)
         {
             
-            $scope.actualObject.Name = $scope.newBook.Name;
+            console.log("Name:"+ $scope.newBook.Name);
+
+            $scope.actualObject.Title = $scope.newBook.Name;
             $scope.actualObject.Description = $scope.newBook.Description;
             $scope.actualObject.Price = $scope.newBook.Price;
             $scope.actualObject.Year = $scope.newBook.Year;
@@ -97,7 +99,10 @@
             {
                 console.log("data: " + data);
                 //for successful calls
-                $modalInstance.close(data);
+                //$modalInstance.close(data);
+                $modalInstance.close();
+                console.log("Efter .close i newBookModalController: ");
+
             },
             function ()
             {

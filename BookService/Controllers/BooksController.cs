@@ -149,17 +149,47 @@ namespace BookService.Controllers
 
         // POST api/Books
         [ResponseType(typeof(Book))]
-        public async Task<IHttpActionResult> PostBook(Book book)
+        public async Task<IHttpActionResult> PostBook(NewBookDTO newBookDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            Book book = new Book();
+
+            //book.Id = 99;
+            book.Title = newBookDTO.Title;
+            book.Description = newBookDTO.Description;
+            book.Price = newBookDTO.Price;
+            book.Year = newBookDTO.Year;
+            book.StockBalance = newBookDTO.StockBalance;
+
+            foreach(int aId in newBookDTO.AuthorIds)
+            {
+                Author author = await db.Authors.FindAsync(aId);
+                if (author != null)
+                {
+                    book.Authors.Add(author);
+
+                }
+            }
+
+            foreach (int gId in newBookDTO.GenreIds)
+            {
+                Genre genre = await db.Genres.FindAsync(gId);
+                if (genre != null)
+                {
+                    book.Genres.Add(genre);
+
+                }
+            }
+
             db.Books.Add(book);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = book.Id }, book);
+            //return CreatedAtRoute("DefaultApi", new { id = book.Id }, book);
+            return Ok();
         }
 
         // DELETE api/Books/5
