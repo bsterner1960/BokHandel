@@ -12,7 +12,8 @@
 
     $scope.actualObject =
     {
-        Name: "",
+        Id : "",
+        Title: "",
         Description: "",
         Price: "",
         Year: "",
@@ -76,9 +77,10 @@
 
     // click event Create
     $scope.Create = function () {
-        if ($scope.newBook.Name) {
+        if ($scope.newBook.Title) {
 
-            $scope.actualObject.Name = $scope.newBook.Name;
+            $scope.actualObject.Id = book.Id;
+            $scope.actualObject.Title = $scope.newBook.Title;
             $scope.actualObject.Description = $scope.newBook.Description;
             $scope.actualObject.Price = $scope.newBook.Price;
             $scope.actualObject.Year = $scope.newBook.Year;
