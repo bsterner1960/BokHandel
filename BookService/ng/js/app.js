@@ -27,12 +27,6 @@ app.config(["$routeProvider", "$locationProvider", function($routeProvider, $loc
           templateUrl: "partials/navbarViewAdmin.html",
           controller: "navbarControllerAdmin"
       })
-
-      .when("/genredetails/:id?",
-      {
-          templateUrl: "partials/genredetails.html",
-          controller: "genreController",
-      })
       .when("/bookList",
       {
           templateUrl: "partials/bookList.html",

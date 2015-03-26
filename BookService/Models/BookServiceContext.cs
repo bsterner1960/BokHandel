@@ -25,10 +25,5 @@ namespace BookService.Models
         public System.Data.Entity.DbSet<BookService.Models.Book> Books { get; set; }
 
         public System.Data.Entity.DbSet<BookService.Models.Genre> Genres { get; set; }
-
-        //public System.Data.Entity.DbSet<BookService.Models.BookDTO> BookDTOes { get; set; }
-
-        //public System.Data.Entity.DbSet<BookService.Models.SearchDTO> SearchDTOes { get; set; }
-    
     }
 }

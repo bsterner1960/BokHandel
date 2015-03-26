@@ -1,0 +1,80 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">book details</h3>
+</div>
+<div class="modal-body">
+
+    <div class="form-group">
+        <label>Name: </label>
+        <input type="text" ng-if="isAdmin" ng-model="book.Name" class="form-control" placeholder="Enter book name">
+        <p ng-if="!isAdmin">{{book.Title}}</p>
+    </div>
+
+    <div class="form-group">
+        <label>Description: </label>
+        <input type="text" ng-if="isAdmin" ng-model="book.Description" class="form-control" placeholder="Enter book description">
+        <p ng-if="!isAdmin">{{book.Description}}</p>
+    </div>
+
+    <div class="form-group">
+        <label>Price: </label>
+        <input type="text" ng-if="isAdmin" ng-model="book.Price" class="form-control" placeholder="Enter book price">
+        <p ng-if="!isAdmin">{{book.Price}}</p>
+    </div>
+
+    <div class="form-group">
+        <label>StockBalance: </label>
+        <input type="text" ng-if="isAdmin" ng-model="book.StockBalance" class="form-control" placeholder="Enter book stockBalance">
+        <p ng-if="!isAdmin">{{book.StockBalance}}</p>
+    </div>
+
+    <div class="form-group">
+        <label>Year: </label>
+        <input type="text" ng-if="isAdmin" ng-model="book.Year" class="form-control" placeholder="Enter book year">
+        <p ng-if="!isAdmin">{{book.Year}}</p>
+    </div>
+
+
+    <label>Edit authors</label>
+    <select class="form-control" ng-model="selectedAuthorID" id="cookieMonster">
+        <option ng-repeat="author in Authors" value="{{author.Id}}">
+            {{author.Name}}
+        </option>
+    </select>
+    <button class="btn btn-primary" ng-click="addAuthor()">Add</button>
+
+    <div style="overflow: scroll; height:140px;">
+        <div ng-repeat="author in selectedAuthors">
+            <br />
+            {{ author.Name }}
+
+            <button class="btn btn-warning pull-right" data-ng-click="removeAuthor($index)">Remove</button>
+        </div>
+    </div>
+
+    <p>
+        <label>Edit genres</label>
+        <select class="form-control" ng-model="selectedGenreID" id="cookieMonster">
+            <option ng-repeat="genre in Genres" value="{{genre.Id}}">
+                {{genre.Name}}
+            </option>
+        </select>
+        <button class="btn btn-primary" ng-click="addGenre()">Add</button>
+    </p>
+    <div style="overflow: scroll; height:140px;">
+        <div ng-repeat="genre in selectedGenres">
+            <br />
+            {{ genre.Name }}
+
+            <button class="btn btn-warning pull-right" data-ng-click="removeGenre($index)">Remove</button>
+        </div>
+    </div>
+
+
+
+</div>
+<div class="modal-footer">
+    <button ng-if="isAdmin" class="btn btn-primary" ng-click="Save()">Save</button>
+    <button class="btn btn-warning" ng-click="Cancel()">Cancel</button>
+
+    <alert ng-if="bookError" type="warning" close="bookError = !bookError">{{alert.msg}}</alert>
+</div>

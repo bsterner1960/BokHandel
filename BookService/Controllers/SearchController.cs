@@ -13,6 +13,7 @@ using BookService.Models;
 using System.IO;
 using System.Diagnostics;
 
+
 namespace BookService.Controllers
 {
     public class SearchController : ApiController
@@ -20,14 +21,15 @@ namespace BookService.Controllers
         private BookServiceContext db = new BookServiceContext();
 
         // GET api/Search
+
         public string Books()
         {
             Debug.WriteLine("från books");
+
             //IQueryable<SearchDTO> SearchAnswer = new IQueryable<SearchDTO>();
+
             return "Return från books";
         }
-
-
         //public IQueryable<SearchDTO> GetSearchDTOes()
         //{
         //    return db.SearchDTOes;
@@ -45,8 +47,8 @@ namespace BookService.Controllers
 
         //    return Ok(searchdto);
         //}
-
         // PUT api/Search/5
+
         public async Task<IHttpActionResult> PutSearchDTO(int id, SearchDTO searchdto)
         {
             if (!ModelState.IsValid)
@@ -75,7 +77,7 @@ namespace BookService.Controllers
                 //{
                 //    throw;
                 //}
-            }
+                }
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -91,7 +93,6 @@ namespace BookService.Controllers
 
         //    db.SearchDTOes.Add(searchdto);
         //    await db.SaveChangesAsync();
-
         //    return CreatedAtRoute("DefaultApi", new { id = searchdto.Id }, searchdto);
         //}
 
@@ -104,10 +105,8 @@ namespace BookService.Controllers
         //    {
         //        return NotFound();
         //    }
-
         //    db.SearchDTOes.Remove(searchdto);
         //    await db.SaveChangesAsync();
-
         //    return Ok(searchdto);
         //}
 
@@ -117,9 +116,9 @@ namespace BookService.Controllers
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
-
         //private bool SearchDTOExists(int id)
         //{
         //    return db.SearchDTOes.Count(e => e.Id == id) > 0;

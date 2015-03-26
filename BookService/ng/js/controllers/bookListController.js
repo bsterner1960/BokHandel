@@ -1,9 +1,35 @@
 ﻿// This controller is going to provide a list of books based on a search result.
-app.controller("bookListController", ["$scope", "$rootScope", "Search", function ($scope, $rootScope, Search) {
-    console.log("bookListController is alive!, RockOn!");
+app.controller("bookListController", ["$scope", "$rootScope", "Search", "Book", "$modal",
+function ($scope, $rootScope, Search, Book, $modal)
+{
+    //console.log("bookListController is alive!, RockOn!");
 
     // Where to put the alerts
     $scope.alerts = [];
+
+    // Fetching test books
+    $scope.books = Book.index();
+
+    // Function to bring up the detailed view of a specific book.
+    $scope.viewBookDetails = function(book)
+    {
+        console.log("Initiating view book details sequence, standby...");
+
+        console.log("You pressed: " + book.Title);
+
+        var modalInstance = $modal.open(
+        {
+            templateUrl: 'partials/bookDetailsModal.html',
+            controller: 'bookDetailsModalController',
+            resolve:
+            {
+                book: function ()
+                {
+                    return book;
+                }
+            }
+        });
+    }
 
     // This will remove the alert popup when user clicks on the alert
     $scope.closeAlert = function (index) {
@@ -17,15 +43,34 @@ app.controller("bookListController", ["$scope", "$rootScope", "Search", function
     // we need only to react on a real search.  
     var myFirstRun;
 
-    $rootScope.$watch("bookSearchValue", function (data) {
+    $rootScope.$watch("bookSearchValue", function () {
         // Are we running this for the first time (the controller is included in code somewhere)
         if (myFirstRun === undefined) {
             myFirstRun = false;
             // Nope, not first time the controller is used so then we assume we got a search to work with.
         } else {
+
             // If there allready is any error messages displayed then destory them.
             $scope.alerts = [];
-            $scope.books = Search.index({ whatToSearchFor: "books", searchValue: data },
+            
+           // console.log("Nicklas sökvärde: ", $rootScope.bookSearchValue);
+           // console.log("Björns Checkboxes: ", $scope.sidebar.checkedBoxes);
+            //console.log("Björns price from: ", $scope.sidebar.priceFrom);
+            //console.log("Björns price from: ", $scope.sidebar.priceTo);
+
+            var genreCheckBoxIds = []; // Array to hold only genre id:s
+
+            // put the genres id (based on what genre that has been checked in the sidebar) in a seperate "tidy" array to send to the backend
+            for (var checkBox in $scope.sidebar.checkedBoxes) {
+                if ($scope.sidebar.checkedBoxes[checkBox]) {
+                    genreCheckBoxIds.push(checkBox); // Putting the genre Id in the "tidy" array ;-).
+                }
+            }
+
+
+            $scope.books = Search.show({ whatToSearchFor: "books", searchValue: $rootScope.bookSearchValue, priceFrom: $scope.sidebar.priceFrom, priceTo: $scope.sidebar.priceTo, genreId: genreCheckBoxIds },
+            
+            //$scope.books = Search.index({ whatToSearchFor: "books", searchValues: $rootScope.bookSearchValue, priceFrom: $scope.sidebar.priceFrom, priceTo: $scope.sidebar.priceTo, checkedBoxes: $scope.sidebar.checkedBoxes },
                 //On success (if you want to do anything on success you can add it here
                 function (data) {
                     // Nothing to see here yet, just move along and have a good day :-).

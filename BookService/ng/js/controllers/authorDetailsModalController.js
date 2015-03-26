@@ -1,4 +1,5 @@
-﻿app.controller("authorDetailsModalController", ["$scope", "$rootScope", "Authors", "$modalInstance", "author", function ($scope, $rootScope, Authors, $modalInstance, author)
+﻿app.controller("authorDetailsModalController", ["$scope", "$rootScope", "Authors", "$modalInstance", "author",
+function ($scope, $rootScope, Authors, $modalInstance, author)
 {
     console.log("author is: " + author.Name);
     $scope.author = author;
@@ -9,7 +10,13 @@
 
     $scope.Save = function()
     {
-        Authors.update($scope.author,
+        $scope.actualObject =
+        {
+            AuthorID: $scope.author.Id,
+            Name: $scope.author.Name
+        };
+
+        Authors.update($scope.actualObject,
         function (data)
         {
             console.log("data: " + data);

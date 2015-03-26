@@ -1,6 +1,5 @@
 //"myAppName" controller.
 app.controller("homeController", ["$scope", "$rootScope", "restService", "Books", "$location", function ($scope, $rootScope, restService, Books, $location) {
-    console.log("I'm alive!");
 
     //$scope.isAdmin = false;
 
@@ -43,9 +42,9 @@ app.controller("homeController", ["$scope", "$rootScope", "restService", "Books"
 
     //we can make models accessible to the entire app using $rootScope!
     //$scope.hello is set in restService helloWorld using $rootScope
-    console.log("rootScope1: ", $scope.hello);
-    restService.helloWorld();
-    console.log("rootScope2: ", $scope.hello);
+    //console.log("rootScope1: ", $scope.hello);
+    //restService.helloWorld();
+    //console.log("rootScope2: ", $scope.hello);
 
     //a static GET request to see if our service is alive
     //restService.restCall("books", "GET", {});
