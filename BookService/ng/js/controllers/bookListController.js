@@ -80,7 +80,7 @@ function ($scope, $rootScope, Search, Book, $modal)
             function (error) {
                 //On error
                 // console.log("Ojsan, fick problem när jag kallade på servern " + error.status + " " + error.statusText + "");
-                $scope.alerts.push({ type: 'danger', msg: "Kära hjärtanes något gick snett! Fick problem när jag kallade på servern " + error.status + " " + error.statusText + "" });
+                $scope.alerts.push({ type: 'danger', msg: "Kära hjärtanes något gick snett! Fick problem när jag kallade på servern, bookListController: " + error.status + " " + error.statusText + "" });
 
             });
 
