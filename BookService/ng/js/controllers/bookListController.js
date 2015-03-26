@@ -1,9 +1,35 @@
 ﻿// This controller is going to provide a list of books based on a search result.
-app.controller("bookListController", ["$scope", "$rootScope", "Search", function ($scope, $rootScope, Search) {
-    console.log("bookListController is alive!, RockOn!");
+app.controller("bookListController", ["$scope", "$rootScope", "Search", "Book", "$modal",
+function ($scope, $rootScope, Search, Book, $modal)
+{
+    //console.log("bookListController is alive!, RockOn!");
 
     // Where to put the alerts
     $scope.alerts = [];
+
+    // Fetching test books
+    $scope.books = Book.index();
+
+    // Function to bring up the detailed view of a specific book.
+    $scope.viewBookDetails = function(book)
+    {
+        console.log("Initiating view book details sequence, standby...");
+
+        console.log("You pressed: " + book.Title);
+
+        var modalInstance = $modal.open(
+        {
+            templateUrl: 'partials/bookDetailsModal.html',
+            controller: 'bookDetailsModalController',
+            resolve:
+            {
+                book: function ()
+                {
+                    return book;
+                }
+            }
+        });
+    }
 
     // This will remove the alert popup when user clicks on the alert
     $scope.closeAlert = function (index) {

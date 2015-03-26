@@ -189,6 +189,7 @@
     <Compile Include="Models\Genre.cs" />
     <Content Include="ng\js\controllers\authorDetailsModalController.js" />
     <Content Include="ng\js\controllers\authorListController.js" />
+    <Content Include="ng\js\controllers\bookDetailsModalController.js" />
     <Content Include="ng\js\controllers\newBookModalController.js" />
     <Content Include="ng\js\controllers\newGenreModalController.js" />
     <Content Include="ng\js\controllers\newAuthorModalController.js" />
@@ -212,6 +213,7 @@
     <Content Include="ng\partials\authorlist.html" />
     <Content Include="ng\partials\bookdetails.html" />
     <Content Include="ng\js\controllers\sidebarController.js" />
+    <Content Include="ng\partials\bookDetailsModal.html" />
     <Content Include="ng\partials\booklist.html" />
     <Content Include="ng\partials\newBookModal.html" />
     <Content Include="ng\partials\newAuthorModal.html" />

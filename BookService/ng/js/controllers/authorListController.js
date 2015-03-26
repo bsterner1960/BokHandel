@@ -14,7 +14,7 @@
         }
         else
         {
-            console.log("Running for the first time!");
+            //console.log("Running for the first time!");
             doneInitializing = true;
         }
     });

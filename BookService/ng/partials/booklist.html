@@ -1,7 +1,7 @@
 ﻿        <h3>BookList är inte klar än, Anders Testar!</h3>
         <ul>
             <li ng-repeat="book in books">
-                <a ng-click="selected.book = book">{{ book.Title }}</a>
+                <a ng-click="viewBookDetails(book)">{{ book.Title }}</a>
             </li>
         </ul>
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>

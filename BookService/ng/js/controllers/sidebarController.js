@@ -26,7 +26,8 @@
             controller: 'genreDetailsModalController',
             resolve:
             {
-                genre: function () {
+                genre: function ()
+                {
                     return genre;
                 }
             }
