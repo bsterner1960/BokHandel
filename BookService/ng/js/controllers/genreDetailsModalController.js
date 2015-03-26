@@ -24,7 +24,7 @@ function ($scope, $rootScope, Genres, $modalInstance, genre)
 
     $scope.Cancel = function ()
     {
-        console.log("Self-destruct has been overridden, emergency shut-down in 3... 2.... 1...");
+        console.log("Self-destruct has been overridden, systems functional, awating orders.");
         $modalInstance.close();
     };
 }]);
