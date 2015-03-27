@@ -28,10 +28,10 @@ namespace BookService.Controllers
            string jonas = "testar från books";
             string searchString = "Hugo";
             Debug.WriteLine("från books");
-            
 
-            
-        
+
+           
+
             var bookSearch = from b in db.Books
                         where b.Title.Contains(searchString)
                         select new SearchDTO()
@@ -162,4 +162,4 @@ namespace BookService.Controllers
            
         
     }
-}   
+}
