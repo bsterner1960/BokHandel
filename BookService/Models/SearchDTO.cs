@@ -12,34 +12,21 @@ namespace BookService.Models
 
     
     public class SearchDTO
-    {
+    {   
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Title { get; set; }
         public string Value { get; set; }
-        public string AuthorSearch { get; set; }
-        public string BookSearch { get; set; }
-        //public var SearchAll { get; set; }
-        public string UserSearch {get; set; }
-        public int IsbnSearch {get; set; }
+        public string Description { get; set; }
+        public int Year { get; set; }
+        public decimal Price {get; set; }
+        public int StockBalance {get; set; }
         
 
         //static void Main()
         //{
             
 
-        //    switch()
-        //    {
-        //        case "Author":
-        //            Models.Author = Authorsearch(Author);
-        //            return AuthorSearch;
 
-        //        case "BookSearch":
-        //            Models.Book = BookSearch(Book);
-        //            return Booksearch;
-
-        //        case "UserSearch":
-        //            return UserSearch;
-        //    }
 
 //        int caseSwitch = 1;
 //          switch (caseSwitch)

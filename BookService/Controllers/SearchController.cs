@@ -20,35 +20,52 @@ namespace BookService.Controllers
     {
         private BookServiceContext db = new BookServiceContext();
 
+        
         // GET api/Search
-        public string GetBooks(int id)
+     
+        public List<SearchDTO> Books()
         {
-            return db.Books.ToString();
+           string jonas = "testar från books";
+            string searchString = "Hugo";
             Debug.WriteLine("från books");
+            
+
+            
+        
+            var bookSearch = from b in db.Books
+                        where b.Title.Contains(searchString)
+                        select new SearchDTO()
+                        {
+                            Id = b.Id,
+                            Title = b.Title,
+                            Description = b.Description,
+                            Year = b.Year,
+                            Price = b.Price,
+                            StockBalance = b.StockBalance   
+                        };
+            List <SearchDTO> BookSearch2 = new List<SearchDTO>();
+            foreach (var bs in bookSearch)
+            {
+                BookSearch2.Add(new SearchDTO()
+                {
+                    Id = bs.Id,
+                    Title = bs.Title,
+                    Description = bs.Description,
+                    Year = bs.Year,
+                    Price = bs.Price,
+                    StockBalance = bs.StockBalance
+                });
+            }
+            //if (bookSearch == null)
+            //{
+            //   return bookSearch;
+            //}
+            return BookSearch2;
         }
-        //    var books = from b in db.Books
-        //                where b.Id == id
-        //                select new BookDetailDTOtemp()
-        //                {
-        //                    Id = b.Id,
-        //                    Title = b.Title,
-        //                    Description = b.Description,
-        //                    Year = b.Year,
-        //                    Price = b.Price,
-        //                    StockBalance = b.StockBalance,
-        //                    Authors = b.Authors,
-        //                    Genres = b.Genres
-        //                };
-        //    if (books == null)
-        //    {
-        //        return NotFound();
-        //    }
+        
 
 
-           
-
-           //
-        }
+   
         //public IQueryable<SearchDTO> GetSearchDTOes()
         //{
         //    return db.SearchDTOes;
@@ -68,26 +85,26 @@ namespace BookService.Controllers
         //}
         // PUT api/Search/5
 
-        public async Task<IHttpActionResult> PutSearchDTO(int id, SearchDTO searchdto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //public async Task<IHttpActionResult> PutSearchDTO(int id, SearchDTO searchdto)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            if (id != searchdto.Id)
-            {
-                return BadRequest();
-            }
+        //    if (id != searchdto.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            db.Entry(searchdto).State = EntityState.Modified;
+        //    db.Entry(searchdto).State = EntityState.Modified;
 
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
+        //    try
+        //    {
+        //        await db.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
                 //if (!SearchDTOExists(id))
                 //{
                 //    return NotFound();
@@ -96,10 +113,10 @@ namespace BookService.Controllers
                 //{
                 //    throw;
                 //}
-                }
+                
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
         // POST api/Search
         //[ResponseType(typeof(SearchDTO))]
@@ -129,18 +146,20 @@ namespace BookService.Controllers
         //    return Ok(searchdto);
         //}
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
 
-            base.Dispose(disposing);
-        }
+        //    base.Dispose(disposing);
+        //}
         //private bool SearchDTOExists(int id)
         //{
         //    return db.SearchDTOes.Count(e => e.Id == id) > 0;
         //}
+           
+        
     }
-}
+}   
