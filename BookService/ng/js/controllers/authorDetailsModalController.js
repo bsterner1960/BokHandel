@@ -8,8 +8,11 @@ function ($scope, $rootScope, Authors, $modalInstance, author)
     
     console.log("Booting up authorDetailsModal successful, awaiting orders.");
 
-    $scope.Delete = function () {
-        Authors.destroy(author);
+    $scope.Delete = function ()
+    {
+        console.log("author.Id: " + author.Id);
+        Authors.destroy(author.Id);
+        $modalInstance.close();
     }
 
     $scope.Save = function()
@@ -25,7 +28,7 @@ function ($scope, $rootScope, Authors, $modalInstance, author)
         {
             console.log("data: " + data);
             //for successful calls
-            $modalInstance.close(data);
+            $modalInstance.close();
         },
         function ()
         {

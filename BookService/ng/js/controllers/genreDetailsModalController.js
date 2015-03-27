@@ -6,7 +6,9 @@ function ($scope, $rootScope, Genres, $modalInstance, genre)
     $scope.genre = genre;
 
     $scope.Delete = function () {
-        Genres.destroy(genre);
+        console.log("destroying genre.Id" + genre.Id);
+        Genres.destroy(genre.Id);
+        $modalInstance.close();
     }
 
     $scope.Save = function ()

@@ -80,9 +80,27 @@
         $scope.actualObject.GenreIDs.splice(value, 1);
     }
 
+    $scope.deletionObject =
+    {
+        Id: book.Id
+    };
+
     $scope.Delete = function()
     {
-        Book.destroy(book);
+        console.log("book.Id" + book.Id);
+        Book.destroy($scope.deletionObject,
+        function(data)
+        {
+            //Success call
+            console.log("Target successfully terminated, searching for new targets... " + data);
+            $modalInstance.close();
+        },
+        function(error)
+        {
+            // Error call
+            console.log("Unable to terminate target. Target appears to be angry, suggestion: RUN! " + error);
+        });
+        
     }
 
     // click event Create
