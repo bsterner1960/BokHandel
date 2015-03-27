@@ -28,6 +28,12 @@
     </div>
 
     <div class="form-group">
+        <label>ISBN: </label>
+        <input type="text" ng-if="isAdmin" ng-model="book.ISBN" class="form-control" placeholder="Enter book ISBN">
+        <p ng-if="!isAdmin">{{book.ISBN}}</p>
+    </div>
+
+    <div class="form-group">
         <label>Year: </label>
         <input type="text" ng-if="isAdmin" ng-model="book.Year" class="form-control" placeholder="Enter book year">
         <p ng-if="!isAdmin">{{book.Year}}</p>

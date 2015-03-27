@@ -13,6 +13,7 @@
         Price: "",
         Year: "",
         StockBalance: "",
+        ISBN: "",
         AuthorIDs: [],
         GenreIDs: []
     };
@@ -93,6 +94,7 @@
             $scope.actualObject.Price = $scope.newBook.Price;
             $scope.actualObject.Year = $scope.newBook.Year;
             $scope.actualObject.StockBalance = $scope.newBook.StockBalance;
+            $scope.actualObject.ISBN = $scope.newBook.ISBN;
 
             console.log($scope.actualObject);
             Book.create($scope.actualObject,

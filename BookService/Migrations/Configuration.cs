@@ -43,7 +43,8 @@ namespace BookService.Migrations
                     Title = "Pride and Prejudice",
                     Year = 1813,
                     Price = 9.99M,
-                    StockBalance = 1
+                    StockBalance = 1,
+                    ISBN = 1234567890123
                 },
                 new Book()
                 {
@@ -51,7 +52,8 @@ namespace BookService.Migrations
                     Title = "Northanger Abbey",
                     Year = 1817,
                     Price = 12.95M,
-                    StockBalance = 1
+                    StockBalance = 1,
+                    ISBN = 1234567890002
                 },
                 new Book()
                 {
@@ -59,7 +61,8 @@ namespace BookService.Migrations
                     Title = "David Copperfield",
                     Year = 1850,
                     Price = 15,
-                    StockBalance = 1
+                    StockBalance = 1,
+                    ISBN = 1234567890003
                 },
                 new Book()
                 {
@@ -67,7 +70,8 @@ namespace BookService.Migrations
                     Title = "Don Quixote",
                     Year = 1617,
                     Price = 8.95M,
-                    StockBalance = 1
+                    StockBalance = 1,
+                    ISBN = 1234567890004
                 },
                 new Book()
                 {
@@ -75,7 +79,8 @@ namespace BookService.Migrations
                     Title = "The great adventure of C#",
                     Year = 2017,
                     Price = 5000,
-                    StockBalance = 1
+                    StockBalance = 1,
+                    ISBN = 1234567890005
                 },
                 new Book()
                 {
@@ -83,7 +88,8 @@ namespace BookService.Migrations
                     Title = "That's the way the cookie crumbles!",
                     Year = 2050,
                     Price = 200,
-                    StockBalance = 42
+                    StockBalance = 42,
+                    ISBN = 1234567890006
                 },
                 new Book()
                 {
@@ -91,7 +97,8 @@ namespace BookService.Migrations
                     Title = "Cookie Monster's guide for world domination!",
                     Year = 2042,
                     Price = 3000,
-                    StockBalance = 42
+                    StockBalance = 42,
+                    ISBN = 1234567890007
                 },
                 new Book()
                 {
@@ -99,7 +106,8 @@ namespace BookService.Migrations
                     Title = "Hugo's guide to JavaScript!",
                     Year = 2016,
                     Price = 300,
-                    StockBalance = 6
+                    StockBalance = 6,
+                    ISBN = 1234567890008
                 }
                 );
            /* context.BookGenreConnections.AddOrUpdate(x => x.Id,

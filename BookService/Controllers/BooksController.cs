@@ -79,6 +79,7 @@ namespace BookService.Controllers
                             Year = b.Year,
                             Price = b.Price,
                             StockBalance = b.StockBalance,
+                            ISBN = b.ISBN,
                             Authors = b.Authors,
                             Genres = b.Genres
                         };
@@ -95,6 +96,7 @@ namespace BookService.Controllers
                          Description = rawbook.Description,
                          Year = rawbook.Year,
                          StockBalance = rawbook.StockBalance,
+                         ISBN = rawbook.ISBN,
                          Price = rawbook.Price,
                          AuthorNames = getAuthorNames(rawbook.Authors),
                          GenreNames = getGenreNames(rawbook.Genres)
@@ -135,6 +137,7 @@ namespace BookService.Controllers
             book.Price = changedBook.Price;
             book.Year = changedBook.Year;
             book.StockBalance = changedBook.StockBalance;
+            book.ISBN = changedBook.ISBN;
 
             foreach(int aId in changedBook.AuthorIds)
             {  
@@ -155,7 +158,7 @@ namespace BookService.Controllers
 
                 }
             }
-
+            
             db.Entry(book).State = EntityState.Modified;
 
             try
@@ -194,6 +197,7 @@ namespace BookService.Controllers
             book.Price = newBookDTO.Price;
             book.Year = newBookDTO.Year;
             book.StockBalance = newBookDTO.StockBalance;
+            book.ISBN = newBookDTO.ISBN;
 
             foreach(int aId in newBookDTO.AuthorIds)
             {

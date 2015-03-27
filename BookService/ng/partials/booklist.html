@@ -1,6 +1,8 @@
-﻿        <ul>
+﻿    <ul>
             <li ng-repeat="book in books">
-                <a ng-click="selected.book = book">Titel: {{ book.Title }} Författare: {{ book.AuthorNames }} Pris: {{ book.Price }} Antal i lager: {{ book.StockBalance }}</a>
+                <a ng-click="viewBookDetails(book)">Titel: {{ book.Title }} Price: {{ book.Price }} Author(s): {{ book.AuthorNames }}  Stock Balance: {{ book.StockBalance }}</a>
             </li>
         </ul>
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+
+
