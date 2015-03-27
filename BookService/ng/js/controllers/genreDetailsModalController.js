@@ -5,6 +5,10 @@ function ($scope, $rootScope, Genres, $modalInstance, genre)
     console.log("My genre is: " + genre.Name);
     $scope.genre = genre;
 
+    $scope.Delete = function () {
+        Genres.destroy(genre);
+    }
+
     $scope.Save = function ()
     {
         $scope.actualObject =

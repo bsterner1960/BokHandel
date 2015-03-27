@@ -12,6 +12,7 @@
     
 </div>
 <div class="modal-footer">
+    <button ng-if="isAdmin" class="btn btn-danger" ng-click="Delete()">Delete</button>
     <button ng-if="isAdmin" class="btn btn-primary" ng-click="Save()">Save</button>
     <button class="btn btn-warning" ng-click="Cancel()">Cancel</button>
 

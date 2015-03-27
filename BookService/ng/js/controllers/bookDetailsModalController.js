@@ -30,6 +30,7 @@
 
     $scope.Genres = Genres.index();
 
+    $scope.authorString = $rootScope.isAdmin ? "Edit authors:" : "Authors:";
 
 
 
@@ -38,6 +39,9 @@
     $scope.addAuthor = function () {
         // Read current value of select list for authors (an author id)
         var selectedAuthorID = $scope.selectedAuthorID;
+
+        console.log("selectedAuthorID: " + $scope.selectedAuthorID);
+
         // Find the author object by id amongst all authors
         for (var i = 0; i < $scope.Authors.length; i++) {
             if (selectedAuthorID == $scope.Authors[i].Id) {
@@ -74,6 +78,11 @@
     $scope.removeGenre = function (value) {
         $scope.selectedGenres.splice(value, 1);
         $scope.actualObject.GenreIDs.splice(value, 1);
+    }
+
+    $scope.Delete = function()
+    {
+        Book.destroy(book);
     }
 
     // click event Create

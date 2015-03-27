@@ -8,6 +8,10 @@ function ($scope, $rootScope, Authors, $modalInstance, author)
     
     console.log("Booting up authorDetailsModal successful, awaiting orders.");
 
+    $scope.Delete = function () {
+        Authors.destroy(author);
+    }
+
     $scope.Save = function()
     {
         $scope.actualObject =
