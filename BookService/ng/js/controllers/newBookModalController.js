@@ -96,6 +96,8 @@
             $scope.actualObject.StockBalance = $scope.newBook.StockBalance;
             $scope.actualObject.ISBN = $scope.newBook.ISBN;
 
+            console.log("$scope.actualObject.ISBN: " + $scope.actualObject.ISBN);
+
             console.log($scope.actualObject);
             Book.create($scope.actualObject,
             function (data)

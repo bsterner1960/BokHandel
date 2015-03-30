@@ -32,6 +32,20 @@
                 }
             }
         });
+
+        modalInstance.result.then(function (data) {
+            console.log("You've got more mail: " + data.Id);
+            console.log(data);
+
+            for (var i = 0; i < $scope.Genres.length; i++) {
+                console.log("Looping: " + $scope.Genres[i].Id);
+                if ($scope.Genres[i].Id === data.Id) {
+                    console.log("Found it: " + $scope.Genres[i].Id);
+                    $scope.Genres.splice(i, 1);
+                }
+            }
+        });
+
     }
 
 

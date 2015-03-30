@@ -10,6 +10,7 @@ function ($scope, $rootScope, Search, Book, $modal)
     // Fetching test books
     $scope.books = Book.index();
 
+
     // Function to bring up the detailed view of a specific book.
     $scope.viewBookDetails = function(book)
     {
@@ -26,10 +27,30 @@ function ($scope, $rootScope, Search, Book, $modal)
                 book: function ()
                 {
                     return book;
+                    
                 }
             }
         });
+
+        modalInstance.result.then(function (data)
+        {
+            console.log("You've got more mail: " + data.Id);
+            console.log(data);
+
+            for (var i = 0; i < $scope.books.length; i++)
+            {
+                console.log("Looping: " + $scope.books[i].Id);
+                if ($scope.books[i].Id === data.Id)
+                {
+                    console.log("Found it: " + $scope.books[i].Id);
+                    $scope.books.splice(i, 1);
+                }
+            }
+        });
+
     }
+
+
 
     // This will remove the alert popup when user clicks on the alert
     $scope.closeAlert = function (index) {

@@ -25,7 +25,7 @@ function ($scope, $rootScope, Genres, $modalInstance, genre)
         {
             //Success call
             console.log("Target successfully terminated, searching for new targets... " + data);
-            $modalInstance.close();
+            $modalInstance.close(data);
         },
         function (error)
         {

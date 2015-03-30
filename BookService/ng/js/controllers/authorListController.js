@@ -50,6 +50,19 @@
                     return author;
                 }
             }
-        });        
+        });
+
+
+        modalInstance.result.then(function (data) {
+            console.log(data);
+
+            for (var i = 0; i < $scope.authors.length; i++) {
+                console.log("Looping: " + $scope.authors[i].Id);
+                if ($scope.authors[i].Id === data.Id) {
+                    console.log("Found it: " + $scope.authors[i].Id);
+                    $scope.authors.splice(i, 1);
+                }
+            }
+        });
     }
 }]);

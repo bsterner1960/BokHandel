@@ -5,38 +5,38 @@
 
     <div class="form-group">
         <label>Name: </label>
-        <input type="text" ng-if="isAdmin" ng-model="book.Title" class="form-control" placeholder="Enter book name">
-        <p ng-if="!isAdmin">{{book.Title}}</p>
+        <input type="text" ng-if="isAdmin" ng-model="myBook.Title" class="form-control" placeholder="Enter myBook name">
+        <p ng-if="!isAdmin">{{myBook.Title}}</p>
     </div>
 
     <div class="form-group">
         <label>Description: </label>
-        <input type="text" ng-if="isAdmin" ng-model="book.Description" class="form-control" placeholder="Enter book description">
-        <p ng-if="!isAdmin">{{book.Description}}</p>
+        <input type="text" ng-if="isAdmin" ng-model="myBook.Description" class="form-control" placeholder="Enter myBook description">
+        <p ng-if="!isAdmin">{{myBook.Description}}</p>
     </div>
 
     <div class="form-group">
         <label>Price: </label>
-        <input type="text" ng-if="isAdmin" ng-model="book.Price" class="form-control" placeholder="Enter book price">
-        <p ng-if="!isAdmin">{{book.Price}}</p>
+        <input type="text" ng-if="isAdmin" ng-model="myBook.Price" class="form-control" placeholder="Enter myBook price">
+        <p ng-if="!isAdmin">{{myBook.Price}}</p>
     </div>
 
     <div class="form-group">
         <label>StockBalance: </label>
-        <input type="text" ng-if="isAdmin" ng-model="book.StockBalance" class="form-control" placeholder="Enter book stockBalance">
-        <p ng-if="!isAdmin">{{book.StockBalance}}</p>
+        <input type="text" ng-if="isAdmin" ng-model="myBook.StockBalance" class="form-control" placeholder="Enter myBook stockBalance">
+        <p ng-if="!isAdmin">{{myBook.StockBalance}}</p>
     </div>
 
     <div class="form-group">
         <label>ISBN: </label>
-        <input type="text" ng-if="isAdmin" ng-model="book.ISBN" class="form-control" placeholder="Enter book ISBN">
-        <p ng-if="!isAdmin">{{book.ISBN}}</p>
+        <input type="text" ng-if="isAdmin" ng-model="myBook.ISBN" class="form-control" placeholder="Enter myBook ISBN">
+        <p ng-if="!isAdmin">{{myBook.ISBN}}</p>
     </div>
 
     <div class="form-group">
         <label>Year: </label>
-        <input type="text" ng-if="isAdmin" ng-model="book.Year" class="form-control" placeholder="Enter book year">
-        <p ng-if="!isAdmin">{{book.Year}}</p>
+        <input type="text" ng-if="isAdmin" ng-model="myBook.Year" class="form-control" placeholder="Enter myBook year">
+        <p ng-if="!isAdmin">{{myBook.Year}}</p>
     </div>
 
 
@@ -84,5 +84,5 @@
     <button ng-if="isAdmin" class="btn btn-primary" ng-click="Save()">Save</button>
     <button class="btn btn-warning" ng-click="Cancel()">Cancel</button>
 
-    <alert ng-if="bookError" type="warning" close="bookError = !bookError">{{alert.msg}}</alert>
+    <alert ng-if="myBookError" type="warning" close="myBookError = !myBookError">{{alert.msg}}</alert>
 </div>

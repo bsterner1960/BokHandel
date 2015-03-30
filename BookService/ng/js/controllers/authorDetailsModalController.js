@@ -18,12 +18,12 @@ function ($scope, $rootScope, Authors, $modalInstance, author)
     $scope.Delete = function ()
     {
         console.log("author.Id" + author.Id);
-        Genres.destroy($scope.deletionObject,
+        Authors.destroy($scope.deletionObject,
         function (data)
         {
             //Success call
             console.log("Target successfully terminated, searching for new targets... " + data);
-            $modalInstance.close();
+            $modalInstance.close(data);
         },
         function (error)
         {

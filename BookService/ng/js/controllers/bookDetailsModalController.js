@@ -8,7 +8,29 @@
 
         console.log("$scope.book: " + $scope.book.Title);
 
-    $scope.newBook = {};
+        $scope.newBook = {};
+        // RETURN HERE WHEN ID'S ARE RETURNED (2015-03-30-14:31)!
+
+
+        $scope.myBook = Book.show({ Id: book.Id }).$promise.then
+        {
+            console.log("Hej cookie monster: " + $scope.myBook);
+
+            console.log("myFirstRun is true, " + $scope.myBook.AuthorIDs + "ok?");
+            for (var i = 0; i < $scope.myBook.AuthorIDs; i++)
+            {
+                for (var j = 0; j < $scope.Authors.length; j++)
+                {
+                    console.log("comparing: " + $scope.myBook.AuthorIDs[i] + " vs " + $scope.Authors[j]);
+                    if ($scope.myBook.AuthorIDs[i] == $scope.Authors[j])
+                    {
+                        console.log("found a match: " + $scope.Authors[j]);
+                        $scope.selectedAuthors.push($scope.Authors[j]);
+                        $scope.actualObject.AuthorIDs.push($scope.Authors[j].Id);
+                    }
+                }
+            }
+        };
 
     $scope.actualObject =
     {
@@ -32,7 +54,31 @@
 
     $scope.authorString = $rootScope.isAdmin ? "Edit authors:" : "Authors:";
 
+    $rootScope.$broadcast($scope.myBroadCast, "I'm broadcasting!");
 
+
+
+
+
+
+
+    //$scope.addAuthor = function () {
+    //    // Read current value of select list for authors (an author id)
+    //    var selectedAuthorID = $scope.selectedAuthorID;
+
+    //    console.log("selectedAuthorID: " + $scope.selectedAuthorID);
+
+    //    // Find the author object by id amongst all authors
+    //    for (var i = 0; i < $scope.Authors.length; i++) {
+    //        if (selectedAuthorID == $scope.Authors[i].Id) {
+    //            // Only add the author to the bookAuthor list if not already in it (indexOf check)
+    //            if ($scope.selectedAuthors.indexOf($scope.Authors[i]) < 0) {
+    //                $scope.selectedAuthors.push($scope.Authors[i]);
+    //                $scope.actualObject.AuthorIDs.push($scope.Authors[i].Id);
+    //            }
+    //        }
+    //    }
+    //}
 
     // Empty array that the user can fill with authors of this book
     // When clicking the addAuthor button
@@ -89,11 +135,11 @@
     {
         console.log("book.Id" + book.Id);
         Book.destroy($scope.deletionObject,
-        function(data)
+        function(book)
         {
             //Success call
             console.log("Target successfully terminated, searching for new targets... " + data);
-            $modalInstance.close();
+            $modalInstance.close(book);
         },
         function(error)
         {

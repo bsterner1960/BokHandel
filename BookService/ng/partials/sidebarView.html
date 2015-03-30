@@ -15,17 +15,18 @@
                     <!-- <p>{{minTest}}</p>-->
                 </div>
 
-
-                <div class="form-group">
-                    <label>Genres:</label>
-                    <div ng-repeat="genre in Genres" class="checkbox">
-                        <label>
-                            <input type="checkbox" ng-model="sidebar.checkedBoxes[genre.Id]" /> 
-                            <a ng-click="viewGenreDetails(genre)">{{genre.Name}}</a>
-                        </label>
+                <div style="overflow: scroll; height:400px;">
+                    <div class="form-group">
+                        <label>Genres:</label>
+                        <div ng-repeat="genre in Genres" class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="sidebar.checkedBoxes[genre.Id]" />
+                                <a ng-click="viewGenreDetails(genre)">{{genre.Name}}</a>
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </form>
+</form>
             <!--<div>
             <br />
             <label>Genres:</label>
