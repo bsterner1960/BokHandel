@@ -5,6 +5,35 @@ function ($scope, $rootScope, Genres, $modalInstance, genre)
     console.log("My genre is: " + genre.Name);
     $scope.genre = genre;
 
+    $scope.deletionObject =
+    {
+
+    };
+
+    $scope.deletionObject =
+    {
+        Id: genre.Id
+    };
+
+    $scope.test = "";
+
+    $scope.Delete = function ()
+    {
+        console.log("genre.Id" + genre.Id);
+        Genres.destroy($scope.deletionObject,
+        function (data)
+        {
+            //Success call
+            console.log("Target successfully terminated, searching for new targets... " + data);
+            $modalInstance.close();
+        },
+        function (error)
+        {
+            // Error call
+            console.log("Unable to terminate target. Target appears to be angry, suggestion: RUN! " + error);
+        });
+    }
+
     $scope.Save = function ()
     {
         $scope.actualObject =
@@ -15,7 +44,8 @@ function ($scope, $rootScope, Genres, $modalInstance, genre)
         };
 
         Genres.update($scope.actualObject,
-        function (data) {
+        function (data)
+        {
         console.log("data: " + data);
         //for successful calls
         $modalInstance.close(data);

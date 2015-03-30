@@ -41,12 +41,13 @@
 
 
     <label>Edit authors</label>
-    <select class="form-control" ng-model="selectedAuthorID" id="cookieMonster">
-        <option ng-repeat="author in Authors" value="{{author.Id}}">
-            {{author.Name}}
-        </option>
-    </select>
-    <button class="btn btn-primary" ng-click="addAuthor()">Add</button>
+    
+        <select class="form-control" ng-if="isAdmin" ng-model="selectedAuthorID" id="cookieMonster">
+            <option ng-repeat="author in Authors" value="{{author.Id}}">
+                {{author.Name}}
+            </option>
+        </select>
+        <button class="btn btn-primary" ng-click="addAuthor()">Add</button>
 
     <div style="overflow: scroll; height:140px;">
         <div ng-repeat="author in selectedAuthors">
@@ -79,6 +80,7 @@
 
 </div>
 <div class="modal-footer">
+    <button ng-if="isAdmin" class="btn btn-danger" ng-click="Delete()">Delete</button>
     <button ng-if="isAdmin" class="btn btn-primary" ng-click="Save()">Save</button>
     <button class="btn btn-warning" ng-click="Cancel()">Cancel</button>
 

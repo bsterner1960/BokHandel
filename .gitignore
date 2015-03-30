@@ -156,3 +156,9 @@ $RECYCLE.BIN/
 .DS_Store
 *.mdf
 *.ldf
+BookService/App_Data/BookServiceContext-20140613003603.mdf
+*.mdf
+BookService/App_Data/BookServiceContext-20140613003603.mdf
+BookService/App_Data/BookServiceContext-20140613003603_log.ldf
+BookService/App_Data/BookServiceContext-20140613003603_log.ldf
+BookService/App_Data/BookServiceContext-20140613003603_log.ldf

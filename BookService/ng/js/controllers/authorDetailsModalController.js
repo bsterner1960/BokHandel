@@ -8,6 +8,30 @@ function ($scope, $rootScope, Authors, $modalInstance, author)
     
     console.log("Booting up authorDetailsModal successful, awaiting orders.");
 
+    $scope.deletionObject =
+    {
+        Id: author.Id
+    };
+
+
+
+    $scope.Delete = function ()
+    {
+        console.log("author.Id" + author.Id);
+        Genres.destroy($scope.deletionObject,
+        function (data)
+        {
+            //Success call
+            console.log("Target successfully terminated, searching for new targets... " + data);
+            $modalInstance.close();
+        },
+        function (error)
+        {
+            // Error call
+            console.log("Unable to terminate target. Target appears to be angry, suggestion: RUN! " + error);
+        });
+    }
+
     $scope.Save = function()
     {
         $scope.actualObject =
@@ -21,7 +45,7 @@ function ($scope, $rootScope, Authors, $modalInstance, author)
         {
             console.log("data: " + data);
             //for successful calls
-            $modalInstance.close(data);
+            $modalInstance.close();
         },
         function ()
         {

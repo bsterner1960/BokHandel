@@ -15,7 +15,7 @@ namespace BookService.Controllers
     public class SearchController : ApiController
     {
         private BookServiceContext db = new BookServiceContext();
-    
+
         // GET api/Search/5
         [ResponseType(typeof(SearchDTO))]
         public IHttpActionResult GetBook(string searchType, string searchPhrase)
@@ -57,7 +57,7 @@ namespace BookService.Controllers
             }
             base.Dispose(disposing);
         }
-
+        
         private bool BookExists(int id)
         {
             return db.Books.Count(e => e.Id == id) > 0;
