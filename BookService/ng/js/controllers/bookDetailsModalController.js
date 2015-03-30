@@ -159,7 +159,7 @@
             $scope.actualObject.Price = $scope.newBook.Price;
             $scope.actualObject.Year = $scope.newBook.Year;
             $scope.actualObject.StockBalance = $scope.newBook.StockBalance;
-            $scope.actualObject.ISBN = $sope.newBook.ISBN;
+            $scope.actualObject.ISBN = $scope.newBook.ISBN;
 
             console.log($scope.actualObject);
             Book.update($scope.actualObject,
