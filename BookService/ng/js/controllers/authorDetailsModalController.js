@@ -13,7 +13,7 @@ function ($scope, $rootScope, Authors, $modalInstance, author)
         Id: author.Id
     };
 
-    $scope.test = "";
+
 
     $scope.Delete = function ()
     {
