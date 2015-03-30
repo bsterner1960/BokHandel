@@ -18,14 +18,27 @@ namespace BookService.Controllers
         private BookServiceContext db = new BookServiceContext();
 
         [ResponseType(typeof(SearchDTO))]
-        //public IHttpActionResult GetBook(string searchValue, int priceFrom, int priceTo, int[] genreId);
         // GET: Search/Books
         public List<BookDetailDTO> GetBooks([FromUri] int[] genreId = null, int priceFrom = 0, int priceTo = 0, string searchValue = "")
         {
-            //var bookDetailDTOresult = new IQueryable<BookDetailDTO>();
-             
-                var NewBooks = from b in db.Books
-                            where b.Title.Contains(searchValue) || b.Description.Contains(searchValue)
+                 int priceLow = 0;
+                 int priceHigh = 9999999;
+
+                 if (priceFrom > 0 )
+                 {
+                    priceLow = priceFrom;
+                 }
+
+                 if (priceTo > 0 )
+                 {
+                    priceHigh = priceTo;
+                 }
+
+                        
+                 var NewBooks = from b in db.Books
+                            where (b.Title.Contains(searchValue) || b.Description.Contains(searchValue)) &&
+                                   b.Price >= priceLow && b.Price <= priceHigh
+
                             select new BookDetailDTOtemp()
                             {
                                 Id = b.Id,

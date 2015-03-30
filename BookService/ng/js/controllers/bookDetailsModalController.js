@@ -12,10 +12,11 @@
         // RETURN HERE WHEN ID'S ARE RETURNED (2015-03-30-14:31)!
 
 
-        $scope.myBook = Book.show({ Id: book.Id }).$promise.then
+        $scope.myBook = Book.show({ Id: book.Id },
+        function (book)
         {
+            //Success call
             console.log("Hej cookie monster: " + $scope.myBook);
-
             console.log("myFirstRun is true, " + $scope.myBook.AuthorIDs + "ok?");
             for (var i = 0; i < $scope.myBook.AuthorIDs; i++)
             {
@@ -30,7 +31,14 @@
                     }
                 }
             }
-        };
+        },
+        function(error)
+        {
+            //Fail call
+        });
+        
+
+
 
     $scope.actualObject =
     {
@@ -57,28 +65,6 @@
     $rootScope.$broadcast($scope.myBroadCast, "I'm broadcasting!");
 
 
-
-
-
-
-
-    //$scope.addAuthor = function () {
-    //    // Read current value of select list for authors (an author id)
-    //    var selectedAuthorID = $scope.selectedAuthorID;
-
-    //    console.log("selectedAuthorID: " + $scope.selectedAuthorID);
-
-    //    // Find the author object by id amongst all authors
-    //    for (var i = 0; i < $scope.Authors.length; i++) {
-    //        if (selectedAuthorID == $scope.Authors[i].Id) {
-    //            // Only add the author to the bookAuthor list if not already in it (indexOf check)
-    //            if ($scope.selectedAuthors.indexOf($scope.Authors[i]) < 0) {
-    //                $scope.selectedAuthors.push($scope.Authors[i]);
-    //                $scope.actualObject.AuthorIDs.push($scope.Authors[i].Id);
-    //            }
-    //        }
-    //    }
-    //}
 
     // Empty array that the user can fill with authors of this book
     // When clicking the addAuthor button
@@ -159,7 +145,7 @@
             $scope.actualObject.Price = $scope.newBook.Price;
             $scope.actualObject.Year = $scope.newBook.Year;
             $scope.actualObject.StockBalance = $scope.newBook.StockBalance;
-            $scope.actualObject.ISBN = $sope.newBook.ISBN;
+            $scope.actualObject.ISBN = $scope.newBook.ISBN;
 
             console.log($scope.actualObject);
             Book.update($scope.actualObject,
