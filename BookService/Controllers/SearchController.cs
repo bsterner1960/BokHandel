@@ -6,160 +6,61 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using BookService.Models;
-using System.IO;
-using System.Diagnostics;
-
 
 namespace BookService.Controllers
 {
     public class SearchController : ApiController
     {
         private BookServiceContext db = new BookServiceContext();
-
-        
-        // GET api/Search
-     
-        public List<SearchDTO> Books()
+    
+        // GET api/Search/5
+        [ResponseType(typeof(SearchDTO))]
+        public IHttpActionResult GetBook(string searchType, string searchPhrase)
         {
-           string jonas = "testar från books";
-            string searchString = "Hugo";
-            Debug.WriteLine("från books");
+            var bookResult = new List<BookDetailDTOtemp>();
+            var authorResult = new List<Author>();
 
-
-           
-
-            var bookSearch = from b in db.Books
-                        where b.Title.Contains(searchString)
-                        select new SearchDTO()
+            if (searchType == "books")
+            {
+                 bookResult = from b in db.Books
+                        where b.Title.Contains(searchPhrase) || b.Description.Contains(searchPhrase)
+                        select new BookDetailDTOtemp()
                         {
                             Id = b.Id,
                             Title = b.Title,
                             Description = b.Description,
                             Year = b.Year,
                             Price = b.Price,
-                            StockBalance = b.StockBalance   
+                            StockBalance = b.StockBalance,
+                            ISBN = b.ISBN,
+                            //Authors = b.Authors,
+                            //Genres = b.Genres
                         };
-            List <SearchDTO> BookSearch2 = new List<SearchDTO>();
-            foreach (var bs in bookSearch)
-            {
-                BookSearch2.Add(new SearchDTO()
-                {
-                    Id = bs.Id,
-                    Title = bs.Title,
-                    Description = bs.Description,
-                    Year = bs.Year,
-                    Price = bs.Price,
-                    StockBalance = bs.StockBalance
-                });
+
+                 var result = new SearchDTO()
+                 {
+
+                 };
             }
-            //if (bookSearch == null)
-            //{
-            //   return bookSearch;
-            //}
-            return BookSearch2;
+            //return NotFound();
+            //return Ok(searchResult);
         }
-        
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-   
-        //public IQueryable<SearchDTO> GetSearchDTOes()
-        //{
-        //    return db.SearchDTOes;
-        //}
-
-        // GET api/Search/5
-        //[ResponseType(typeof(SearchDTO))]
-        //public async Task<IHttpActionResult> GetSearchDTO(int id)
-        //{
-        //    SearchDTO searchdto = await db.SearchDTOes.FindAsync(id);
-        //    if (searchdto == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return Ok(searchdto);
-        //}
-        // PUT api/Search/5
-
-        //public async Task<IHttpActionResult> PutSearchDTO(int id, SearchDTO searchdto)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    if (id != searchdto.Id)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    db.Entry(searchdto).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await db.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-                //if (!SearchDTOExists(id))
-                //{
-                //    return NotFound();
-                //}
-                //else
-                //{
-                //    throw;
-                //}
-                
-
-        //    return StatusCode(HttpStatusCode.NoContent);
-        //}
-
-        // POST api/Search
-        //[ResponseType(typeof(SearchDTO))]
-        //public async Task<IHttpActionResult> PostSearchDTO(SearchDTO searchdto)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    db.SearchDTOes.Add(searchdto);
-        //    await db.SaveChangesAsync();
-        //    return CreatedAtRoute("DefaultApi", new { id = searchdto.Id }, searchdto);
-        //}
-
-        // DELETE api/Search/5
-        //[ResponseType(typeof(SearchDTO))]
-        //public async Task<IHttpActionResult> DeleteSearchDTO(int id)
-        //{
-        //    SearchDTO searchdto = await db.SearchDTOes.FindAsync(id);
-        //    if (searchdto == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    db.SearchDTOes.Remove(searchdto);
-        //    await db.SaveChangesAsync();
-        //    return Ok(searchdto);
-        //}
-
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-
-        //    base.Dispose(disposing);
-        //}
-        //private bool SearchDTOExists(int id)
-        //{
-        //    return db.SearchDTOes.Count(e => e.Id == id) > 0;
-        //}
-           
-        
+        private bool BookExists(int id)
+        {
+            return db.Books.Count(e => e.Id == id) > 0;
+        }
     }
 }

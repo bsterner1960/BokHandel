@@ -12,22 +12,16 @@ namespace BookService.Models
 
     
     public class SearchDTO
-    {   
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Value { get; set; }
-        public string Description { get; set; }
-        public int Year { get; set; }
-        public decimal Price {get; set; }
-        public int StockBalance {get; set; }
-        
+    {
 
-        //static void Main()
-        //{
-            
-
-
-
+        public string searchType { get; set; }
+        public string searchPhrase { get; set; }
+        public ICollection<Book> bookResult { get; set; }
+        public ICollection<Author> authorResult { get; set; }
+        /*public string bookSearch { get; set; }
+        public string genreSearch { get; set; }
+        public string isbnSearch { get; set; }*/
+ 
 //        int caseSwitch = 1;
 //          switch (caseSwitch)
 //          {
@@ -54,29 +48,7 @@ namespace BookService.Models
         //    return (value);
         //}
         //söka enbart i bookdetails?
-    //    USE 
-    //    GO
-        
-    //    SELECT Name, ListPrice
-    //    FROM Production.Product
-    //    WHERE ListPrice = 80.99
-    //    AND CONTAINS(Name, 'Mountain')
-    //    GO
-    //    //För exakt sökning:
-    //{
-       
-    
-
-    ////För fritext sökning:
-    //    {
-    //        USE AdventureWorks2012
-    //        GO
-
-    //        SELECT Title
-    //        FROM Production.Document
-    //        WHERE FREETEXT (Document, 'vital safety components')
-    //        GO
-    //    }
+ 
     //    //sökbart:
     //        //Author
     //        //ISBN
@@ -89,7 +61,6 @@ namespace BookService.Models
     //    //Om man klickar på searchbutton så ska allt visas.
     //    //Prio order: 1. ISBN
     //    //            2. Book
-         
           //            3. Author
     }
 }
