@@ -7,7 +7,8 @@ function ($scope, $rootScope, Search, Book, $modal)
     // Where to put the alerts
     $scope.alerts = [];
 
-    // Fetching test books
+    // Default load the book view with a search of all books.
+    $scope.books = Search.index({ whatToSearchFor: "books", searchValue: null });
 
 
     // Function to bring up the detailed view of a specific book.
@@ -73,11 +74,6 @@ function ($scope, $rootScope, Search, Book, $modal)
             // If there allready is any error messages displayed then destory them.
             $scope.alerts = [];
             
-           // console.log("Nicklas sökvärde: ", $rootScope.bookSearchValue);
-           // console.log("Björns Checkboxes: ", $scope.sidebar.checkedBoxes);
-            //console.log("Björns price from: ", $scope.sidebar.priceFrom);
-            //console.log("Björns price from: ", $scope.sidebar.priceTo);
-
             var genreCheckBoxIds = []; // Array to hold only genre id:s
 
             // put the genres id (based on what genre that has been checked in the sidebar) in a seperate "tidy" array to send to the backend
