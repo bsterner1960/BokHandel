@@ -16,8 +16,8 @@ namespace BookService.Models
 
         public string searchType { get; set; }
         public string searchPhrase { get; set; }
-        public ICollection<Book> bookResult { get; set; }
-        public ICollection<Author> authorResult { get; set; }
+        public List<BookDetailDTO> bookResult { get; set; }
+        //public ICollection<Author> authorResult { get; set; }
         /*public string bookSearch { get; set; }
         public string genreSearch { get; set; }
         public string isbnSearch { get; set; }*/
