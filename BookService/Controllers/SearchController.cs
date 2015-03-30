@@ -52,33 +52,41 @@ namespace BookService.Controllers
                         StockBalance = book.StockBalance,
                         ISBN = book.ISBN,
                         Price = book.Price,
-                        AuthorNames = getAuthorNames(book.Authors),
-                        GenreNames = getGenreNames(book.Genres)
+                        AuthorNIs = getAuthorNIs(book.Authors),
+                        GenreNIs = getGenreNIs(book.Genres)
                     });
                 };
 
                 return (booksResult);
         }
 
-        private List<string> getGenreNames(ICollection<Genre> genres)
+        private List<AuthorNI> getAuthorNIs(ICollection<Author> authors)
         {
-            var gNames = new List<string>();
-            foreach (var genre in genres)
-            {
-                gNames.Add(genre.Name);
-            }
-            return gNames;
-        }
-
-        private List<string> getAuthorNames(ICollection<Author> authors)
-        {
-            var aNames = new List<string>();
+            var aNIs = new List<AuthorNI>();
             foreach (var author in authors)
             {
-                aNames.Add(author.Name);
+                aNIs.Add(new AuthorNI
+                {
+                    Name = author.Name,
+                    Id = author.Id
+                });
             }
-            return aNames;
+            return aNIs;
         }
+        private List<GenreNI> getGenreNIs(ICollection<Genre> genres)
+        {
+            var gNIs = new List<GenreNI>();
+            foreach (var genre in genres)
+            {
+                gNIs.Add(new GenreNI
+                {
+                    Name = genre.Name,
+                    Id = genre.Id
+                });
+            }
+            return gNIs;
+        }
+        
 
         //private List<string> getBookNames(ICollection<Book> books)
         //{

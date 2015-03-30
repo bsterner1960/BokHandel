@@ -12,7 +12,7 @@ namespace BookService.Models
         public long ISBN { get; set; }
 
 
-        public List<string> AuthorNames { get; set; }
-        public List<string> GenreNames { get; set; }
+        public List<AuthorNI> AuthorNIs { get; set; }
+        public List<GenreNI> GenreNIs { get; set; }
     }
 }

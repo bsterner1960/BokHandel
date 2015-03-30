@@ -179,6 +179,7 @@
     <Compile Include="Models\Author.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\AuthorNI.cs" />
     <Compile Include="Models\Book.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -193,6 +194,7 @@
     <Content Include="ng\js\controllers\newBookModalController.js" />
     <Content Include="ng\js\controllers\newGenreModalController.js" />
     <Content Include="ng\js\controllers\newAuthorModalController.js" />
+    <Compile Include="Models\GenreNI.cs" />
     <Compile Include="Models\NewBookDTO.cs" />
     <Compile Include="Models\SearchDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

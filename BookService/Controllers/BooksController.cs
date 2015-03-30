@@ -31,7 +31,7 @@ namespace BookService.Controllers
                         {
                             Id = b.Id,
                             Title = b.Title,
-                            Authors = b.Authors
+                           // Authors = b.Authors
                         };
 
             var books2 = new List<BookDTO>();
@@ -42,7 +42,7 @@ namespace BookService.Controllers
                     {
                         Id = book.Id,
                         Title = book.Title,
-                        AuthorNames = getAuthorNames(book.Authors)
+                        //AuthorNames = getAuthorNames(book.Authors)
                     }
 
                 );
@@ -51,15 +51,6 @@ namespace BookService.Controllers
             return books2;
         }
 
-        private List<string> getAuthorNames(ICollection<Author> authors)
-        {
-            var aNames = new List<string>();
-            foreach (var author in authors)
-            {
-                aNames.Add(author.Name);
-            }
-            return aNames;
-        }
 
         // GET api/Books/5
         [ResponseType(typeof(BookDetailDTO))]
@@ -98,21 +89,38 @@ namespace BookService.Controllers
                          StockBalance = rawbook.StockBalance,
                          ISBN = rawbook.ISBN,
                          Price = rawbook.Price,
-                         AuthorNames = getAuthorNames(rawbook.Authors),
-                         GenreNames = getGenreNames(rawbook.Genres)
+                         AuthorNIs = getAuthorNIs(rawbook.Authors),
+                         GenreNIs = getGenreNIs(rawbook.Genres)
                      };
 
             return Ok(book2);
         }
 
-        private List<string> getGenreNames(ICollection<Genre> genres)
+        private List<AuthorNI> getAuthorNIs(ICollection<Author> authors)
         {
-            var gNames = new List<string>();
+            var aNIs = new List<AuthorNI>();
+            foreach (var author in authors)
+            {
+                aNIs.Add(new AuthorNI
+                {
+                    Name = author.Name,
+                    Id = author.Id
+                });
+            }
+            return aNIs;
+        }
+        private List<GenreNI> getGenreNIs(ICollection<Genre> genres)
+        {
+            var gNIs = new List<GenreNI>();
             foreach (var genre in genres)
             {
-                gNames.Add(genre.Name);
+                gNIs.Add(new GenreNI
+                {
+                    Name = genre.Name,
+                    Id = genre.Id
+                });
             }
-            return gNames;
+            return gNIs;
         }
 
         // PUT api/Books/5
