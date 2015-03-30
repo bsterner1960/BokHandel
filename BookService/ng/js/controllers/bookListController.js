@@ -8,7 +8,6 @@ function ($scope, $rootScope, Search, Book, $modal)
     $scope.alerts = [];
 
     // Fetching test books
-    $scope.books = Book.index();
 
 
     // Function to bring up the detailed view of a specific book.
