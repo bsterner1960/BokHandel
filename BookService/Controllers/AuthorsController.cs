@@ -37,17 +37,17 @@ namespace BookService.Controllers
         }
 
         // PUT api/Authors/5
-        public async Task<IHttpActionResult> PutAuthor(int id, Author author)
+        public async Task<IHttpActionResult> PutAuthor( Author author)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != author.Id)
-            {
-                return BadRequest();
-            }
+            //if (id != author.Id)
+            //{
+            //    return BadRequest();
+            //}
 
             db.Entry(author).State = EntityState.Modified;
 
@@ -57,7 +57,7 @@ namespace BookService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AuthorExists(id))
+                if (!AuthorExists(author.Id))
                 {
                     return NotFound();
                 }
