@@ -18,13 +18,28 @@ namespace BookService.Controllers
         private BookServiceContext db = new BookServiceContext();
 
         // GET api/Genres
-        public IQueryable<Genre> GetGenres()
+        //public IQueryable<Genre> GetGenres()
+        //{
+        //    return db.Genres;
+        //}
+        ////// GET api/authors
+        public List<GenreDTO> GetGenres()
         {
-            return db.Genres;
+            var genres = (from g in db.Genres
+                           select new GenreDTO()
+                           {
+                               Id = g.Id,
+                               Name = g.Name,
+                               Description = g.Description
+                           }).ToList();
+
+
+            return genres;
         }
 
+
         // GET api/Genres/5
-        [ResponseType(typeof(Genre))]
+        [ResponseType(typeof(GenreDTO))]
         public async Task<IHttpActionResult> GetGenre(int id)
         {
             Genre genre = await db.Genres.FindAsync(id);
@@ -32,12 +47,19 @@ namespace BookService.Controllers
             {
                 return NotFound();
             }
+ 
+            GenreDTO gDTO = new GenreDTO()
+            {
+                Id = genre.Id,
+                Name = genre.Name,
+                Description = genre.Description
+            };
 
-            return Ok(genre);
+            return Ok(gDTO);
         }
 
         // PUT api/Genres/5
-        public async Task<IHttpActionResult> PutGenre( Genre genre)
+        public async Task<IHttpActionResult> PutGenre( GenreDTO genreDTO)
         {
             if (!ModelState.IsValid)
             {
@@ -49,6 +71,14 @@ namespace BookService.Controllers
             //    return BadRequest();
             //}
 
+            Genre genre = new Genre()
+            {
+                Id = genreDTO.Id,
+                Name = genreDTO.Name,
+                Description = genreDTO.Description
+            };
+
+
             db.Entry(genre).State = EntityState.Modified;
 
             try
@@ -57,7 +87,7 @@ namespace BookService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!GenreExists(genre.Id))
+                if (!GenreExists(genreDTO.Id))
                 {
                     return NotFound();
                 }
@@ -71,22 +101,29 @@ namespace BookService.Controllers
         }
 
         // POST api/Genres
-        [ResponseType(typeof(Genre))]
-        public async Task<IHttpActionResult> PostGenre(Genre genre)
+        [ResponseType(typeof(GenreDTO))]
+        public async Task<IHttpActionResult> PostGenre(GenreDTO genreDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            Genre genre = new Genre()
+            {
+                Id = genreDTO.Id,
+                Name = genreDTO.Name,
+                Description = genreDTO.Description
+            };
+
             db.Genres.Add(genre);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = genre.Id }, genre);
+            return CreatedAtRoute("DefaultApi", new { id = genre.Id }, genreDTO);
         }
 
         // DELETE api/Genres/5
-        [ResponseType(typeof(Genre))]
+        [ResponseType(typeof(GenreDTO))]
         public async Task<IHttpActionResult> DeleteGenre(int id)
         {
             Genre genre = await db.Genres.FindAsync(id);
@@ -95,10 +132,17 @@ namespace BookService.Controllers
                 return NotFound();
             }
 
+            GenreDTO genreDTO = new GenreDTO()
+            {
+                Id = genre.Id,
+                Name = genre.Name,
+                Description = genre.Description
+            };
+
             db.Genres.Remove(genre);
             await db.SaveChangesAsync();
 
-            return Ok(genre);
+            return Ok(genreDTO);
         }
 
         protected override void Dispose(bool disposing)

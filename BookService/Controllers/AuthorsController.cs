@@ -37,7 +37,7 @@ namespace BookService.Controllers
         }
 
         // GET api/Authors/5
-        [ResponseType(typeof(Author))]
+        [ResponseType(typeof(AuthorDTO))]
         public async Task<IHttpActionResult> GetAuthor(int id)
         {
             Author author = await db.Authors.FindAsync(id);
@@ -113,7 +113,7 @@ namespace BookService.Controllers
             db.Authors.Add(author);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = author.Id }, author);
+            return CreatedAtRoute("DefaultApi", new { id = author.Id }, authorDTO);
         }
 
         // DELETE api/Authors/5
