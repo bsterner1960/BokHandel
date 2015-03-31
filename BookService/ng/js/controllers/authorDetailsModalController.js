@@ -56,9 +56,9 @@ function ($scope, $rootScope, Authors, $modalInstance, author)
         });
     }
 
-    $scope.Cancel = function (data)
+    $scope.Cancel = function ()
     {
         console.log("Self-destruct has been overridden, emergency shut-down in 3... 2.... 1...");
-        $modalInstance.close(data);
+        $modalInstance.close("");
     };
 }]);

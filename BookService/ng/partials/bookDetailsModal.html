@@ -78,7 +78,7 @@
             <br />
             {{ genre.Name }}
 
-            <button class="btn btn-warning pull-right" data-ng-click="removeGenre($index)">Remove</button>
+            <button class="btn btn-warning pull-right" ng-show="isAdmin" data-ng-click="removeGenre($index)">Remove</button>
         </div>
     </div>
 
