@@ -17,7 +17,7 @@
         {
             //Success call
             console.log("Hej cookie monster: " + $scope.myBook);
-            console.log("myFirstRun is true, " + $scope.myBook.AuthorIDs + "ok?");
+            console.log("$scope.myBook.AuthorNI.Id: " + $scope.myBook.AuthorNIs.Id + "ok?");
             for (var i = 0; i < $scope.myBook.AuthorIDs; i++)
             {
                 for (var j = 0; j < $scope.Authors.length; j++)
@@ -136,7 +136,7 @@
     }
 
     // click event Create
-    $scope.Create = function () {
+    $scope.Save = function () {
         if ($scope.newBook.Title) {
 
             $scope.actualObject.Id = book.Id;
