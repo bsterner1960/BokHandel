@@ -41,9 +41,7 @@ function ($scope, $rootScope, Search, Book, $modal)
 
 
                 for (var i = 0; i < $scope.books.length; i++) {
-                    console.log("Looping: " + $scope.books[i].Id);
                     if ($scope.books[i].Id === data.Id) {
-                        console.log("Found it: " + $scope.books[i].Id);
                         $scope.books.splice(i, 1);
                     }
                 }

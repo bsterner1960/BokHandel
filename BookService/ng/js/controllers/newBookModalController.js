@@ -122,6 +122,6 @@
     // clickevent Cancel
     $scope.Cancel = function ()
     {
-        $modalInstance.close(data);
+        $modalInstance.close("");
     };
 }]);
