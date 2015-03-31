@@ -44,10 +44,8 @@ namespace BookService.Controllers
                         Title = book.Title,
                         //AuthorNames = getAuthorNames(book.Authors)
                     }
-
                 );
             }
-
             return books2;
         }
 

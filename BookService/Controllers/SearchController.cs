@@ -99,17 +99,6 @@ namespace BookService.Controllers
             }
             return gNIs;
         }
-        
-
-        //private List<string> getBookNames(ICollection<Book> books)
-        //{
-        //    var bNames = new List<string>();
-        //    foreach (var book in books)
-        //    {
-        //        bNames.Add(book.Name);
-        //    }
-        //    return bNames;
-        //}
     
         protected override void Dispose(bool disposing)
         {
