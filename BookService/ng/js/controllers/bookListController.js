@@ -31,19 +31,25 @@ function ($scope, $rootScope, Search, Book, $modal)
             }
         });
 
-        modalInstance.result.then(function (data)
+        modalInstance.result.then(function (redTruckWithStuffAndThings)
         {
-            if (data !== "")
+            if (redTruckWithStuffAndThings.action !== "cancel")
             {
-                console.log(data);
-                console.log("You've got more mail: " + data.Id);
-
-
                 for (var i = 0; i < $scope.books.length; i++)
                 {
-                    if ($scope.books[i].Id === data.Id)
+                    if ($scope.books[i].Id === redTruckWithStuffAndThings.data.Id)
                     {
-                        $scope.books.splice(i, 1);
+                        if (redTruckWithStuffAndThings.action === "save")
+                        {
+                            $scope.books[i].Title = redTruckWithStuffAndThings.data.Title;
+                            $scope.books[i].Price = redTruckWithStuffAndThings.data.Price;
+                            $scope.books[i].StockBalance = redTruckWithStuffAndThings.data.StockBalance;
+                        }
+                        else if (redTruckWithStuffAndThings.action === "delete")
+                        {
+                            console.log("delete...");
+                            $scope.books.splice(i, 1);
+                        }
                     }
                 }
             }
@@ -72,7 +78,8 @@ function ($scope, $rootScope, Search, Book, $modal)
         {
             myFirstRun = false;
             // Nope, not first time the controller is used so then we assume we got a search to work with.
-        } else {
+        } else
+        {
 
             // If there allready is any error messages displayed then destory them.
             $scope.alerts = [];

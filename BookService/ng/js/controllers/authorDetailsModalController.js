@@ -2,12 +2,19 @@
 function ($scope, $rootScope, Authors, $modalInstance, author)
 {
 
+    $scope.returnObject =
+    {
+        action: "",
+        data: data
+    }
 
     $scope.myAuthor = Authors.show({ Id: author.Id },
-    function (book) {
+    function (book)
+    {
         //Success!
 
-    }, function (error) {
+    }, function (error)
+    {
         // Failure...
         $scope.alerts.push({ type: 'danger', msg: "Failure, the data requested was not retrieved successfully: " + error.status + " " + error.statusText + "" });
     });
@@ -19,7 +26,8 @@ function ($scope, $rootScope, Authors, $modalInstance, author)
 
     $scope.alerts = [];
 
-    $scope.closeAlert = function (index) {
+    $scope.closeAlert = function (index)
+    {
         $scope.alerts.splice(index, 1);
     };
 
@@ -29,11 +37,14 @@ function ($scope, $rootScope, Authors, $modalInstance, author)
         $scope.alerts = [];
 
         Authors.destroy($scope.deletionObject,
-        function ()
+        function (data)
         {
             //Success call
             console.log("Target successfully terminated, searching for new targets... " + data);
-            $modalInstance.close("");
+
+            $scope.returnObject.action = "delete";
+            $scope.returnObject.data = data;
+            $modalInstance.close($scope.returnObject);
         },
         function (error)
         {
@@ -54,10 +65,12 @@ function ($scope, $rootScope, Authors, $modalInstance, author)
         };
 
         Authors.update($scope.actualObject,
-        function ()
+        function (data)
         {
             // Success!
-            $modalInstance.close("");
+            $scope.returnObject.action = "save";
+            $scope.returnObject.data = data;
+            $modalInstance.close($scope.returnObject);
         },
         function (error)
         {
@@ -70,6 +83,7 @@ function ($scope, $rootScope, Authors, $modalInstance, author)
     $scope.Cancel = function ()
     {
         console.log("Self-destruct has been overridden, emergency shut-down in 3... 2.... 1...");
-        $modalInstance.close("");
+        $scope.returnObject.action = "cancel";
+        $modalInstance.close($scope.returnObject);
     };
 }]);

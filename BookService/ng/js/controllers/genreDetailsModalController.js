@@ -1,7 +1,13 @@
 ﻿app.controller("genreDetailsModalController", ["$scope", "$rootScope", "Genres", "$modalInstance", "genre",
 function ($scope, $rootScope, Genres, $modalInstance, genre)
 {
-    
+ 
+    $scope.returnObject =
+    {
+        action: "",
+        data: ""
+    }
+
     $scope.myGenre = Genres.show({ Id: genre.Id },
     function (book)
     {
@@ -35,7 +41,11 @@ function ($scope, $rootScope, Genres, $modalInstance, genre)
         {
             //Success call
             console.log("Target successfully terminated, searching for new targets... " + data);
-            $modalInstance.close(data);
+
+            $scope.returnObject.action = "delete";
+            $scope.returnObject.data = data;
+
+            $modalInstance.close($scope.returnObject);
         },
         function (error)
         {
@@ -61,9 +71,12 @@ function ($scope, $rootScope, Genres, $modalInstance, genre)
         Genres.update($scope.actualObject,
         function (data)
         {
-        console.log("data: " + data);
-        // Success
-        $modalInstance.close("");
+        // Success!
+
+        $scope.returnObject.action = "save";
+        $scope.returnObject.data = data;
+
+        $modalInstance.close($scope.returnObject);
         },
         function (error)
         {
@@ -74,6 +87,7 @@ function ($scope, $rootScope, Genres, $modalInstance, genre)
     $scope.Cancel = function ()
     {
         console.log("Self-destruct has been overridden, systems functional, awating orders.");
-        $modalInstance.close("");
+        $scope.returnObject.action = "cancel";
+        $modalInstance.close($scope.returnObject);
     };
 }]);
