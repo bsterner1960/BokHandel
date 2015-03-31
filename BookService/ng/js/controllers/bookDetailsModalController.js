@@ -10,10 +10,6 @@
 
         $scope.book = book;
 
-        console.log("Engaging bookDetailsModalController.");
-
-        console.log("$scope.book: " + $scope.book.Title);
-
         $scope.newBook = {};
         // RETURN HERE WHEN ID'S ARE RETURNED (2015-03-30-14:31)!
 
@@ -23,44 +19,6 @@
         {
             $scope.alerts.splice(index, 1);
         };
-
-        $scope.myBook = Book.show({ Id: book.Id },
-        function (book)
-        {
-            //Success!
-            for (var i = 0; i < $scope.myBook.AuthorNIs.length; i++)
-            {
-                for (var j = 0; j < $scope.Authors.length; j++)
-                {
-                    if ($scope.myBook.AuthorNIs[i].Id == $scope.Authors[j].Id)
-                    {
-                        $scope.selectedAuthors.push($scope.Authors[j]);
-                        $scope.actualObject.AuthorIDs.push($scope.Authors[j].Id);
-                    }
-                }
-            }
-
-            for(var i = 0; i < $scope.myBook.GenreNIs.length; i++)
-            {
-                for(var j = 0; j < $scope.Genres.length; j++)
-                {
-                    if ($scope.myBook.GenreNIs[i].Id == $scope.Genres[j].Id)
-                    {
-                        $scope.selectedGenres.push($scope.Genres[j]);
-                        $scope.actualObject.GenreIDs.push($scope.Genres[j].Id);
-                    }
-                }
-            }
-
-        },
-        function(error)
-        {
-            //Failure...
-            $scope.alerts.push({ type: 'danger', msg: "Failure, the data requested was not retrieved successfully: " + error.status + " " + error.statusText + "" });
-        });
-        
-
-
 
     $scope.actualObject =
     {
@@ -78,11 +36,86 @@
     $scope.selectedAuthors = [];
     $scope.selectedGenres = [];
 
+        // The keys of creation!
+    var keyOfEarth = false;
+    var keyOfWater = false;
+    var keyOfFire = false;
+
     // All authors in our system
-    $scope.Authors = Authors.index();
+    $scope.Authors = Authors.index(
+        function ()
+        {
+            //Success!
+            keyOfEarth = true;
+            $scope.templeOfDoom();
+        },
+        function ()
+        {
+            // Failure...
+            keyOfEarth = false;
+        });
     
     // All genres in our system
-    $scope.Genres = Genres.index();
+    $scope.Genres = Genres.index(
+    function ()
+    {
+        //Success!
+        keyOfWater = true;
+        $scope.templeOfDoom();
+
+    },
+    function ()
+    {
+        // Failure...
+        keyOfWater = false;
+    });
+
+
+    $scope.myBook = Book.show({ Id: book.Id },
+    function ()
+    {
+    //Success!
+        keyOfFire = true;
+        $scope.templeOfDoom();
+    },
+    function (error)
+    {
+        //Failure...
+        $scope.alerts.push({ type: 'danger', msg: "Failure, the data requested was not retrieved successfully: " + error.status + " " + error.statusText + "" });
+    });
+
+
+    $scope.templeOfDoom = function()
+    {
+        if(keyOfEarth && keyOfWater && keyOfFire)
+        {
+            keyOfEarth = false;
+            keyOfWater = false;
+            keyOfFire = false;
+
+            for (var i = 0; i < $scope.myBook.AuthorNIs.length; i++) {
+                console.log("value: " + $scope.Authors.length);
+                for (var j = 0; j < $scope.Authors.length; j++) {
+                    console.log("sigh: " + $scope.Authors.length);
+                    //console.log("if " + $scope.myBook.AuthorNIs[i].Id + " === " + $scope.Authors[j].Id);
+                    if ($scope.myBook.AuthorNIs[i].Id === $scope.Authors[j].Id) {
+                        $scope.selectedAuthors.push($scope.Authors[j]);
+                        $scope.actualObject.AuthorIDs.push($scope.Authors[j].Id);
+                    }
+                }
+            }
+
+            for (var i = 0; i < $scope.myBook.GenreNIs.length; i++) {
+                for (var j = 0; j < $scope.Genres.length; j++) {
+                    if ($scope.myBook.GenreNIs[i].Id === $scope.Genres[j].Id) {
+                        //console.log("pushing genre");
+                        $scope.selectedGenres.push($scope.Genres[j]);
+                        $scope.actualObject.GenreIDs.push($scope.Genres[j].Id);
+                    }
+                }
+            }
+        }
+    }
 
     $scope.authorString = $rootScope.isAdmin ? "Edit authors:" : "Authors:";
     $scope.genreString = $rootScope.isAdmin ? "Edit genres:" : "Genres:";

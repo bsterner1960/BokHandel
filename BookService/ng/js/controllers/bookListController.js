@@ -14,10 +14,6 @@ function ($scope, $rootScope, Search, Book, $modal)
     // Function to bring up the detailed view of a specific book.
     $scope.viewBookDetails = function(book)
     {
-        console.log("Initiating view book details sequence, standby...");
-
-        console.log("You pressed: " + book.Title);
-
         var modalInstance = $modal.open(
         {
             templateUrl: 'partials/bookDetailsModal.html',
