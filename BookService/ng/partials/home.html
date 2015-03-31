@@ -1,7 +1,6 @@
 
 <!-- If we're considered an admin, the admin navbar will be loaded, if not then the "guest" navbar will be loaded instead. -->
-<div ng-if="isAdmin" ng-include="'partials/navbarViewAdmin.html'"></div>
-<div ng-if="!isAdmin" ng-include="'partials/navbarView.html'"></div>
+<div ng-include="'partials/navbarViewAdmin.html'"></div>
 
 <!-- A row covers the entire width of the screen and consists of 12 Bootstrap "boxes". -->
 <section class="row">

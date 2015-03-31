@@ -40,21 +40,23 @@
 
 
             <!-- Not really sure what this navbar class is for, but I'm guessing it's needed. -->
-            <ul class="nav navbar-nav">
+            <div ng-show="isAdmin">
+                <ul class="nav navbar-nav">
 
-                <!-- Our dropdown button! -->
-                <li class="dropdown" dropdown>
-                    <a href="#" dropdown-toggle class="dropdown-toggle" data-toggle="dropdown">Create new: <b class="caret"></b></a>
-                    <ul class="dropdown-menu" role="menu">
+                    <!-- Our dropdown button! -->
 
-                        <!-- The dropdown options! -->
-                        <li><a href="" ng-click="createAuthor()">Author</a></li>
-                        <li><a href="" ng-click="createBook()">Book</a></li>
-                        <li><a href="" ng-click="createGenre()">Genre</a></li>
-                    </ul>
-                </li>
-            </ul>
+                    <li class="dropdown" dropdown>
+                        <a href="#" dropdown-toggle class="dropdown-toggle" data-toggle="dropdown">Create new: <b class="caret"></b></a>
+                        <ul class="dropdown-menu" role="menu">
 
+                            <!-- The dropdown options! -->
+                            <li><a href="" ng-click="createAuthor()">Author</a></li>
+                            <li><a href="" ng-click="createBook()">Book</a></li>
+                            <li><a href="" ng-click="createGenre()">Genre</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
 
             <!-- This little piece of code seems to adjust all of its elements on the right side of the navbar. -->
             <ul class="nav navbar-nav navbar-right">
@@ -62,7 +64,9 @@
                 <!-- Aother dropdown button! Not to worry, it will become a toggle button soon enough. -->
                 <li class="dropdown" dropdown>
 
-                    <button type="button" class="btn btn-danger btn-sm" ng-click="adminSwitch()">Log out</button>
+
+                    <button type="button" ng-show="!isAdmin" class="btn btn-primary btn-sm" ng-click="adminSwitch()">Log in</button>
+                    <button type="button" ng-show="isAdmin" class="btn btn-danger btn-sm" ng-click="adminSwitch()">Log out</button>
                 
                 </li>
             </ul>

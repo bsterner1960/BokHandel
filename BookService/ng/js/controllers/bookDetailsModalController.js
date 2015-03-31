@@ -137,10 +137,10 @@
     {
         console.log("book.Id" + book.Id);
         Book.destroy($scope.deletionObject,
-        function()
+        function(data)
         {
             //Success call
-            $modalInstance.close("");
+            $modalInstance.close(data);
         },
         function(error)
         {
