@@ -9,7 +9,7 @@ namespace BookService.Models
         public int Year { get; set; }
         public decimal Price { get; set; }
         public int StockBalance { get; set; }
-        public long ISBN { get; set; }
+        public string ISBN { get; set; }
 
         public ICollection<Author> Authors { get; set; }
         public ICollection<Genre> Genres { get; set; }
