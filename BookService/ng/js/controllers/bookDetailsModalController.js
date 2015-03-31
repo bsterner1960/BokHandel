@@ -169,7 +169,8 @@
 
             console.log($scope.actualObject);
             Book.update($scope.actualObject,
-            function () {
+            function ()
+            {
                 // Success!
                 $modalInstance.close("");
             },

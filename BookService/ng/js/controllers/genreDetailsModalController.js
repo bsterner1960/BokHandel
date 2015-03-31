@@ -38,10 +38,12 @@ function ($scope, $rootScope, Genres, $modalInstance, genre)
     {
         $scope.actualObject =
         {
-            GenreID: $scope.genre.Id,
+            Id: $scope.genre.Id,
             Name: $scope.genre.Name,
             Description: $scope.genre.Description
         };
+
+        console.log($scope.actualObject.Id);
 
         Genres.update($scope.actualObject,
         function (data)
