@@ -45,9 +45,9 @@ function ($scope, $rootScope, Authors, $modalInstance, author)
         {
             console.log("data: " + data);
             //for successful calls
-            $modalInstance.close();
+            $modalInstance.close(data);
         },
-        function ()
+        function (error)
         {
             //for unsuccessful calls
             console.log("Unable to update author. ");
@@ -59,6 +59,6 @@ function ($scope, $rootScope, Authors, $modalInstance, author)
     $scope.Cancel = function ()
     {
         console.log("Self-destruct has been overridden, emergency shut-down in 3... 2.... 1...");
-        $modalInstance.close();
+        $modalInstance.close(data);
     };
 }]);

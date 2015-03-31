@@ -30,8 +30,8 @@
     }
 
     // klickevent Cancel
-     $scope.Cancel = function () {
-         $modalInstance.close();
+     $scope.Cancel = function (data) {
+         $modalInstance.close(data);
 
      };
 }]);

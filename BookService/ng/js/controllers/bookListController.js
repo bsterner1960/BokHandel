@@ -34,8 +34,9 @@ function ($scope, $rootScope, Search, Book, $modal)
 
         modalInstance.result.then(function (data)
         {
-            console.log("You've got more mail: " + data.Id);
             console.log(data);
+            console.log("You've got more mail: " + data.Id);
+            
 
             for (var i = 0; i < $scope.books.length; i++)
             {

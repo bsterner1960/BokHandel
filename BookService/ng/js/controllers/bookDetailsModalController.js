@@ -11,21 +11,26 @@
         $scope.newBook = {};
         // RETURN HERE WHEN ID'S ARE RETURNED (2015-03-30-14:31)!
 
+        $scope.alerts = [];
+
+        $scope.closeAlert = function (index) {
+            $scope.alerts.splice(index, 1);
+        };
 
         $scope.myBook = Book.show({ Id: book.Id },
         function (book)
         {
             //Success call
-            console.log("Hej cookie monster: " + $scope.myBook);
-            console.log("$scope.myBook.AuthorNI.Id: " + $scope.myBook.AuthorNIs.Id + "ok?");
-            for (var i = 0; i < $scope.myBook.AuthorIDs; i++)
+            console.log($scope.myBook);
+            console.log("$scope.myBook.AuthorNI.Id: " + $scope.myBook.AuthorNIs[0].Id + "ok?");
+            for (var i = 0; i < $scope.myBook.AuthorNIs.length; i++)
             {
                 for (var j = 0; j < $scope.Authors.length; j++)
                 {
-                    console.log("comparing: " + $scope.myBook.AuthorIDs[i] + " vs " + $scope.Authors[j]);
-                    if ($scope.myBook.AuthorIDs[i] == $scope.Authors[j])
+                    console.log("comparing: " + $scope.myBook.AuthorNIs[i].Id + " vs " + $scope.Authors[j].Id);
+                    if ($scope.myBook.AuthorNIs[i].Id == $scope.Authors[j].Id)
                     {
-                        console.log("found a match: " + $scope.Authors[j]);
+                        console.log("found a match: " + $scope.Authors[j].Id);
                         $scope.selectedAuthors.push($scope.Authors[j]);
                         $scope.actualObject.AuthorIDs.push($scope.Authors[j].Id);
                     }
@@ -35,6 +40,7 @@
         function(error)
         {
             //Fail call
+            $scope.alerts.push({ type: 'danger', msg: "Failure, the data requested was not retrieved successfully: " + error.status + " " + error.statusText + "" });
         });
         
 
@@ -68,7 +74,8 @@
 
     // Empty array that the user can fill with authors of this book
     // When clicking the addAuthor button
-    $scope.addAuthor = function () {
+    $scope.addAuthor = function ()
+    {
         // Read current value of select list for authors (an author id)
         var selectedAuthorID = $scope.selectedAuthorID;
 
@@ -131,36 +138,46 @@
         {
             // Error call
             console.log("Unable to terminate target. Target appears to be angry, suggestion: RUN! " + error);
+            $scope.alerts.push({ type: 'danger', msg: "Failure to terminate target, recharging main weapons... : " + error.status + " " + error.statusText + "" });
         });
         
     }
 
-    // click event Create
-    $scope.Save = function () {
-        if ($scope.newBook.Title) {
-
+    $scope.Save = function ()
+    {
+        console.log($scope.myBook);
+        console.log("cookie: " + $scope.myBook.Title);
+        if ($scope.myBook.Title)
+        {
             $scope.actualObject.Id = book.Id;
-            $scope.actualObject.Title = $scope.newBook.Title;
-            $scope.actualObject.Description = $scope.newBook.Description;
-            $scope.actualObject.Price = $scope.newBook.Price;
-            $scope.actualObject.Year = $scope.newBook.Year;
-            $scope.actualObject.StockBalance = $scope.newBook.StockBalance;
-            $scope.actualObject.ISBN = $scope.newBook.ISBN;
+            $scope.actualObject.Title = $scope.myBook.Title;
+            $scope.actualObject.Description = $scope.myBook.Description;
+            $scope.actualObject.Price = $scope.myBook.Price;
+            $scope.actualObject.Year = $scope.myBook.Year;
+            $scope.actualObject.StockBalance = $scope.myBook.StockBalance;
+            $scope.actualObject.ISBN = $scope.myBook.ISBN;
 
             console.log($scope.actualObject);
             Book.update($scope.actualObject,
             function (data) {
                 console.log("data: " + data);
-                //for successful calls
-                $modalInstance.close();
+                // Success!
+                $modalInstance.close(data);
                 console.log("Operation complete, shutting down.");
-            });
+            },
+            function (error)
+            {
+                // Failure...
+                console.log("Failed to complete the operation, self-destruction imminent in 3... 2... 1...");
+                $scope.alerts.push({ type: 'danger', msg: "Failed to complete the save operation, self-destruction imminent: " + error.status + " " + error.statusText + "" });
+            }
+            );
         }
     }
 
     // clickevent Cancel
-    $scope.Cancel = function ()
+    $scope.Cancel = function (data)
     {
-        $modalInstance.close();
+        $modalInstance.close(data);
     };
 }]);
