@@ -52,19 +52,26 @@
             }
         });
 
-
-        modalInstance.result.then(function (data) {
-
-            if (data !== "")
+        modalInstance.result.then(function (redTruckWithStuffAndThings)
+        {
+            if (redTruckWithStuffAndThings.action !== "cancel")
             {
                 for (var i = 0; i < $scope.authors.length; i++)
                 {
-                    if ($scope.authors[i].Id === data.Id)
+                    if ($scope.authors[i].Id === redTruckWithStuffAndThings.data.Id)
                     {
-                        $scope.authors.splice(i, 1);
+                        if (redTruckWithStuffAndThings.action === "save")
+                        {
+                            $scope.authors[i].Name = redTruckWithStuffAndThings.data.Name;
+                        }
+                        else if (redTruckWithStuffAndThings.action === "delete")
+                        {
+                            $scope.authors.splice(i, 1);
+                        }
                     }
                 }
             }
         });
+
     }
 }]);

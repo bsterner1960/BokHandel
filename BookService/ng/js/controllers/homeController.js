@@ -10,6 +10,37 @@ app.controller("homeController", ["$scope", "$rootScope", "restService", "Books"
     });
 
 
+    //*************************************************************************
+    //*                             TESTING CODE!                             *
+    //*************************************************************************
+
+    app.service('browser', ['$window', function ($window) {
+
+        return function () {
+
+            var userAgent = $window.navigator.userAgent;
+
+            var browsers = { chrome: /chrome/i, safari: /safari/i, firefox: /firefox/i, ie: /internet explorer/i };
+
+            for (var key in browsers) {
+                if (browsers[key].test(userAgent)) {
+                    $scope.alerts.push({ type: 'danger', msg: "Web browser found: " + key });
+
+                    return key;
+                }
+            };
+
+            return 'unknown';
+        }
+
+    }]);
+
+    //*************************************************************************
+    //*                         END OF TESTING CODE!                          *
+    //*************************************************************************
+
+
+
     $rootScope.bookSearchValue = "";
 
     //CRUD (POST, GET, PUT, DELETE)

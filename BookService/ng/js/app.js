@@ -1,5 +1,6 @@
 //app declaration and dependency injection
 var app = angular.module("myAppName", ["ngRoute", "ui.bootstrap", "ngResource"]);
+ 
 
 //Inkluderar vyer (partials) i angular med $routeProvider 
 app.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider) {

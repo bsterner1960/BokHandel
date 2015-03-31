@@ -2,6 +2,12 @@
     function ($scope, $rootScope, Authors, Book, Genres, $modalInstance, book)
     {
 
+        $scope.returnObject =
+        {
+            action: "",
+            data: ""
+        }
+
         $scope.book = book;
 
         console.log("Engaging bookDetailsModalController.");
@@ -13,14 +19,15 @@
 
         $scope.alerts = [];
 
-        $scope.closeAlert = function (index) {
+        $scope.closeAlert = function (index)
+        {
             $scope.alerts.splice(index, 1);
         };
 
         $scope.myBook = Book.show({ Id: book.Id },
         function (book)
         {
-            //Success call
+            //Success!
             for (var i = 0; i < $scope.myBook.AuthorNIs.length; i++)
             {
                 for (var j = 0; j < $scope.Authors.length; j++)
@@ -48,7 +55,7 @@
         },
         function(error)
         {
-            //Fail call
+            //Failure...
             $scope.alerts.push({ type: 'danger', msg: "Failure, the data requested was not retrieved successfully: " + error.status + " " + error.statusText + "" });
         });
         
@@ -70,16 +77,15 @@
 
     $scope.selectedAuthors = [];
     $scope.selectedGenres = [];
+
     // All authors in our system
     $scope.Authors = Authors.index();
-
+    
+    // All genres in our system
     $scope.Genres = Genres.index();
 
     $scope.authorString = $rootScope.isAdmin ? "Edit authors:" : "Authors:";
-
-    $rootScope.$broadcast($scope.myBroadCast, "I'm broadcasting!");
-
-
+    $scope.genreString = $rootScope.isAdmin ? "Edit genres:" : "Genres:";
 
     // Empty array that the user can fill with authors of this book
     // When clicking the addAuthor button
@@ -91,8 +97,10 @@
         console.log("selectedAuthorID: " + $scope.selectedAuthorID);
 
         // Find the author object by id amongst all authors
-        for (var i = 0; i < $scope.Authors.length; i++) {
-            if (selectedAuthorID == $scope.Authors[i].Id) {
+        for (var i = 0; i < $scope.Authors.length; i++)
+        {
+            if (selectedAuthorID == $scope.Authors[i].Id)
+            {
                 // Only add the author to the bookAuthor list if not already in it (indexOf check)
                 if ($scope.selectedAuthors.indexOf($scope.Authors[i]) < 0) {
                     $scope.selectedAuthors.push($scope.Authors[i]);
@@ -102,20 +110,24 @@
         }
     }
 
-    $scope.removeAuthor = function (value) {
+    $scope.removeAuthor = function (value)
+    {
         $scope.selectedAuthors.splice(value, 1);
         $scope.actualObject.AuthorIDs.splice(value, 1);
-
     }
 
 
-    $scope.addGenre = function () {
+    $scope.addGenre = function ()
+    {
 
         var selectedGenreID = $scope.selectedGenreID;
 
-        for (var i = 0; i < $scope.Genres.length; i++) {
-            if (selectedGenreID == $scope.Genres[i].Id) {
-                if ($scope.selectedGenres.indexOf($scope.Genres[i]) < 0) {
+        for (var i = 0; i < $scope.Genres.length; i++)
+        {
+            if (selectedGenreID == $scope.Genres[i].Id)
+            {
+                if ($scope.selectedGenres.indexOf($scope.Genres[i]) < 0)
+                {
                     $scope.selectedGenres.push($scope.Genres[i]);
                     $scope.actualObject.GenreIDs.push($scope.Genres[i].Id);
                 }
@@ -123,7 +135,8 @@
         }
     }
 
-    $scope.removeGenre = function (value) {
+    $scope.removeGenre = function (value)
+    {
         $scope.selectedGenres.splice(value, 1);
         $scope.actualObject.GenreIDs.splice(value, 1);
     }
@@ -140,7 +153,9 @@
         function(data)
         {
             //Success call
-            $modalInstance.close(data);
+            $scope.returnObject.action = "delete";
+            $scope.returnObject.data = data;
+            $modalInstance.close($scope.returnObject);
         },
         function(error)
         {
@@ -169,9 +184,12 @@
 
             console.log($scope.actualObject);
             Book.update($scope.actualObject,
-            function () {
+            function (data)
+            {
                 // Success!
-                $modalInstance.close("");
+                $scope.returnObject.action = "save";
+                $scope.returnObject.data = data;
+                $modalInstance.close($scope.returnObject);
             },
             function (error)
             {
@@ -186,6 +204,7 @@
     // clickevent Cancel
     $scope.Cancel = function ()
     {
-        $modalInstance.close("");
+        $scope.returnObject.action = "cancel";
+        $modalInstance.close($scope.returnObject);
     };
 }]);
