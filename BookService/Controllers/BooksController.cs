@@ -152,7 +152,7 @@ namespace BookService.Controllers
                      select a).ToList();
             }
 
-            book.Authors = authorsInPost.ToList();
+            book.Authors = authorsInPost;
 
 
             // then change then lookup the genres from the genreIds property
@@ -165,7 +165,7 @@ namespace BookService.Controllers
                      select g).ToList();
             }
 
-            book.Genres = genresInPost.ToList();
+            book.Genres = genresInPost;
             
 
             try
