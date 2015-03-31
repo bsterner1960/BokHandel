@@ -15,20 +15,13 @@
             $scope.endMessage = "Loading failed, self-destruct imminent, preparing emergency escape pods...";
         });
     
-    var doneInitializing;
+        var doneInitializing;
 
-    $rootScope.$watch("authorSearchValue", function (data)
-    {
-        if (doneInitializing == true)
+       // Here we listen for when the user wants to preform a search
+        $rootScope.$on('authorSearchEvent', function ()
         {
-            console.log("doneInitializing is true!");
-        }
-        else
-        {
-            //console.log("Running for the first time!");
-            doneInitializing = true;
-        }
-    });
+            console.log("Todo, let me, let meee do a Author search here! ;-) I wanna search for: ", $rootScope.searchValue);
+        });
 
     
 
