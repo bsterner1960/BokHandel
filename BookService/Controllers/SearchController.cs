@@ -19,44 +19,154 @@ namespace BookService.Controllers
 
         [ResponseType(typeof(SearchDTO))]
         // GET: Search/Books
-        public List<BookDetailDTO> GetBooks([FromUri] int[] genreId = null, int priceFrom = 0, int priceTo = 0, string searchValue = "")
+        public List<BookDetailDTO> GetBooks([FromUri] int[] genreId = null, int priceFrom = 0, int priceTo = 0, string searchValue = null)
         {
-                 int priceLow = 0;
-                 int priceHigh = 9999999;
+            int priceLow = 0;
+            int priceHigh = 9999999;
 
-                 if (priceFrom > 0 )
-                 {
-                    priceLow = priceFrom;
-                 }
+            if (priceFrom > 0)
+            {
+                priceLow = priceFrom;
+            }
 
-                 if (priceTo > 0 )
-                 {
-                    priceHigh = priceTo;
-                 }
+            if (priceTo > 0)
+            {
+                priceHigh = priceTo;
+            }
 
-                        
-                 var NewBooks = from b in db.Books
-                            where (b.Title.Contains(searchValue) || b.Description.Contains(searchValue)) &&
-                                   b.Price >= priceLow && b.Price <= priceHigh
+            List<BookDetailDTOtemp> NewBooks;
 
-                            select new BookDetailDTOtemp()
-                            {
-                                Id = b.Id,
-                                Title = b.Title,
-                                Description = b.Description,
-                                Year = b.Year,
-                                Price = b.Price,
-                                StockBalance = b.StockBalance,
-                                ISBN = b.ISBN,
-                                Authors = b.Authors,
-                                Genres = b.Genres
-                            };
+            if (searchValue == null)
+            {
+                // sök utan söksträng med pris intervall
+                NewBooks = (from b in db.Books
+                           where (b.Price >= priceLow && b.Price <= priceHigh)
 
-                var booksResult = new List<BookDetailDTO>();
+                           select new BookDetailDTOtemp()
+                           {
+                               Id = b.Id,
+                               Title = b.Title,
+                               Description = b.Description,
+                               Year = b.Year,
+                               Price = b.Price,
+                               StockBalance = b.StockBalance,
+                               ISBN = b.ISBN,
+                               Authors = b.Authors,
+                               Genres = b.Genres
+                           }).ToList();
+            }
 
-                foreach (var book in NewBooks)
+            else
+            { 
+                // Sökning på ISBN med prisintervall
+                NewBooks = (from b in db.Books
+                           where b.ISBN.Contains(searchValue) &&
+                                    b.Price >= priceLow && b.Price <= priceHigh
+
+                           select new BookDetailDTOtemp()
+                           {
+                               Id = b.Id,
+                               Title = b.Title,
+                               Description = b.Description,
+                               Year = b.Year,
+                               Price = b.Price,
+                               StockBalance = b.StockBalance,
+                               ISBN = b.ISBN,
+                               Authors = b.Authors,
+                               Genres = b.Genres
+                           }).ToList();
+
+                if (NewBooks.Count() == 0)
                 {
-                    booksResult.Add (new BookDetailDTO
+                    // Sökning på Titel/Beskrivning med prisintervall
+                    //
+                    NewBooks = (from b in db.Books
+                                   where (b.Title.Contains(searchValue) || b.Description.Contains(searchValue)) &&
+                                            b.Price >= priceLow && b.Price <= priceHigh
+                               select new BookDetailDTOtemp()
+                               {
+                                   Id = b.Id,
+                                   Title = b.Title,
+                                   Description = b.Description,
+                                   Year = b.Year,
+                                   Price = b.Price,
+                                   StockBalance = b.StockBalance,
+                                   ISBN = b.ISBN,
+                                   Authors = b.Authors,
+                                   Genres = b.Genres
+                               }).ToList();
+
+                     if (NewBooks.Count() == 0)
+                     {
+                         // Sökning på Författare med prisintervall
+                         //  - sök först ut alla böcker för prisintervallet
+                         NewBooks = (from b in db.Books
+                                where b.Price >= priceLow && b.Price <= priceHigh
+                                   select new BookDetailDTOtemp()
+                                   {
+                                       Id = b.Id,
+                                       Title = b.Title,
+                                       Description = b.Description,
+                                       Year = b.Year,
+                                       Price = b.Price,
+                                       StockBalance = b.StockBalance,
+                                       ISBN = b.ISBN,
+                                       Authors = b.Authors,
+                                       Genres = b.Genres
+                                   }).ToList();
+
+                         if (NewBooks.Count() > 0)
+                         {
+                          //  - gå igenom och se efter om sökt författare finns på bok 
+                             var NewBooksForAuthors = new List<BookDetailDTOtemp>();
+                             foreach (var nBook in NewBooks )
+                             {
+
+                                foreach (var nAuthor in nBook.Authors)
+                                {
+                                     if(nAuthor.Name.Contains(searchValue))
+                                     {
+                                         NewBooksForAuthors.Add(nBook);
+                                         break;
+                                     }
+                                }
+
+                             }
+                             NewBooks = NewBooksForAuthors;
+
+                         }
+
+                     }
+                
+                }
+
+            }
+
+            var booksResult = new List<BookDetailDTO>();
+
+            // filtrera ut de böcker som har rätt Genre
+            foreach (var book in NewBooks)
+            {
+                bool genreCheck = false;
+
+                if (genreId.Count() == 0)
+                {
+                    genreCheck = true;
+                }
+                else
+                {
+                    foreach (var genre in book.Genres)
+                    {
+                        if (genreId.Contains(genre.Id))
+                        {
+                            genreCheck = true;
+                        }
+                    }
+                }
+
+                if (genreCheck)
+                {
+                    booksResult.Add(new BookDetailDTO
                     {
                         Id = book.Id,
                         Title = book.Title,
@@ -68,9 +178,9 @@ namespace BookService.Controllers
                         AuthorNIs = getAuthorNIs(book.Authors),
                         GenreNIs = getGenreNIs(book.Genres)
                     });
-                };
-
-                return (booksResult);
+                }
+            }
+            return (booksResult);
         }
 
         private List<AuthorNI> getAuthorNIs(ICollection<Author> authors)
@@ -99,7 +209,7 @@ namespace BookService.Controllers
             }
             return gNIs;
         }
-    
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -108,7 +218,7 @@ namespace BookService.Controllers
             }
             base.Dispose(disposing);
         }
-        
+
         private bool BookExists(int id)
         {
             return db.Books.Count(e => e.Id == id) > 0;
