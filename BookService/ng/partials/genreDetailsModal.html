@@ -19,4 +19,5 @@
     <button ng-if="isAdmin" class="btn btn-danger" ng-click="Delete()">Delete</button>
     <button ng-if="isAdmin" class="btn btn-primary" ng-click="Save()">Save</button>
     <button class="btn btn-warning" ng-click="Cancel()">Cancel</button>
+    <alert ng-repeat="alert in alerts" type="warning" close="closeAlert($index)">{{alert.msg}}</alert>
 </div>

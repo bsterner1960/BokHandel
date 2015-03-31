@@ -13,46 +13,53 @@ function ($scope, $rootScope, Authors, $modalInstance, author)
         Id: author.Id
     };
 
+    $scope.alerts = [];
 
+    $scope.closeAlert = function (index) {
+        $scope.alerts.splice(index, 1);
+    };
 
     $scope.Delete = function ()
     {
-        console.log("author.Id" + author.Id);
+        
+        $scope.alerts = [];
+
         Authors.destroy($scope.deletionObject,
-        function (data)
+        function ()
         {
             //Success call
             console.log("Target successfully terminated, searching for new targets... " + data);
-            $modalInstance.close(data);
+            $modalInstance.close("");
         },
         function (error)
         {
             // Error call
             console.log("Unable to terminate target. Target appears to be angry, suggestion: RUN! " + error);
+            $scope.alerts.push({ type: 'danger', msg: "Failure to terminate target, recharging main weapons... : " + error.status + " " + error.statusText + "" });
         });
     }
 
     $scope.Save = function()
     {
+        $scope.alerts = [];
+
         $scope.actualObject =
         {
-            AuthorID: $scope.author.Id,
+            Id: $scope.author.Id,
             Name: $scope.author.Name
         };
 
         Authors.update($scope.actualObject,
         function (data)
         {
-            console.log("data: " + data);
             //for successful calls
-            $modalInstance.close(data);
+            $modalInstance.close("");
         },
         function (error)
         {
-            //for unsuccessful calls
+            // Success!
             console.log("Unable to update author. ");
-            $scope.alert = { type: 'danger', msg: 'Unable to apdate author' };
-            $scope.bookError = true;
+            $scope.alerts.push({ type: 'danger', msg: "Failed to complete the save operation, self-destruction imminent: " + error.status + " " + error.statusText + "" });
         });
     }
 

@@ -17,9 +17,16 @@ function ($scope, $rootScope, Genres, $modalInstance, genre)
 
     $scope.test = "";
 
+    $scope.alerts = [];
+
+    $scope.closeAlert = function (index) {
+        $scope.alerts.splice(index, 1);
+    };
+
     $scope.Delete = function ()
     {
-        console.log("genre.Id" + genre.Id);
+        $scope.alerts = [];
+
         Genres.destroy($scope.deletionObject,
         function (data)
         {
@@ -31,11 +38,14 @@ function ($scope, $rootScope, Genres, $modalInstance, genre)
         {
             // Error call
             console.log("Unable to terminate target. Target appears to be angry, suggestion: RUN! " + error);
+            $scope.alerts.push({ type: 'danger', msg: "Failure to terminate target, recharging main weapons...: " + error.status + " " + error.statusText + "" });
         });
     }
 
     $scope.Save = function ()
     {
+        $scope.alerts = [];
+
         $scope.actualObject =
         {
             Id: $scope.genre.Id,
@@ -49,9 +59,13 @@ function ($scope, $rootScope, Genres, $modalInstance, genre)
         function (data)
         {
         console.log("data: " + data);
-        //for successful calls
-        $modalInstance.close(data);
-    })
+        // Success
+        $modalInstance.close("");
+        },
+        function (error)
+        {
+            $scope.alerts.push({ type: 'danger', msg: "Failed to complete the save operation, self-destruction imminent: " + error.status + " " + error.statusText + "" });
+        })
    }
 
     $scope.Cancel = function ()
