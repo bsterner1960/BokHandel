@@ -5,7 +5,7 @@ function ($scope, $rootScope, Authors, $modalInstance, author)
     $scope.returnObject =
     {
         action: "",
-        data: data
+        data: ""
     }
 
     $scope.myAuthor = Authors.show({ Id: author.Id },
