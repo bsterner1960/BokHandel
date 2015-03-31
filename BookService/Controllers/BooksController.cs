@@ -132,12 +132,19 @@ namespace BookService.Controllers
                 return BadRequest(ModelState);
             }
 
-            //if (id != book.Id)
-            //{
-            //    return BadRequest();
-            //}
 
-           Book book = new Book();
+            Book book;
+
+            // Lookup the book in the db
+            book = db.Books.Where(b => b.Id == changedBook.Id)
+               .Include(b => b.Authors)
+               .Include(b => b.Genres)
+               .First();
+
+            if (book == null)
+            {
+                return NotFound();
+            }
 
             book.Id = changedBook.Id;
             book.Title = changedBook.Title;
@@ -147,27 +154,33 @@ namespace BookService.Controllers
             book.StockBalance = changedBook.StockBalance;
             book.ISBN = changedBook.ISBN;
 
-            foreach(int aId in changedBook.AuthorIds)
-            {  
-                Author author = await db.Authors.FindAsync(aId);
-                if (author != null)
-                {
-                    book.Authors.Add(author);
-
-                }
-            }
-
-            foreach (int gId in changedBook.GenreIds)
-            {
-                Genre genre = await db.Genres.FindAsync(gId);
-                if (genre != null)
-                {
-                    book.Genres.Add(genre);
-
-                }
-            }
-            
             db.Entry(book).State = EntityState.Modified;
+
+            // then change then lookup the authors from the authorId property
+            var authorsInPost = new List<Author>();
+            if (changedBook.AuthorIds != null)
+            {
+                authorsInPost =
+                    (from a in db.Authors
+                     where changedBook.AuthorIds.Contains(a.Id)
+                     select a).ToList();
+            }
+
+            book.Authors = authorsInPost.ToList();
+
+
+            // then change then lookup the genres from the genreIds property
+            var genresInPost = new List<Genre>();
+            if (changedBook.GenreIds != null)
+            {
+                genresInPost =
+                    (from g in db.Genres
+                     where changedBook.GenreIds.Contains(g.Id)
+                     select g).ToList();
+            }
+
+            book.Genres = genresInPost.ToList();
+            
 
             try
             {
