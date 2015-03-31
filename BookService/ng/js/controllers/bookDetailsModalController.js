@@ -53,6 +53,7 @@
         {
             // Failure...
             keyOfEarth = false;
+            $scope.alerts.push({ type: 'danger', msg: "Failure, the data requested was not retrieved successfully: " + error.status + " " + error.statusText + "" });
         });
     
     // All genres in our system
@@ -68,19 +69,21 @@
     {
         // Failure...
         keyOfWater = false;
+        $scope.alerts.push({ type: 'danger', msg: "Failure, the data requested was not retrieved successfully: " + error.status + " " + error.statusText + "" });
     });
 
 
     $scope.myBook = Book.show({ Id: book.Id },
     function ()
     {
-    //Success!
+        //Success!
         keyOfFire = true;
         $scope.templeOfDoom();
     },
     function (error)
     {
         //Failure...
+        keyOfFire = false;
         $scope.alerts.push({ type: 'danger', msg: "Failure, the data requested was not retrieved successfully: " + error.status + " " + error.statusText + "" });
     });
 
@@ -93,22 +96,24 @@
             keyOfWater = false;
             keyOfFire = false;
 
-            for (var i = 0; i < $scope.myBook.AuthorNIs.length; i++) {
-                console.log("value: " + $scope.Authors.length);
-                for (var j = 0; j < $scope.Authors.length; j++) {
-                    console.log("sigh: " + $scope.Authors.length);
-                    //console.log("if " + $scope.myBook.AuthorNIs[i].Id + " === " + $scope.Authors[j].Id);
-                    if ($scope.myBook.AuthorNIs[i].Id === $scope.Authors[j].Id) {
+            for (var i = 0; i < $scope.myBook.AuthorNIs.length; i++)
+            {
+                for (var j = 0; j < $scope.Authors.length; j++)
+                {
+                    if ($scope.myBook.AuthorNIs[i].Id === $scope.Authors[j].Id)
+                    {
                         $scope.selectedAuthors.push($scope.Authors[j]);
                         $scope.actualObject.AuthorIDs.push($scope.Authors[j].Id);
                     }
                 }
             }
 
-            for (var i = 0; i < $scope.myBook.GenreNIs.length; i++) {
-                for (var j = 0; j < $scope.Genres.length; j++) {
-                    if ($scope.myBook.GenreNIs[i].Id === $scope.Genres[j].Id) {
-                        //console.log("pushing genre");
+            for (var i = 0; i < $scope.myBook.GenreNIs.length; i++)
+            {
+                for (var j = 0; j < $scope.Genres.length; j++)
+                {
+                    if ($scope.myBook.GenreNIs[i].Id === $scope.Genres[j].Id)
+                    {
                         $scope.selectedGenres.push($scope.Genres[j]);
                         $scope.actualObject.GenreIDs.push($scope.Genres[j].Id);
                     }
