@@ -5,12 +5,12 @@
 
     <div class="form-group">
         <label>Genre name: </label>
-        <input type="text" ng-if="isAdmin" ng-model="genre.Name" class="form-control" placeholder="Enter genre name">
-        <p ng-if="!isAdmin">{{genre.Name}}</p>
+        <input type="text" ng-if="isAdmin" ng-model="myGenre.Name" class="form-control" placeholder="Enter genre name">
+        <p ng-if="!isAdmin">{{myGenre.Name}}</p>
 
         <label>Genre description: </label>
-        <input type="text" ng-if="isAdmin" ng-model="genre.Description" class="form-control" placeholder="Enter genre description">
-        <p ng-if="!isAdmin">{{genre.Description}}</p>
+        <input type="text" ng-if="isAdmin" ng-model="myGenre.Description" class="form-control" placeholder="Enter genre description">
+        <p ng-if="!isAdmin">{{myGenre.Description}}</p>
     </div>
 
 

@@ -1,13 +1,17 @@
 ﻿app.controller("authorDetailsModalController", ["$scope", "$rootScope", "Authors", "$modalInstance", "author",
 function ($scope, $rootScope, Authors, $modalInstance, author)
 {
-    console.log("author is: " + author.Name);
-    $scope.author = author;
-    $scope.authorError = false;
 
+
+    $scope.myAuthor = Authors.show({ Id: author.Id },
+    function (book) {
+        //Success!
+
+    }, function (error) {
+        // Failure...
+        $scope.alerts.push({ type: 'danger', msg: "Failure, the data requested was not retrieved successfully: " + error.status + " " + error.statusText + "" });
+    });
     
-    console.log("Booting up authorDetailsModal successful, awaiting orders.");
-
     $scope.deletionObject =
     {
         Id: author.Id
@@ -45,19 +49,19 @@ function ($scope, $rootScope, Authors, $modalInstance, author)
 
         $scope.actualObject =
         {
-            Id: $scope.author.Id,
-            Name: $scope.author.Name
+            Id: $scope.myAuthor.Id,
+            Name: $scope.myAuthor.Name
         };
 
         Authors.update($scope.actualObject,
-        function (data)
+        function ()
         {
-            //for successful calls
+            // Success!
             $modalInstance.close("");
         },
         function (error)
         {
-            // Success!
+            // Failure...
             console.log("Unable to update author. ");
             $scope.alerts.push({ type: 'danger', msg: "Failed to complete the save operation, self-destruction imminent: " + error.status + " " + error.statusText + "" });
         });

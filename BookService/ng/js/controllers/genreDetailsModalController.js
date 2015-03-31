@@ -2,13 +2,16 @@
 function ($scope, $rootScope, Genres, $modalInstance, genre)
 {
     
-    console.log("My genre is: " + genre.Name);
-    $scope.genre = genre;
-
-    $scope.deletionObject =
+    $scope.myGenre = Genres.show({ Id: genre.Id },
+    function (book)
     {
+        //Success!
 
-    };
+    }, function (error)
+    {
+        // Failure...
+        $scope.alerts.push({ type: 'danger', msg: "Failure, the data requested was not retrieved successfully: " + error.status + " " + error.statusText + "" });
+    });
 
     $scope.deletionObject =
     {
@@ -48,9 +51,9 @@ function ($scope, $rootScope, Genres, $modalInstance, genre)
 
         $scope.actualObject =
         {
-            Id: $scope.genre.Id,
-            Name: $scope.genre.Name,
-            Description: $scope.genre.Description
+            Id: $scope.myGenre.Id,
+            Name: $scope.myGenre.Name,
+            Description: $scope.myGenre.Description
         };
 
         console.log($scope.actualObject.Id);

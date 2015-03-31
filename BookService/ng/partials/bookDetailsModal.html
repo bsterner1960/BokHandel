@@ -39,12 +39,9 @@
         <p ng-if="!isAdmin">{{myBook.Year}}</p>
     </div>
 
-    <div ng-show="!isAdmin">
-        <label>Authors</label>
-    </div>
-    <div ng-show="isAdmin">
-        <label>Edit authors</label>
+    <label>{{authorString}}</label>
 
+    <div ng-show="isAdmin">
         <select class="form-control" ng-model="selectedAuthorID" id="cookieMonster">
             <option ng-repeat="author in Authors" value="{{author.Id}}">
                 {{author.Name}}
@@ -61,18 +58,18 @@
         </div>
     </div>
 
-    <div ng-show="!isAdmin">
-        <label>Genres</label>
+    <label>
+        {{genreString}}
+    </label>
+    <div ng-show="isAdmin">
+
+        <select class="form-control" ng-model="selectedGenreID" id="cookieMonster">
+            <option ng-repeat="genre in Genres" value="{{genre.Id}}">
+                {{genre.Name}}
+            </option>
+        </select>
+        <button class="btn btn-primary" ng-show="isAdmin" ng-click="addGenre()">Add</button>
     </div>
-        <div ng-show="isAdmin">
-            <label>Edit genres</label>
-            <select class="form-control" ng-model="selectedGenreID" id="cookieMonster">
-                <option ng-repeat="genre in Genres" value="{{genre.Id}}">
-                    {{genre.Name}}
-                </option>
-            </select>
-            <button class="btn btn-primary" ng-show="isAdmin" ng-click="addGenre()">Add</button>
-        </div>
     <div style="overflow: scroll; height:140px;">
         <div ng-repeat="genre in selectedGenres">
             <br />
@@ -81,9 +78,6 @@
             <button class="btn btn-warning pull-right" ng-show="isAdmin" data-ng-click="removeGenre($index)">Remove</button>
         </div>
     </div>
-
-
-
 </div>
 <div class="modal-footer">
     <button ng-if="isAdmin" class="btn btn-danger" ng-click="Delete()">Delete</button>

@@ -27,7 +27,6 @@ function ($scope, $rootScope, Search, Book, $modal)
                 book: function ()
                 {
                     return book;
-                    
                 }
             }
         });
@@ -40,20 +39,22 @@ function ($scope, $rootScope, Search, Book, $modal)
                 console.log("You've got more mail: " + data.Id);
 
 
-                for (var i = 0; i < $scope.books.length; i++) {
-                    if ($scope.books[i].Id === data.Id) {
+                for (var i = 0; i < $scope.books.length; i++)
+                {
+                    if ($scope.books[i].Id === data.Id)
+                    {
                         $scope.books.splice(i, 1);
                     }
                 }
             }
         });
-
     }
 
 
 
     // This will remove the alert popup when user clicks on the alert
-    $scope.closeAlert = function (index) {
+    $scope.closeAlert = function (index)
+    {
         $scope.alerts.splice(index, 1);
     };
 
@@ -64,9 +65,11 @@ function ($scope, $rootScope, Search, Book, $modal)
     // we need only to react on a real search.  
     var myFirstRun;
 
-    $rootScope.$watch("bookSearchValue", function () {
+    $rootScope.$watch("bookSearchValue", function ()
+    {
         // Are we running this for the first time (the controller is included in code somewhere)
-        if (myFirstRun === undefined) {
+        if (myFirstRun === undefined)
+        {
             myFirstRun = false;
             // Nope, not first time the controller is used so then we assume we got a search to work with.
         } else {
@@ -77,8 +80,10 @@ function ($scope, $rootScope, Search, Book, $modal)
             var genreCheckBoxIds = []; // Array to hold only genre id:s
 
             // put the genres id (based on what genre that has been checked in the sidebar) in a seperate "tidy" array to send to the backend
-            for (var checkBox in $scope.sidebar.checkedBoxes) {
-                if ($scope.sidebar.checkedBoxes[checkBox]) {
+            for (var checkBox in $scope.sidebar.checkedBoxes)
+            {
+                if ($scope.sidebar.checkedBoxes[checkBox])
+                {
                     genreCheckBoxIds.push(checkBox); // Putting the genre Id in the "tidy" array ;-).
                 }
             }
@@ -88,19 +93,18 @@ function ($scope, $rootScope, Search, Book, $modal)
             
             //$scope.books = Search.index({ whatToSearchFor: "books", searchValues: $rootScope.bookSearchValue, priceFrom: $scope.sidebar.priceFrom, priceTo: $scope.sidebar.priceTo, checkedBoxes: $scope.sidebar.checkedBoxes },
                 //On success (if you want to do anything on success you can add it here
-                function (data) {
+                function (data)
+                {
                     // Nothing to see here yet, just move along and have a good day :-).
                 },
             // And here we can handle error stuff when something goes wrong
             // for example show an error message to the user
-            function (error) {
+            function (error)
+            {
                 //On error
                 // console.log("Ojsan, fick problem när jag kallade på servern " + error.status + " " + error.statusText + "");
                 $scope.alerts.push({ type: 'danger', msg: "Oh my, something went wrong! Stepped into trouble when I tried to communicate with the backend, bookListController: " + error.status + " " + error.statusText + "" });
-
             });
-
         }
     });
-
 }]);
