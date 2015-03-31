@@ -105,7 +105,7 @@
                 console.log("data: " + data);
                 //for successful calls
                 //$modalInstance.close(data);
-                $modalInstance.close();
+                $modalInstance.close(data);
                 console.log("Efter .close i newBookModalController: ");
 
             },
@@ -120,8 +120,8 @@
     }
 
     // clickevent Cancel
-    $scope.Cancel = function ()
+    $scope.Cancel = function (data)
     {
-        $modalInstance.close();
+        $modalInstance.close(data);
     };
 }]);

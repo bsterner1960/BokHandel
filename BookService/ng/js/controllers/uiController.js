@@ -54,7 +54,7 @@
         //then wait for the modal to close/dismiss and act on the outcome 
         //depending on which of the two was used
         modalInstance.result.then(function (selectedItem) {
-            //this function is called if $modalInstance.close() is used and receives
+            //this function is called if $modalInstance.close(data) is used and receives
             //any data send through the .close() method
             console.log("ui Modal closed: ", selectedItem);
             $scope.selected = selectedItem;
@@ -73,7 +73,7 @@ app.controller("modalController", ["$scope", "$modalInstance", "items", function
         item: $scope.items[0]
     };
 
-    //if the user clicks "ok", call the $modalInstance.close() method and send data 
+    //if the user clicks "ok", call the $modalInstance.close(data) method and send data 
     //back to the main view
     $scope.ok = function () {
         console.log("modal Modal closed: ", $scope.selected.item);
