@@ -47,7 +47,7 @@
         {
             //Success!
             keyOfEarth = true;
-            $scope.templeOfDoom();
+            $scope.enterTheTempleOfDoom();
         },
         function ()
         {
@@ -62,7 +62,7 @@
     {
         //Success!
         keyOfWater = true;
-        $scope.templeOfDoom();
+        $scope.enterTheTempleOfDoom();
 
     },
     function ()
@@ -78,7 +78,7 @@
     {
         //Success!
         keyOfFire = true;
-        $scope.templeOfDoom();
+        $scope.enterTheTempleOfDoom();
     },
     function (error)
     {
@@ -88,7 +88,7 @@
     });
 
 
-    $scope.templeOfDoom = function()
+    $scope.enterTheTempleOfDoom = function()
     {
         if(keyOfEarth && keyOfWater && keyOfFire)
         {
