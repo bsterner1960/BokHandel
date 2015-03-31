@@ -60,54 +60,36 @@ function ($scope, $rootScope, Search, Book, $modal)
         $scope.alerts.splice(index, 1);
     };
 
-    console.log($scope.closeAlert.index);
+    // Here we listen for when the user wants to perfome a search
+    $rootScope.$on('bookSearchEvent', function () {
+        
+        // If there allready is any error messages displayed then destory them.
+        $scope.alerts = [];
 
-    // Using this to make sure a serach is not sent to the backend 
-    // when only initializing the controller for the first time
-    // we need only to react on a real search.  
-    var myFirstRun;
+        var genreCheckBoxIds = []; // Array to hold only genre id:s
 
-    $rootScope.$watch("bookSearchValue", function ()
-    {
-        // Are we running this for the first time (the controller is included in code somewhere)
-        if (myFirstRun === undefined)
-        {
-            myFirstRun = false;
-            // Nope, not first time the controller is used so then we assume we got a search to work with.
-        } else
-        {
-
-            // If there allready is any error messages displayed then destory them.
-            $scope.alerts = [];
-            
-            var genreCheckBoxIds = []; // Array to hold only genre id:s
-
-            // put the genres id (based on what genre that has been checked in the sidebar) in a seperate "tidy" array to send to the backend
-            for (var checkBox in $scope.sidebar.checkedBoxes)
-            {
-                if ($scope.sidebar.checkedBoxes[checkBox])
-                {
-                    genreCheckBoxIds.push(checkBox); // Putting the genre Id in the "tidy" array ;-).
-                }
+        // put the genres id (based on what genre that has been checked in the sidebar) in a seperate "tidy" array to send to the backend
+        for (var checkBox in $scope.sidebar.checkedBoxes) {
+            if ($scope.sidebar.checkedBoxes[checkBox]) {
+                genreCheckBoxIds.push(checkBox); // Putting the genre Id in the "tidy" array ;-).
             }
-
-
-            $scope.books = Search.index({ whatToSearchFor: "books", searchValue: $rootScope.bookSearchValue, priceFrom: $scope.sidebar.priceFrom, priceTo: $scope.sidebar.priceTo, genreId: genreCheckBoxIds },
-            
-            //$scope.books = Search.index({ whatToSearchFor: "books", searchValues: $rootScope.bookSearchValue, priceFrom: $scope.sidebar.priceFrom, priceTo: $scope.sidebar.priceTo, checkedBoxes: $scope.sidebar.checkedBoxes },
-                //On success (if you want to do anything on success you can add it here
-                function (data)
-                {
-                    // Nothing to see here yet, just move along and have a good day :-).
-                },
-            // And here we can handle error stuff when something goes wrong
-            // for example show an error message to the user
-            function (error)
-            {
-                //On error
-                // console.log("Ojsan, fick problem när jag kallade på servern " + error.status + " " + error.statusText + "");
-                $scope.alerts.push({ type: 'danger', msg: "Oh my, something went wrong! Stepped into trouble when I tried to communicate with the backend, bookListController: " + error.status + " " + error.statusText + "" });
-            });
         }
+
+        // Send the request to the backend and then show the result on the view
+        $scope.books = Search.index({ whatToSearchFor: "books", searchValue: $rootScope.searchValue, priceFrom: $scope.sidebar.priceFrom, priceTo: $scope.sidebar.priceTo, genreId: genreCheckBoxIds },
+
+        //$scope.books = Search.index({ whatToSearchFor: "books", searchValues: $rootScope.bookSearchValue, priceFrom: $scope.sidebar.priceFrom, priceTo: $scope.sidebar.priceTo, checkedBoxes: $scope.sidebar.checkedBoxes },
+            //On success (if you want to do anything on success you can add it here
+            function (data) {
+                // Nothing to see here yet, just move along and have a good day :-).
+            },
+        // And here we can handle error stuff when something goes wrong
+        // for example show an error message to the user
+        function (error) {
+            //On error
+            // console.log("Ojsan, fick problem när jag kallade på servern " + error.status + " " + error.statusText + "");
+            $scope.alerts.push({ type: 'danger', msg: "Oh my, something went wrong! Stepped into trouble when I tried to communicate with the backend, bookListController: " + error.status + " " + error.statusText + "" });
+        });
     });
-}]);
+
+ }]);

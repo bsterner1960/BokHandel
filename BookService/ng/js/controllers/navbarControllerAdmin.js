@@ -20,13 +20,19 @@
     $scope.radioModel = "Author";
 
     $scope.search = function () {
-
+    
+    $rootScope.searchValue = $scope.mySearch;
 
         if ($scope.radioModel === "Book") {
-            $rootScope.bookSearchValue = $scope.mySearch;
+            // Tell the controller that is listening for this event to do a search and
+            // show the result on a view
+
+            $rootScope.$broadcast('bookSearchEvent');
         }
         else {
-            $rootScope.authorSearchValue = $scope.mySearch;
+            // Tell the controller that is listening for this event to do a search and
+            // show the result on a view
+            $rootScope.$broadcast('authorSearchEvent');
         }
     }
 
