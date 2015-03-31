@@ -44,7 +44,7 @@ namespace BookService.Migrations
                     Year = 1813,
                     Price = 9.99M,
                     StockBalance = 1,
-                    ISBN = 1234567890123
+                    ISBN = "1234567890123"
                 },
                 new Book()
                 {
@@ -53,7 +53,7 @@ namespace BookService.Migrations
                     Year = 1817,
                     Price = 12.95M,
                     StockBalance = 1,
-                    ISBN = 1234567890002
+                    ISBN = "1234567890002"
                 },
                 new Book()
                 {
@@ -62,7 +62,7 @@ namespace BookService.Migrations
                     Year = 1850,
                     Price = 15,
                     StockBalance = 1,
-                    ISBN = 1234567890003
+                    ISBN = "1234567890003"
                 },
                 new Book()
                 {
@@ -71,7 +71,7 @@ namespace BookService.Migrations
                     Year = 1617,
                     Price = 8.95M,
                     StockBalance = 1,
-                    ISBN = 1234567890004
+                    ISBN = "1234567890004"
                 },
                 new Book()
                 {
@@ -80,7 +80,7 @@ namespace BookService.Migrations
                     Year = 2017,
                     Price = 5000,
                     StockBalance = 1,
-                    ISBN = 1234567890005
+                    ISBN = "1234567890005"
                 },
                 new Book()
                 {
@@ -89,7 +89,7 @@ namespace BookService.Migrations
                     Year = 2050,
                     Price = 200,
                     StockBalance = 42,
-                    ISBN = 1234567890006
+                    ISBN = "1234567890006"
                 },
                 new Book()
                 {
@@ -98,7 +98,7 @@ namespace BookService.Migrations
                     Year = 2042,
                     Price = 3000,
                     StockBalance = 42,
-                    ISBN = 1234567890007
+                    ISBN = "1234567890007"
                 },
                 new Book()
                 {
@@ -107,7 +107,7 @@ namespace BookService.Migrations
                     Year = 2016,
                     Price = 300,
                     StockBalance = 6,
-                    ISBN = 1234567890008
+                    ISBN = "1234567890008"
                 }
                 );
            /* context.BookGenreConnections.AddOrUpdate(x => x.Id,
