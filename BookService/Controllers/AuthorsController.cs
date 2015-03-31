@@ -18,9 +18,22 @@ namespace BookService.Controllers
         private BookServiceContext db = new BookServiceContext();
 
         // GET api/Authors
-        public IQueryable<Author> GetAuthors()
+        //public IQueryable<Author> GetAuthors()
+        //{
+        //    return db.Authors;
+        //}
+        //// GET api/authors
+        public List<AuthorDTO> GetAuthors()
         {
-            return db.Authors;
+            var authors = (from a in db.Authors
+                         select new AuthorDTO()
+                         {
+                             Id = a.Id,
+                             Name = a.Name
+                         }).ToList();
+
+
+            return authors;
         }
 
         // GET api/Authors/5
@@ -33,11 +46,17 @@ namespace BookService.Controllers
                 return NotFound();
             }
 
-            return Ok(author);
+            AuthorDTO aDTO = new AuthorDTO()
+            {
+                Id = author.Id,
+                Name = author.Name
+            };
+
+            return Ok(aDTO);
         }
 
         // PUT api/Authors/5
-        public async Task<IHttpActionResult> PutAuthor( Author author)
+        public async Task<IHttpActionResult> PutAuthor( AuthorDTO authorDTO)
         {
             if (!ModelState.IsValid)
             {
@@ -49,6 +68,12 @@ namespace BookService.Controllers
             //    return BadRequest();
             //}
 
+            Author author = new Author()
+            {
+                Id = authorDTO.Id,
+                Name = authorDTO.Name
+            };
+
             db.Entry(author).State = EntityState.Modified;
 
             try
@@ -57,7 +82,7 @@ namespace BookService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AuthorExists(author.Id))
+                if (!AuthorExists(authorDTO.Id))
                 {
                     return NotFound();
                 }
@@ -71,13 +96,19 @@ namespace BookService.Controllers
         }
 
         // POST api/Authors
-        [ResponseType(typeof(Author))]
-        public async Task<IHttpActionResult> PostAuthor(Author author)
+        [ResponseType(typeof(AuthorDTO))]
+        public async Task<IHttpActionResult> PostAuthor(AuthorDTO authorDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
+            Author author = new Author()
+            {
+                Id = authorDTO.Id,
+                Name = authorDTO.Name
+            };
 
             db.Authors.Add(author);
             await db.SaveChangesAsync();
@@ -86,7 +117,7 @@ namespace BookService.Controllers
         }
 
         // DELETE api/Authors/5
-        [ResponseType(typeof(Author))]
+        [ResponseType(typeof(AuthorDTO))]
         public async Task<IHttpActionResult> DeleteAuthor(int id)
         {
             Author author = await db.Authors.FindAsync(id);
@@ -94,11 +125,16 @@ namespace BookService.Controllers
             {
                 return NotFound();
             }
+            AuthorDTO authorDTO = new AuthorDTO()
+            {
+                Id = author.Id,
+                Name = author.Name
+            };
 
             db.Authors.Remove(author);
             await db.SaveChangesAsync();
 
-            return Ok(author);
+            return Ok(authorDTO);
         }
 
         protected override void Dispose(bool disposing)
