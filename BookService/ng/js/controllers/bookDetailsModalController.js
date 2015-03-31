@@ -2,6 +2,12 @@
     function ($scope, $rootScope, Authors, Book, Genres, $modalInstance, book)
     {
 
+        $scope.returnObject =
+        {
+            action: "",
+            data: ""
+        }
+
         $scope.book = book;
 
         console.log("Engaging bookDetailsModalController.");
@@ -147,7 +153,9 @@
         function(data)
         {
             //Success call
-            $modalInstance.close(data);
+            $scope.returnObject.action = "delete";
+            $scope.returnObject.data = data;
+            $modalInstance.close($scope.returnObject);
         },
         function(error)
         {
@@ -176,10 +184,12 @@
 
             console.log($scope.actualObject);
             Book.update($scope.actualObject,
-            function ()
+            function (data)
             {
                 // Success!
-                $modalInstance.close("");
+                $scope.returnObject.action = "save";
+                $scope.returnObject.data = data;
+                $modalInstance.close($scope.returnObject);
             },
             function (error)
             {
@@ -194,6 +204,7 @@
     // clickevent Cancel
     $scope.Cancel = function ()
     {
-        $modalInstance.close("");
+        $scope.returnObject.action = "cancel";
+        $modalInstance.close($scope.returnObject);
     };
 }]);
