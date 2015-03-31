@@ -30,7 +30,7 @@
     }
 
     // klickevent Cancel
-     $scope.Cancel = function (data) {
+     $scope.Cancel = function () {
          $modalInstance.close(data);
 
      };

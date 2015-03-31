@@ -39,34 +39,34 @@
         <p ng-if="!isAdmin">{{myBook.Year}}</p>
     </div>
 
+    <div ng-show="isAdmin">
+        <label>Edit authors</label>
 
-    <label>Edit authors</label>
-    
         <select class="form-control" ng-model="selectedAuthorID" id="cookieMonster">
             <option ng-repeat="author in Authors" value="{{author.Id}}">
                 {{author.Name}}
             </option>
         </select>
         <button class="btn btn-primary" ng-click="addAuthor()">Add</button>
-
+    </div>
     <div style="overflow: scroll; height:140px;">
         <div ng-repeat="author in selectedAuthors">
             <br />
             {{ author.Name }}
 
-            <button class="btn btn-warning pull-right" data-ng-click="removeAuthor($index)">Remove</button>
+            <button class="btn btn-warning pull-right" ng-show="isAdmin" data-ng-click="removeAuthor($index)">Remove</button>
         </div>
     </div>
 
-    <p>
-        <label>Edit genres</label>
-        <select class="form-control" ng-model="selectedGenreID" id="cookieMonster">
-            <option ng-repeat="genre in Genres" value="{{genre.Id}}">
-                {{genre.Name}}
-            </option>
-        </select>
-        <button class="btn btn-primary" ng-click="addGenre()">Add</button>
-    </p>
+        <div ng-show="isAdmin">
+            <label>Edit genres</label>
+            <select class="form-control" ng-model="selectedGenreID" id="cookieMonster">
+                <option ng-repeat="genre in Genres" value="{{genre.Id}}">
+                    {{genre.Name}}
+                </option>
+            </select>
+            <button class="btn btn-primary" ng-show="isAdmin" ng-click="addGenre()">Add</button>
+        </div>
     <div style="overflow: scroll; height:140px;">
         <div ng-repeat="genre in selectedGenres">
             <br />

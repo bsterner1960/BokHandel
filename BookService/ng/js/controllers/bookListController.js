@@ -34,17 +34,18 @@ function ($scope, $rootScope, Search, Book, $modal)
 
         modalInstance.result.then(function (data)
         {
-            console.log(data);
-            console.log("You've got more mail: " + data.Id);
-            
-
-            for (var i = 0; i < $scope.books.length; i++)
+            if (data !== "")
             {
-                console.log("Looping: " + $scope.books[i].Id);
-                if ($scope.books[i].Id === data.Id)
-                {
-                    console.log("Found it: " + $scope.books[i].Id);
-                    $scope.books.splice(i, 1);
+                console.log(data);
+                console.log("You've got more mail: " + data.Id);
+
+
+                for (var i = 0; i < $scope.books.length; i++) {
+                    console.log("Looping: " + $scope.books[i].Id);
+                    if ($scope.books[i].Id === data.Id) {
+                        console.log("Found it: " + $scope.books[i].Id);
+                        $scope.books.splice(i, 1);
+                    }
                 }
             }
         });

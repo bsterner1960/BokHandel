@@ -21,21 +21,30 @@
         function (book)
         {
             //Success call
-            console.log($scope.myBook);
-            console.log("$scope.myBook.AuthorNI.Id: " + $scope.myBook.AuthorNIs[0].Id + "ok?");
             for (var i = 0; i < $scope.myBook.AuthorNIs.length; i++)
             {
                 for (var j = 0; j < $scope.Authors.length; j++)
                 {
-                    console.log("comparing: " + $scope.myBook.AuthorNIs[i].Id + " vs " + $scope.Authors[j].Id);
                     if ($scope.myBook.AuthorNIs[i].Id == $scope.Authors[j].Id)
                     {
-                        console.log("found a match: " + $scope.Authors[j].Id);
                         $scope.selectedAuthors.push($scope.Authors[j]);
                         $scope.actualObject.AuthorIDs.push($scope.Authors[j].Id);
                     }
                 }
             }
+
+            for(var i = 0; i < $scope.myBook.GenreNIs.length; i++)
+            {
+                for(var j = 0; j < $scope.Genres.length; j++)
+                {
+                    if ($scope.myBook.GenreNIs[i].Id == $scope.Genres[j].Id)
+                    {
+                        $scope.selectedGenres.push($scope.Genres[j]);
+                        $scope.actualObject.GenreIDs.push($scope.Genres[j].Id);
+                    }
+                }
+            }
+
         },
         function(error)
         {
@@ -128,11 +137,10 @@
     {
         console.log("book.Id" + book.Id);
         Book.destroy($scope.deletionObject,
-        function(book)
+        function()
         {
             //Success call
-            console.log("Target successfully terminated, searching for new targets... " + data);
-            $modalInstance.close(book);
+            $modalInstance.close("");
         },
         function(error)
         {
@@ -147,6 +155,8 @@
     {
         console.log($scope.myBook);
         console.log("cookie: " + $scope.myBook.Title);
+        $scope.alerts = [];
+
         if ($scope.myBook.Title)
         {
             $scope.actualObject.Id = book.Id;
@@ -159,11 +169,9 @@
 
             console.log($scope.actualObject);
             Book.update($scope.actualObject,
-            function (data) {
-                console.log("data: " + data);
+            function () {
                 // Success!
-                $modalInstance.close(data);
-                console.log("Operation complete, shutting down.");
+                $modalInstance.close("");
             },
             function (error)
             {
@@ -176,8 +184,8 @@
     }
 
     // clickevent Cancel
-    $scope.Cancel = function (data)
+    $scope.Cancel = function ()
     {
-        $modalInstance.close(data);
+        $modalInstance.close("");
     };
 }]);

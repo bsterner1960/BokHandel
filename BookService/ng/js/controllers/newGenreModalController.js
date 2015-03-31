@@ -9,15 +9,18 @@
     // klickevent Create
      $scope.Create = function (authorname) {
 
-        if   ($scope.newGenre.Name)  {
+         if ($scope.newGenre.Name)
+         {
 
 
             Genres.create($scope.newGenre, 
-                function(data){
+                function (data)
+                {
                     //for successful calls
                     $modalInstance.close(data);
                 }, 
-                function () {
+                function ()
+                {
                     //for unsuccessful calls
                     console.log("Fel vid Create genre. ");
                     $scope.alert = { type: 'danger', msg: 'Fel vid create Genre' };
@@ -30,7 +33,7 @@
     }
 
     // klickevent Cancel
-     $scope.Cancel = function (data) {
+     $scope.Cancel = function () {
          $modalInstance.close(data);
 
      };
