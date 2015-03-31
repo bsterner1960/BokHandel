@@ -26,27 +26,15 @@ namespace BookService.Controllers
         // GET api/Books
         public List<BookDTO> GetBooks()
         {
-            var books = from b in db.Books
-                        select new BookDTOtemp()
+            var books = (from b in db.Books
+                        select new BookDTO()
                         {
                             Id = b.Id,
-                            Title = b.Title,
-                           // Authors = b.Authors
-                        };
+                            Title = b.Title
+                        }).ToList();
 
-            var books2 = new List<BookDTO>();
-            foreach (var book in books)
-            {
-                books2.Add(
-                    new BookDTO()
-                    {
-                        Id = book.Id,
-                        Title = book.Title,
-                        //AuthorNames = getAuthorNames(book.Authors)
-                    }
-                );
-            }
-            return books2;
+
+            return books;
         }
 
 
