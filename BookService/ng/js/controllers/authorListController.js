@@ -20,7 +20,32 @@
        // Here we listen for when the user wants to preform a search
         $rootScope.$on('authorSearchEvent', function ()
         {
-            console.log("Todo, let me, let meee do a Author search here! ;-) I wanna search for: ", $rootScope.searchValue);
+            
+            $scope.alerts = [];
+
+            // Send the request to the backend and then show the result on the view
+            $scope.authors = Search.index(
+            {
+                whatToSearchFor: "authors",
+                searchValue: $rootScope.searchValue
+            },
+                function (data)
+                {
+                    // Success!
+
+                },
+            function (error)
+            {
+                // Failure...
+                $scope.alerts.push(
+                {
+                    type: 'danger',
+                    msg: "Failure, the data requested was not retrieved successfully: " +
+                        error.status + " " +
+                        error.statusText + ""
+                });
+            });
+
         });
 
     
