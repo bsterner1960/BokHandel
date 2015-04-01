@@ -198,7 +198,6 @@
     <Compile Include="Models\GenreDTO.cs" />
     <Compile Include="Models\GenreNI.cs" />
     <Compile Include="Models\NewBookDTO.cs" />
-    <Compile Include="Models\SearchDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

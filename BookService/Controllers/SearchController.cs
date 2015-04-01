@@ -17,10 +17,11 @@ namespace BookService.Controllers
     {
         private BookServiceContext db = new BookServiceContext();
 
-        [ResponseType(typeof(SearchDTO))]
+        [ResponseType(typeof(BookDetailDTO))]
         // GET: Search/Books
         public List<BookDetailDTO> GetBooks([FromUri] int[] genreId = null, int priceFrom = 0, int priceTo = 0, string searchValue = null)
         {
+
             int priceLow = 0;
             int priceHigh = 9999999;
 
@@ -180,6 +181,7 @@ namespace BookService.Controllers
                     });
                 }
             }
+
             return (booksResult);
         }
 

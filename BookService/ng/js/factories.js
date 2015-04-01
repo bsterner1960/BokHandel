@@ -11,9 +11,8 @@ app.factory("Book", ["$resource", function ($resource)
     return $resource("/api/books/:id", { id: "@id" },standardMethods);
 }]);
 
-app.factory("Search", ["$resource", function ($resource)
-{
-    return $resource("/api/search/:searchValues", { whatToSearchFor: "@whatToSearchFor", searchValues: "@searchValues" }, standardMethods);
+app.factory("Search", ["$resource", function ($resource) {
+    return $resource("/api/search/:whatToSearchFor/:searchValues", { whatToSearchFor: "@whatToSearchFor", searchValues: "@searchValues" }, standardMethods);
 }]);
 
 app.factory("Authors", ["$resource", function ($resource)
