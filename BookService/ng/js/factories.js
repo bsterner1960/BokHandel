@@ -15,6 +15,10 @@ app.factory("Search", ["$resource", function ($resource) {
     return $resource("/api/search/:whatToSearchFor/:searchValues", { whatToSearchFor: "@whatToSearchFor", searchValues: "@searchValues" }, standardMethods);
 }]);
 
+app.factory("SearchAuthor", ["$resource", function ($resource) {
+    return $resource("/api/searchauthor/:whatToSearchFor/:searchValues", { whatToSearchFor: "@whatToSearchFor", searchValues: "@searchValues" }, standardMethods);
+}]);
+
 app.factory("Authors", ["$resource", function ($resource)
 {
     return $resource("/api/authors/:id", { id: "@id" }, standardMethods);

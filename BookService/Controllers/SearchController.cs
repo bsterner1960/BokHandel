@@ -150,7 +150,11 @@ namespace BookService.Controllers
             {
                 bool genreCheck = false;
 
-                if (genreId.Count() == 0)
+                if (genreId == null)
+                {
+                    genreCheck = true;
+                }
+                else if (genreId.Count() == 0)
                 {
                     genreCheck = true;
                 }

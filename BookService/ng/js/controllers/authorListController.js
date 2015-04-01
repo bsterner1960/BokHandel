@@ -1,5 +1,5 @@
-﻿app.controller("authorListController", ["$scope", "Authors", "$rootScope", "$modal", "Search",
-    function ($scope, Authors, $rootScope, $modal, Search)
+﻿app.controller("authorListController", ["$scope", "Authors", "$rootScope", "$modal", "SearchAuthor",
+    function ($scope, Authors, $rootScope, $modal, SearchAuthor)
 {
 
         $scope.endMessage = "muffin";
@@ -24,7 +24,7 @@
             $scope.alerts = [];
 
             // Send the request to the backend and then show the result on the view
-            $scope.authors = Search.index(
+            $scope.authors = SearchAuthor.index(
             {
                 whatToSearchFor: "authors",
                 searchValue: $rootScope.searchValue
