@@ -32,7 +32,8 @@
         $scope.loadEverything();
 
 
-        $rootScope.$on('updateAuthors', function () {
+        $rootScope.$on('updateAuthors', function ()
+        {
             $scope.loadEverything();
         });
     

@@ -49,14 +49,10 @@
             });
 
         modalInstance.result.then(
-        function (redTruckWithStuffAndThings)
+        function ()
         {
-            if (redTruckWithStuffAndThings.action !== "create")
-            {
-                $rootScope.$broadcast('updateBooks');
-            }
+            $rootScope.$broadcast('updateBooks');
         });
-
     }
 
     $scope.createAuthor = function (size)
@@ -71,12 +67,9 @@
             });
 
         modalInstance.result.then(
-        function (redTruckWithStuffAndThings)
+        function ()
         {
-            if (redTruckWithStuffAndThings.action !== "create")
-            {
-                $rootScope.$broadcast('updateAuthors');
-            }
+            $rootScope.$broadcast('updateAuthors');
         });
     }
 
@@ -93,10 +86,9 @@
         });
 
         modalInstance.result.then(
-        function (myReturnObject) {
-            if (myReturnObject.action !== "create") {
-                $rootScope.$broadcast('updateGenres');
-            }
+        function ()
+        {
+            $rootScope.$broadcast('updateGenres');
         });
         }
     }]);
