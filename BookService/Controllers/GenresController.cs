@@ -33,10 +33,8 @@ namespace BookService.Controllers
                                Description = g.Description
                            }).ToList();
 
-
             return genres;
         }
-
 
         // GET api/Genres/5
         [ResponseType(typeof(GenreDTO))]
@@ -77,7 +75,6 @@ namespace BookService.Controllers
                 Name = genreDTO.Name,
                 Description = genreDTO.Description
             };
-
 
             db.Entry(genre).State = EntityState.Modified;
 
