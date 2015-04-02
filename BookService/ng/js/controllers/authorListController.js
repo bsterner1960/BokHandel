@@ -5,22 +5,35 @@
         
         $scope.startMessage = "Loading...";
 
-        $scope.authors = Authors.index(function (data)
+        // Loads all of the authors!
+        $scope.loadEverything = function ()
         {
-            // Success!
-            $scope.startMessage = "Authors";
-        },
-        function (error)
-        {
-            // Failure...
-            $scope.alerts.push(
+            $scope.authors = SearchAuthor.index({ whatToSearchFor: "authors", searchValue: null },
+            function ()
             {
-                type: 'danger',
-                msg: "Loading failed, self-destruct imminent, preparing emergency escape pods...: " +
-                error.status + " " +
-                error.statusText + ""
+                // Success!
+                $scope.startMessage = "Authors";
+            },
+            function ()
+            {
+                // Failure...
+                $scope.alerts.push(
+                {
+                    type: 'danger',
+                    msg: "Loading failed, self-destruct imminent, preparing emergency escape pods...: " +
+                    error.status + " " +
+                    error.statusText + ""
+                });
+
+                $scope.startMessage = "Failed to load.";
             });
-            $scope.startMessage = "Failed to load.";
+        }
+
+        $scope.loadEverything();
+
+
+        $rootScope.$on('updateAuthors', function () {
+            $scope.loadEverything();
         });
     
 
@@ -82,19 +95,19 @@
             }
         });
 
-        modalInstance.result.then(function (redTruckWithStuffAndThings)
+        modalInstance.result.then(function (myReturnObject)
         {
-            if (redTruckWithStuffAndThings.action !== "cancel")
+            if (myReturnObject.action !== "cancel")
             {
                 for (var i = 0; i < $scope.authors.length; i++)
                 {
-                    if ($scope.authors[i].Id === redTruckWithStuffAndThings.data.Id)
+                    if ($scope.authors[i].Id === myReturnObject.data.Id)
                     {
-                        if (redTruckWithStuffAndThings.action === "save")
+                        if (myReturnObject.action === "save")
                         {
-                            $scope.authors[i].Name = redTruckWithStuffAndThings.data.Name;
+                            $scope.authors[i].Name = myReturnObject.data.Name;
                         }
-                        else if (redTruckWithStuffAndThings.action === "delete")
+                        else if (myReturnObject.action === "delete")
                         {
                             $scope.authors.splice(i, 1);
                         }

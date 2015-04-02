@@ -2,7 +2,7 @@
 app.controller("bookListController", ["$scope", "$rootScope", "Search", "Book", "$modal",
 function ($scope, $rootScope, Search, Book, $modal)
 {
-    //////console.log("bookListController is alive!, RockOn!");
+    //console.log("bookListController is alive!, RockOn!");
 
     // Where to put the alerts
     $scope.alerts = [];
@@ -10,25 +10,7 @@ function ($scope, $rootScope, Search, Book, $modal)
     $scope.startMessage = "Loading...";
 
     // Default load the book view with a search of all books.
-    $scope.books = Search.index({ whatToSearchFor: "books", searchValue: null },
-        function ()
-        {
-            // Success!
-            $scope.startMessage = "Books";
-        },
-        function ()
-        {
-            // Failure...
-            $scope.alerts.push(
-            {
-                type: 'danger',
-                msg: "Loading failed, self-destruct imminent, preparing emergency escape pods...: " +
-                error.status + " " +
-                error.statusText + ""
-            });
-
-            $scope.startMessage = "Failed to load.";
-        });
+    
 
 
     // Function to bring up the detailed view of a specific book.
@@ -47,23 +29,23 @@ function ($scope, $rootScope, Search, Book, $modal)
             }
         });
 
-        modalInstance.result.then(function (redTruckWithStuffAndThings)
+        modalInstance.result.then(function (myReturnObject)
         {
-            if (redTruckWithStuffAndThings.action !== "cancel")
+            if (myReturnObject.action !== "cancel")
             {
                 for (var i = 0; i < $scope.books.length; i++)
                 {
-                    if ($scope.books[i].Id === redTruckWithStuffAndThings.data.Id)
+                    if ($scope.books[i].Id === myReturnObject.data.Id)
                     {
-                        if (redTruckWithStuffAndThings.action === "save")
+                        if (myReturnObject.action === "save")
                         {
-                            $scope.books[i].Title = redTruckWithStuffAndThings.data.Title;
-                            $scope.books[i].Price = redTruckWithStuffAndThings.data.Price;
-                            $scope.books[i].StockBalance = redTruckWithStuffAndThings.data.StockBalance;
+                            $scope.books[i].Title = myReturnObject.data.Title;
+                            $scope.books[i].Price = myReturnObject.data.Price;
+                            $scope.books[i].StockBalance = myReturnObject.data.StockBalance;
                         }
-                        else if (redTruckWithStuffAndThings.action === "delete")
+                        else if (myReturnObject.action === "delete")
                         {
-                            ////console.log("delete...");
+                            //console.log("delete...");
                             $scope.books.splice(i, 1);
                         }
                     }
@@ -79,6 +61,38 @@ function ($scope, $rootScope, Search, Book, $modal)
     {
         $scope.alerts.splice(index, 1);
     };
+
+    // Loads all of the books!
+    $scope.loadEverything = function()
+    {
+        $scope.books = Search.index({ whatToSearchFor: "books", searchValue: null },
+        function ()
+        {
+            // Success!
+            $scope.startMessage = "Books";
+        },
+        function ()
+        {
+            // Failure...
+            $scope.alerts.push(
+            {
+                type: 'danger',
+                msg: "Loading failed, self-destruct imminent, preparing emergency escape pods...: " +
+                error.status + " " +
+                error.statusText + ""
+            });
+
+            $scope.startMessage = "Failed to load.";
+        });
+    }
+
+    $scope.loadEverything();
+
+
+    $rootScope.$on('updateBooks', function ()
+    {
+        $scope.loadEverything();
+    });
 
     // Here we listen for when the user wants to perfome a search
     $rootScope.$on('bookSearchEvent', function ()
@@ -112,7 +126,7 @@ function ($scope, $rootScope, Search, Book, $modal)
         function (error)
         {
             //On error
-            // ////console.log("Ojsan, fick problem när jag kallade på servern " + error.status + " " + error.statusText + "");
+            // //console.log("Ojsan, fick problem när jag kallade på servern " + error.status + " " + error.statusText + "");
             $scope.alerts.push({ type: 'danger', msg: "Oh my, something went wrong! Stepped into trouble when I tried to communicate with the backend, bookListController: " + error.status + " " + error.statusText + "" });
         });
     });

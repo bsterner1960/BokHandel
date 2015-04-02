@@ -38,7 +38,7 @@
 
     $scope.createBook = function(size)
     {
-        ////console.log("Initiating create Book sequence, standby...");
+        //console.log("Initiating create Book sequence, standby...");
 
         //opening a new modal instance
         var modalInstance = $modal.open(
@@ -48,14 +48,15 @@
                 size: size
             });
 
-        //waiting for modal instance to complete
         modalInstance.result.then(
-            function (newBookFromDB) {
-                //when modal closes
-            }, function () {
-                //when modal dismisses
-                $log.info('Modal dismissed at: ' + new Date());
-            });
+        function (redTruckWithStuffAndThings)
+        {
+            if (redTruckWithStuffAndThings.action !== "create")
+            {
+                $rootScope.$broadcast('updateBooks');
+            }
+        });
+
     }
 
     $scope.createAuthor = function (size)
@@ -69,37 +70,33 @@
                 size: size
             });
 
-        //waiting for modal instance to complete
         modalInstance.result.then(
-            function (newAuthorFromDB) {
-                //when modal closes
-            }, function () {
-                //when modal dismisses
-                $log.info('Modal dismissed at: ' + new Date());
-            });
+        function (redTruckWithStuffAndThings)
+        {
+            if (redTruckWithStuffAndThings.action !== "create")
+            {
+                $rootScope.$broadcast('updateAuthors');
+            }
+        });
     }
 
 
-        $scope.createGenre = function (size) 
+    $scope.createGenre = function (size) 
+    {
+
+        //opening a new modal instance
+        var modalInstance = $modal.open(
         {
+            templateUrl: 'partials/newGenreModal.html',
+            controller: 'newGenreModalController',
+            size: size
+        });
 
-            //opening a new modal instance
-            var modalInstance = $modal.open(
-                {
-                templateUrl: 'partials/newGenreModal.html',
-                controller: 'newGenreModalController',
-                size: size
-            });
-
-            //waiting for modal instance to complete
-            modalInstance.result.then(
-                function (newGenreFromDB) 
-                {
-                    //when modal closes
-                }, function () 
-                {
-                    //when modal dismisses
-                    $log.info('Modal dismissed at: ' + new Date());
-                });
+        modalInstance.result.then(
+        function (myReturnObject) {
+            if (myReturnObject.action !== "create") {
+                $rootScope.$broadcast('updateGenres');
+            }
+        });
         }
     }]);

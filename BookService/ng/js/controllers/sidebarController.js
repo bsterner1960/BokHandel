@@ -2,10 +2,21 @@
     function ($scope, $rootScope, Genres, $modal)
 {
 
-    ////console.log("All systems online, sidebarController successfully engaged, awaiting orders.");
+    //console.log("All systems online, sidebarController successfully engaged, awaiting orders.");
+
+    
+
+    // Loads all of the genres!
+    $scope.loadEverything = function () {
+        $scope.Genres = Genres.index();
+    }
+
+    $scope.loadEverything();
 
 
-    $scope.Genres = Genres.index();
+    $rootScope.$on('updateGenres', function () {
+        $scope.loadEverything();
+    });
 
     $scope.sidebar = {};
     $scope.sidebar.checkedBoxes = {};
@@ -15,9 +26,9 @@
     
     $scope.viewGenreDetails = function(genre)
     {
-        ////console.log("Initiating view genre details sequence, standby...");
+        //console.log("Initiating view genre details sequence, standby...");
 
-        ////console.log("You pressed: " + genre.Name);
+        //console.log("You pressed: " + genre.Name);
 
         //opening a new modal instance
         var modalInstance = $modal.open(
@@ -33,18 +44,18 @@
             }
         });
 
-        modalInstance.result.then(function (redTruckWithStuffAndThings)
+        modalInstance.result.then(function (myReturnObject)
         {
-            if (redTruckWithStuffAndThings.action !== "cancel")
+            if (myReturnObject.action !== "cancel")
             {
                 for (var i = 0; i < $scope.Genres.length; i++)
                 {
-                    if ($scope.Genres[i].Id === redTruckWithStuffAndThings.data.Id)
+                    if ($scope.Genres[i].Id === myReturnObject.data.Id)
                     {
-                        if (redTruckWithStuffAndThings.action === "save") {
-                            $scope.Genres[i].Name = redTruckWithStuffAndThings.data.Name;
+                        if (myReturnObject.action === "save") {
+                            $scope.Genres[i].Name = myReturnObject.data.Name;
                         }
-                        else if (redTruckWithStuffAndThings.action === "delete")
+                        else if (myReturnObject.action === "delete")
                         {
                             $scope.Genres.splice(i, 1);
                         }

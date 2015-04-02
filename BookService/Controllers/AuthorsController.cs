@@ -22,7 +22,7 @@ namespace BookService.Controllers
         //{
         //    return db.Authors;
         //}
-        //// GET api/authors
+        // GET api/authors
         public List<AuthorDTO> GetAuthors()
         {
             var authors = (from a in db.Authors

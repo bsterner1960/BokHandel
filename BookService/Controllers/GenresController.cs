@@ -22,7 +22,7 @@ namespace BookService.Controllers
         //{
         //    return db.Genres;
         //}
-        ////// GET api/authors
+        //// GET api/authors
         public List<GenreDTO> GetGenres()
         {
             var genres = (from g in db.Genres
