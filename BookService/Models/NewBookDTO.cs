@@ -13,6 +13,5 @@ namespace BookService.Models
 
         public List<int> AuthorIds { get; set; }
         public List<int> GenreIds { get; set; }
-
     }
 }
