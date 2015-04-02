@@ -27,10 +27,8 @@ namespace BookService.Controllers
                             Title = b.Title
                         }).ToList();
 
-
             return books;
         }
-
 
         // GET api/Books/5
         [ResponseType(typeof(BookDetailDTO))]
@@ -38,7 +36,6 @@ namespace BookService.Controllers
             
         public IHttpActionResult GetBook(int id)
         {
-
 
             var books = from b in db.Books
                         where b.Id == id
@@ -112,7 +109,6 @@ namespace BookService.Controllers
                 return BadRequest(ModelState);
             }
 
-
             Book book;
 
             // Lookup the book in the db
@@ -148,7 +144,6 @@ namespace BookService.Controllers
 
             book.Authors = authorsInPost;
 
-
             // then change then lookup the genres from the genreIds property
             var genresInPost = new List<Genre>();
             if (changedBook.GenreIds != null)
@@ -160,7 +155,6 @@ namespace BookService.Controllers
             }
 
             book.Genres = genresInPost;
-            
 
             try
             {
@@ -206,7 +200,6 @@ namespace BookService.Controllers
                 if (author != null)
                 {
                     book.Authors.Add(author);
-
                 }
             }
 
@@ -216,7 +209,6 @@ namespace BookService.Controllers
                 if (genre != null)
                 {
                     book.Genres.Add(genre);
-
                 }
             }
 
