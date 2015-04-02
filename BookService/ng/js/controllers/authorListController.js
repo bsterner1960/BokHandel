@@ -1,21 +1,33 @@
 ﻿app.controller("authorListController", ["$scope", "Authors", "$rootScope", "$modal", "SearchAuthor",
     function ($scope, Authors, $rootScope, $modal, SearchAuthor)
 {
-
-        $scope.endMessage = "muffin";
+        $scope.alerts = [];
+        
+        $scope.startMessage = "Loading...";
 
         $scope.authors = Authors.index(function (data)
         {
-            //success call
-            $scope.endMessage = "Loading complete, signing off.";
+            // Success!
+            $scope.startMessage = "Authors";
         },
         function (error)
         {
-            //failed call
-            $scope.endMessage = "Loading failed, self-destruct imminent, preparing emergency escape pods...";
+            // Failure...
+            $scope.alerts.push(
+            {
+                type: 'danger',
+                msg: "Loading failed, self-destruct imminent, preparing emergency escape pods...: " +
+                error.status + " " +
+                error.statusText + ""
+            });
+            $scope.startMessage = "Failed to load.";
         });
     
-        var doneInitializing;
+
+        $scope.closeAlert = function (index)
+        {
+            $scope.alerts.splice(index, 1);
+        };
 
        // Here we listen for when the user wants to preform a search
         $rootScope.$on('authorSearchEvent', function ()

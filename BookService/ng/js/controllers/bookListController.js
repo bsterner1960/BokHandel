@@ -7,8 +7,28 @@ function ($scope, $rootScope, Search, Book, $modal)
     // Where to put the alerts
     $scope.alerts = [];
 
+    $scope.startMessage = "Loading...";
+
     // Default load the book view with a search of all books.
-    $scope.books = Search.index({ whatToSearchFor: "books", searchValue: null });
+    $scope.books = Search.index({ whatToSearchFor: "books", searchValue: null },
+        function ()
+        {
+            // Success!
+            $scope.startMessage = "Books";
+        },
+        function ()
+        {
+            // Failure...
+            $scope.alerts.push(
+            {
+                type: 'danger',
+                msg: "Loading failed, self-destruct imminent, preparing emergency escape pods...: " +
+                error.status + " " +
+                error.statusText + ""
+            });
+
+            $scope.startMessage = "Failed to load.";
+        });
 
 
     // Function to bring up the detailed view of a specific book.
