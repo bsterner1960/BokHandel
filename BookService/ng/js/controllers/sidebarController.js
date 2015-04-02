@@ -2,7 +2,7 @@
     function ($scope, $rootScope, Genres, $modal)
 {
 
-    console.log("All systems online, sidebarController successfully engaged, awaiting orders.");
+    ////console.log("All systems online, sidebarController successfully engaged, awaiting orders.");
 
 
     $scope.Genres = Genres.index();
@@ -15,9 +15,9 @@
     
     $scope.viewGenreDetails = function(genre)
     {
-        console.log("Initiating view genre details sequence, standby...");
+        ////console.log("Initiating view genre details sequence, standby...");
 
-        console.log("You pressed: " + genre.Name);
+        ////console.log("You pressed: " + genre.Name);
 
         //opening a new modal instance
         var modalInstance = $modal.open(
