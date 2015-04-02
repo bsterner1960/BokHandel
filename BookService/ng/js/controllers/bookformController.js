@@ -1,5 +1,5 @@
 ﻿app.controller("bookformController", ["$scope", "Book", "Author", function ($scope, Book, Author) {
-    //console.log("bookformController is alive! Wohooooo :D");
+    console.log("bookformController is alive! Wohooooo :D");
 
     //first make a call to get all authors
     $scope.authors = Author.index();

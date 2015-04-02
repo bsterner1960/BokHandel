@@ -2,7 +2,7 @@
 
     $scope.genreError = false;
 
-    ////console.log("Create genre controllern är igång! ");
+    //console.log("Create genre controllern är igång! ");
 
     $scope.newGenre = {};
 
@@ -22,7 +22,7 @@
                 function ()
                 {
                     //for unsuccessful calls
-                    ////console.log("Fel vid Create genre. ");
+                    //console.log("Fel vid Create genre. ");
                     $scope.alert = { type: 'danger', msg: 'Fel vid create Genre' };
                     $scope.genreError = true;
 

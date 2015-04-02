@@ -132,7 +132,7 @@
         // Read current value of select list for authors (an author id)
         var selectedAuthorID = $scope.selectedAuthorID;
 
-        ////console.log("selectedAuthorID: " + $scope.selectedAuthorID);
+        //console.log("selectedAuthorID: " + $scope.selectedAuthorID);
 
         // Find the author object by id amongst all authors
         for (var i = 0; i < $scope.Authors.length; i++)
@@ -186,7 +186,7 @@
 
     $scope.Delete = function()
     {
-        ////console.log("book.Id" + book.Id);
+        //console.log("book.Id" + book.Id);
         Book.destroy($scope.deletionObject,
         function(data)
         {
@@ -198,7 +198,7 @@
         function(error)
         {
             // Error call
-            ////console.log("Unable to terminate target. Target appears to be angry, suggestion: RUN! " + error);
+            //console.log("Unable to terminate target. Target appears to be angry, suggestion: RUN! " + error);
             $scope.alerts.push({ type: 'danger', msg: "Failure to terminate target, recharging main weapons... : " + error.status + " " + error.statusText + "" });
         });
         
@@ -206,8 +206,8 @@
 
     $scope.Save = function ()
     {
-        ////console.log($scope.myBook);
-        ////console.log("cookie: " + $scope.myBook.Title);
+        //console.log($scope.myBook);
+        //console.log("cookie: " + $scope.myBook.Title);
         $scope.alerts = [];
 
         if ($scope.myBook.Title)
@@ -220,7 +220,7 @@
             $scope.actualObject.StockBalance = $scope.myBook.StockBalance;
             $scope.actualObject.ISBN = $scope.myBook.ISBN;
 
-            ////console.log($scope.actualObject);
+            //console.log($scope.actualObject);
             Book.update($scope.actualObject,
             function (data)
             {
@@ -232,7 +232,7 @@
             function (error)
             {
                 // Failure...
-                ////console.log("Failed to complete the operation, self-destruction imminent in 3... 2... 1...");
+                //console.log("Failed to complete the operation, self-destruction imminent in 3... 2... 1...");
                 $scope.alerts.push({ type: 'danger', msg: "Failed to complete the save operation, self-destruction imminent: " + error.status + " " + error.statusText + "" });
             }
             );

@@ -87,7 +87,7 @@
         if ($scope.newBook.Name)
         {
             
-            ////console.log("Name:"+ $scope.newBook.Name);
+            //console.log("Name:"+ $scope.newBook.Name);
 
             $scope.actualObject.Title = $scope.newBook.Name;
             $scope.actualObject.Description = $scope.newBook.Description;
@@ -96,23 +96,23 @@
             $scope.actualObject.StockBalance = $scope.newBook.StockBalance;
             $scope.actualObject.ISBN = $scope.newBook.ISBN;
 
-            ////console.log("$scope.actualObject.ISBN: " + $scope.actualObject.ISBN);
+            //console.log("$scope.actualObject.ISBN: " + $scope.actualObject.ISBN);
 
-            ////console.log($scope.actualObject);
+            //console.log($scope.actualObject);
             Book.create($scope.actualObject,
             function (data)
             {
-                ////console.log("data: " + data);
+                //console.log("data: " + data);
                 //for successful calls
                 //$modalInstance.close(data);
                 $modalInstance.close(data);
-                ////console.log("Efter .close i newBookModalController: ");
+                //console.log("Efter .close i newBookModalController: ");
 
             },
             function ()
             {
                 //for unsuccessful calls
-                ////console.log("Unable to create a new book. ");
+                //console.log("Unable to create a new book. ");
                 $scope.alert = { type: 'danger', msg: 'Unable to create a new book' };
                 $scope.bookError = true;
             });

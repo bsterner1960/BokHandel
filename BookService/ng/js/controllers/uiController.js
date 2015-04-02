@@ -1,9 +1,9 @@
 ﻿app.controller("uiController", ["$scope", "$modal", "$routeParams", function ($scope, $modal, $routeParams) {
-    //console.log("uiController is alive!");
+    console.log("uiController is alive!");
 
     //$routeParams is a JS object that is automatically filled with
     //any parameters and their values from the current URL
-    //console.log("routeParams: ", $routeParams);
+    console.log("routeParams: ", $routeParams);
 
     //for alert directives
     $scope.alerts = [
@@ -12,7 +12,7 @@
     ];
 
     $scope.closeAlert = function (index) {
-        //console.log("closed alert index: ", index);
+        console.log("closed alert index: ", index);
         $scope.alerts.splice(index, 1);
     };
 
@@ -23,9 +23,9 @@
     $scope.itemsPP = 20;
 
     $scope.$watch("bigCurrentPage", function (newValue, oldValue) {
-        //console.log("bigCurrentPage: ", newValue);
+        console.log("bigCurrentPage: ", newValue);
         var showIndex = ($scope.bigCurrentPage - 1) * $scope.itemsPP;
-        //console.log("showIndex: " + showIndex + " - " + (showIndex + $scope.itemsPP - 1));
+        console.log("showIndex: " + showIndex + " - " + (showIndex + $scope.itemsPP - 1));
     })
 
 
@@ -56,11 +56,11 @@
         modalInstance.result.then(function (selectedItem) {
             //this function is called if $modalInstance.close(data) is used and receives
             //any data send through the .close() method
-            //console.log("ui Modal closed: ", selectedItem);
+            console.log("ui Modal closed: ", selectedItem);
             $scope.selected = selectedItem;
         }, function () {
             //this function is called if $modalInstance.dismiss() is used
-            //console.log('Modal dismissed at: ' + new Date());
+            console.log('Modal dismissed at: ' + new Date());
         });
     };
 }]);
@@ -76,12 +76,12 @@ app.controller("modalController", ["$scope", "$modalInstance", "items", function
     //if the user clicks "ok", call the $modalInstance.close(data) method and send data 
     //back to the main view
     $scope.ok = function () {
-        //console.log("modal Modal closed: ", $scope.selected.item);
+        console.log("modal Modal closed: ", $scope.selected.item);
         $modalInstance.close($scope.selected.item);
     };
     //if the user clicks "cancel", call the $modalInstance.dismiss() method
     $scope.cancel = function () {
-        //console.log("modal Modal dismissed ");
+        console.log("modal Modal dismissed ");
         $modalInstance.dismiss('cancel');
     };
 }]);
