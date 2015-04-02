@@ -2,7 +2,7 @@
 
     $scope.authorError = false;
 
-    console.log("Create författare controllern är igång! routeParams är nu: ");
+    //console.log("Create författare controllern är igång! routeParams är nu: ");
 
     $scope.newAuthor = {};
 
@@ -19,7 +19,7 @@
                 }, 
                 function () {
                     //for unsuccessful calls
-                    console.log("Fel vid Create författare. ");
+                    //console.log("Fel vid Create författare. ");
                     $scope.alert = { type: 'danger', msg: 'Fel vid create Författare' };
                     $scope.authorError = true;
 

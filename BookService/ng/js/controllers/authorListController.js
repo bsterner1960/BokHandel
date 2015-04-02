@@ -52,9 +52,9 @@
 
     $scope.viewAuthorDetails = function (author)
     {
-        console.log("Initiating view author details sequence, standby...");
+        //console.log("Initiating view author details sequence, standby...");
 
-        console.log("author: " + author.Name);
+        //console.log("author: " + author.Name);
 
         //opening a new modal instance
         var modalInstance = $modal.open(
