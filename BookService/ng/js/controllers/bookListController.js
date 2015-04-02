@@ -2,7 +2,7 @@
 app.controller("bookListController", ["$scope", "$rootScope", "Search", "Book", "$modal",
 function ($scope, $rootScope, Search, Book, $modal)
 {
-    //////console.log("bookListController is alive!, RockOn!");
+    ////console.log("bookListController is alive!, RockOn!");
 
     // Where to put the alerts
     $scope.alerts = [];
@@ -63,7 +63,7 @@ function ($scope, $rootScope, Search, Book, $modal)
                         }
                         else if (redTruckWithStuffAndThings.action === "delete")
                         {
-                            ////console.log("delete...");
+                            //console.log("delete...");
                             $scope.books.splice(i, 1);
                         }
                     }
@@ -112,7 +112,7 @@ function ($scope, $rootScope, Search, Book, $modal)
         function (error)
         {
             //On error
-            // ////console.log("Ojsan, fick problem när jag kallade på servern " + error.status + " " + error.statusText + "");
+            // //console.log("Ojsan, fick problem när jag kallade på servern " + error.status + " " + error.statusText + "");
             $scope.alerts.push({ type: 'danger', msg: "Oh my, something went wrong! Stepped into trouble when I tried to communicate with the backend, bookListController: " + error.status + " " + error.statusText + "" });
         });
     });
