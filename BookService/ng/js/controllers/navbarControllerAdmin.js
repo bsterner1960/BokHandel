@@ -38,7 +38,7 @@
 
     $scope.createBook = function(size)
     {
-        console.log("Initiating create Book sequence, standby...");
+        //console.log("Initiating create Book sequence, standby...");
 
         //opening a new modal instance
         var modalInstance = $modal.open(
