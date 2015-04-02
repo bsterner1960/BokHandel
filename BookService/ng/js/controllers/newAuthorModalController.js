@@ -16,7 +16,7 @@
                 function(data){
                     //for successful calls
                     $modalInstance.close(data);
-                }, 
+                },
                 function () {
                     //for unsuccessful calls
                     //console.log("Fel vid Create författare. ");
