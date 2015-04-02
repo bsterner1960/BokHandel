@@ -5,7 +5,7 @@ app.service("restService", ["$http", "$rootScope", function($http, $rootScope) {
   //inside the service itself but still affect output/results
   //in the controller
   function checkData (data) {
-    console.log("typeof", typeof data);
+    //console.log("typeof", typeof data);
     if (typeof data == "String") {
       try {
         //try to convert string to JSON (JS object)
@@ -22,7 +22,7 @@ app.service("restService", ["$http", "$rootScope", function($http, $rootScope) {
 
   var restServant = {
     helloWorld : function() {
-      console.log("Hello World!");
+      //console.log("Hello World!");
       //sharing the rootScope property hello to all child $scopes
       $rootScope.hello = "Hello";
     },
@@ -45,7 +45,7 @@ app.service("restService", ["$http", "$rootScope", function($http, $rootScope) {
         data : data,
         responseType: "json"
       }).success(function(data) {
-        console.log("restCall success: ", data);
+        //console.log("restCall success: ", data);
         //using $rootscope to distribute a model (data) to all 
         //$scopes in the app 
         // $rootScope.output = JSON.stringify(data, null, '\t');

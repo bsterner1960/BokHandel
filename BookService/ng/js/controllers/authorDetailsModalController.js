@@ -40,7 +40,7 @@ function ($scope, $rootScope, Authors, $modalInstance, author)
         function (data)
         {
             //Success call
-            console.log("Target successfully terminated, searching for new targets... " + data);
+            //console.log("Target successfully terminated, searching for new targets... " + data);
 
             $scope.returnObject.action = "delete";
             $scope.returnObject.data = data;
@@ -49,7 +49,7 @@ function ($scope, $rootScope, Authors, $modalInstance, author)
         function (error)
         {
             // Error call
-            console.log("Unable to terminate target. Target appears to be angry, suggestion: RUN! " + error);
+            //console.log("Unable to terminate target. Target appears to be angry, suggestion: RUN! " + error);
             $scope.alerts.push({ type: 'danger', msg: "Failure to terminate target, recharging main weapons... : " + error.status + " " + error.statusText + "" });
         });
     }
@@ -75,14 +75,14 @@ function ($scope, $rootScope, Authors, $modalInstance, author)
         function (error)
         {
             // Failure...
-            console.log("Unable to update author. ");
+            //console.log("Unable to update author. ");
             $scope.alerts.push({ type: 'danger', msg: "Failed to complete the save operation, self-destruction imminent: " + error.status + " " + error.statusText + "" });
         });
     }
 
     $scope.Cancel = function ()
     {
-        console.log("Self-destruct has been overridden, emergency shut-down in 3... 2.... 1...");
+        //console.log("Self-destruct has been overridden, emergency shut-down in 3... 2.... 1...");
         $scope.returnObject.action = "cancel";
         $modalInstance.close($scope.returnObject);
     };

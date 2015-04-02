@@ -40,7 +40,7 @@ function ($scope, $rootScope, Genres, $modalInstance, genre)
         function (data)
         {
             //Success call
-            //console.log("Target successfully terminated, searching for new targets... " + data);
+            ////console.log("Target successfully terminated, searching for new targets... " + data);
 
             $scope.returnObject.action = "delete";
             $scope.returnObject.data = data;
@@ -50,7 +50,7 @@ function ($scope, $rootScope, Genres, $modalInstance, genre)
         function (error)
         {
             // Error call
-            //console.log("Unable to terminate target. Target appears to be angry, suggestion: RUN! " + error);
+            ////console.log("Unable to terminate target. Target appears to be angry, suggestion: RUN! " + error);
             $scope.alerts.push({ type: 'danger', msg: "Failure to terminate target, recharging main weapons...: " + error.status + " " + error.statusText + "" });
         });
     }
@@ -66,7 +66,7 @@ function ($scope, $rootScope, Genres, $modalInstance, genre)
             Description: $scope.myGenre.Description
         };
 
-        //console.log($scope.actualObject.Id);
+        ////console.log($scope.actualObject.Id);
 
         Genres.update($scope.actualObject,
         function (data)
@@ -86,7 +86,7 @@ function ($scope, $rootScope, Genres, $modalInstance, genre)
 
     $scope.Cancel = function ()
     {
-        //console.log("Self-destruct has been overridden, systems functional, awating orders.");
+        ////console.log("Self-destruct has been overridden, systems functional, awating orders.");
         $scope.returnObject.action = "cancel";
         $modalInstance.close($scope.returnObject);
     };
